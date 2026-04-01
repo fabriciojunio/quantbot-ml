@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/c/Python313/python.exe -m pip install pandas numpy scikit-learn xgboost scipy matplotlib seaborn yfinance cryptography python-dotenv)",
+      "Bash(/c/Python313/python.exe -m pytest tests/ -v --tb=short)"
+    ]
+  }
+}

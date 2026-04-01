@@ -1,0 +1,57 @@
+# QuantBot ML — .gitignore
+# NUNCA faça commit de secrets!
+
+# API Keys e Credenciais
+.env
+.env.local
+.env.production
+.credentials
+.master_key
+
+# LGPD Data
+.lgpd_data/
+
+# Audit Trail (contém dados sensíveis)
+audit_trail.json
+
+# Trading State
+paper_trading_state.json
+live_trading_log.json
+accuracy_history.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+.venv/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reports
+quantbot_report.png
+
+# Python bytecode
+*.pyc
+*.pyo
+
+# Logs
+*.log
+logs/*.log
