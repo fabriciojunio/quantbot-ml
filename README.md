@@ -321,6 +321,6 @@ O projeto está em constante evolução com melhorias nos modelos, novas estrat�
 Desenvolvido por **Fabrício Júnio Almeida Dias**
 
 [![GitHub](https://img.shields.io/badge/GitHub-fabriciojunio-181717?style=for-the-badge&logo=github)](https://github.com/fabriciojunio)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Fabrício%20Júnio-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/fabriciojunio)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Fabrício%20Júnio-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/fabr%C3%ADcioj%C3%BAnio/)
 
 </div>
