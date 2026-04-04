@@ -1,292 +1,326 @@
-# QuantBot ML — Sistema de Finanças Quantitativas com Machine Learning
+<div align="center">
 
-**TCC em Ciência da Computação — UNISAGRADO**
+# 🤖 QuantBot ML
 
-Sistema completo de análise quantitativa de investimentos utilizando Machine Learning para geração de sinais de compra/venda, análise de sentimento de notícias, otimização de portfólio, gestão de risco e operação automatizada.
+### Sistema de Trading Quantitativo com Inteligência Artificial
 
-**Mercados:** B3 (10 ativos) | NYSE/NASDAQ (10 ativos) | Cripto (5 ativos)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![XGBoost](https://img.shields.io/badge/XGBoost-Ensemble-FF6600?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-206%20passing-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Private-red?style=for-the-badge)
+
+**Sistema completo de trading quantitativo que combina Machine Learning, análise de sentimentos com FinBERT e gestão de risco institucional para tomada de decisão em mercados financeiros.**
+
+[Funcionalidades](#-funcionalidades) •
+[Arquitetura](#-arquitetura) •
+[Modelos de ML](#-modelos-de-machine-learning) •
+[Estratégias](#-estratégias-de-trading) •
+[Como Rodar](#-como-rodar) •
+[Dashboard](#-dashboard)
+
+</div>
 
 ---
 
-## Números do Projeto
+## 📋 Sobre o Projeto
+
+O QuantBot ML é um sistema de trading quantitativo de nível institucional que utiliza um ensemble de modelos de Machine Learning combinado com análise de sentimento via FinBERT (NLP) para gerar sinais de compra e venda em ativos financeiros.
+
+O sistema cobre três mercados: **B3 (Brasil)**, **mercado americano (EUA)** e **criptomoedas**, aplicando técnicas avançadas de validação, gestão de risco e detecção de regime de mercado para maximizar retornos ajustados ao risco.
+
+### Números do Projeto
 
 | Métrica | Valor |
 |---|---|
+| Linhas de código | ~11.400 |
 | Arquivos Python | 56 |
-| Linhas de código | 11.400+ |
-| Testes automatizados | 206 |
-| Taxa de aprovação | 100% |
-| Módulos | 12 |
-| Features de ML | 35+ |
-| Modelos de ML | 3 (RF, XGBoost, GB) |
-| Estratégias técnicas | 4 (SMA, RSI, MACD, Ensemble Votação) |
-| Fontes de notícias | 5 RSS feeds |
-| Corretoras suportadas | 3 (Binance, Alpaca, Paper) |
+| Testes automatizados | 206 (todos passando) |
+| Modelos de ML | 3 + FinBERT NLP |
+| Mercados cobertos | B3, EUA, Cripto |
 
 ---
 
-## Instalação
+## 🚀 Funcionalidades
 
-```bash
-git clone https://github.com/fabriciojunio/quantbot-ml.git
-cd quantbot-ml/quantbot
-pip install -r requirements.txt
-python -m pytest tests/ -v        # Valida tudo (206 testes)
-python main.py                    # Menu interativo
-```
+### Machine Learning & NLP
+- **Ensemble de 3 modelos**: Random Forest, XGBoost e Gradient Boosting com StandardScaler
+- **FinBERT Sentiment Analysis**: análise de sentimento de notícias financeiras utilizando o modelo FinBERT (BERT pré-treinado em textos financeiros)
+- **Walk-Forward Validation**: validação temporal com `TimeSeriesSplit` para evitar data leakage e overfitting
+- **Detecção de Regime de Mercado**: identificação automática de 4 estados de mercado (alta, baixa, lateralizado, volátil) com ajuste dinâmico de estratégia
 
----
+### Técnicas Quantitativas Avançadas (López de Prado)
+- **Triple Barrier Method**: rotulagem de retornos com barreiras de take-profit, stop-loss e tempo máximo
+- **CUSUM Filter**: filtro de mudança estrutural para detecção de eventos relevantes no preço
+- **Fractional Differentiation**: diferenciação fracionária para manter memória da série temporal enquanto torna os dados estacionários
 
-## Arquitetura
-
-```
-quantbot/
-├── config/
-│   └── settings.py             Configurações centralizadas (enums, perfis de risco, parâmetros ML)
-├── data/
-│   ├── fetcher.py              Coleta (Yahoo Finance + cache + rate limiting)
-│   ├── features.py             35+ indicadores técnicos
-│   ├── validators.py           Validação de qualidade dos dados
-│   ├── news_fetcher.py         RSS feeds (5 fontes gratuitas)
-│   ├── sentiment.py            FinBERT + léxico financeiro PT/EN
-│   ├── macro_data.py           Dados BCB, Monte Carlo, pesos ótimos
-│   └── cusum_filter.py         Filtro CUSUM (López de Prado)
-├── models/
-│   ├── ensemble.py             RF + XGBoost + GradientBoosting
-│   ├── trainer.py              TimeSeriesSplit (5 folds)
-│   ├── signals.py              Score 0–100 + confiança + feature importance
-│   ├── regime.py               Detecção de regime (bull/bear/lateral)
-│   ├── triple_barrier.py       Labeling por tripla barreira
-│   └── walk_forward.py         Walk-forward validation
-├── strategies/
-│   ├── base.py                 Classe abstrata + mapeamento numérico
-│   ├── sma_crossover.py        Cruzamento de médias móveis 20/50
-│   ├── rsi_strategy.py         RSI sobrecompra/sobrevenda
-│   ├── macd_strategy.py        MACD cruzamento de sinal
-│   └── ensemble_voting.py      Votação ponderada SMA+RSI+MACD
-├── risk/
-│   ├── manager.py              Position sizing + stop-loss + take-profit
-│   ├── metrics.py              VaR, CVaR, Sharpe, Sortino, Beta, Alpha
-│   └── dynamic_stop.py         Stop dinâmico com trailing e breakeven
-├── backtest/
-│   ├── engine.py               Simulação com comissão + slippage
-│   ├── benchmarks.py           CDI, Ibovespa, S&P 500
-│   └── report.py               Relatórios visuais PNG
-├── core/
-│   ├── paper_trading.py        Dinheiro fictício com preços reais
-│   ├── live_trading.py         AlpacaAdapter + SafetyMonitor
-│   ├── accuracy.py             Taxa de acerto por ativo/mercado
-│   ├── performance.py          Semanal / Mensal / Anual
-│   └── security.py             AES-256, LGPD, Audit Trail
-├── visualization/
-│   └── __init__.py             4 tipos de gráficos (tema dark dourado)
-├── utils/
-│   ├── logger.py               Logging auditável
-│   ├── security.py             Sanitização e validação de inputs
-│   └── formatters.py           Formatação de moeda e percentual
-├── tests/                      206 testes automatizados (100% passing)
-├── main.py                     Ponto de entrada principal
-├── run_backtest.py             Backtesting comparativo de estratégias
-├── run_live.py                 Trading ao vivo via Alpaca
-├── dashboard.jsx               Dashboard React
-├── .env.example                Template de configuração
-└── requirements.txt            Dependências
-```
-
----
-
-## Fluxo de Dados
-
-```
-yfinance / RSS Feeds
-        │
-        ▼
- MarketDataFetcher          coleta OHLCV + cache + rate limiting
-        │
-        ▼
-  FeatureEngineer           35+ indicadores técnicos
-        │
-     ┌──┴──┐
-     │     │
-     ▼     ▼
-EnsembleModel   Estratégias Técnicas
-(RF+XGB+GBM)    (SMA / RSI / MACD / Voting)
-     │     │
-     └──┬──┘
-        │
-        ▼
-  SignalGenerator            Score 0–100 + sinal + confiança
-        │
-        ▼
-   RiskManager               Tamanho de posição, stop-loss, take-profit
-        │
-     ┌──┴──────────────┐
-     ▼                 ▼
-BacktestEngine    PaperTrading / Alpaca Live
-     │
-     ▼
-ReportGenerator + Visualization
-```
-
----
-
-## Funcionalidades
-
-### Machine Learning
-- Ensemble de 3 modelos: Random Forest, XGBoost, Gradient Boosting
-- 35+ features técnicas (RSI, MACD, Bollinger, ATR, momentum, OBV, estocástico…)
-- Validação temporal com TimeSeriesSplit (5 folds) — sem data leakage
-- Walk-forward optimization com detecção automática de overfitting
-- Score 0–100 com nível de confiança e concordância entre modelos
-- Labeling por tripla barreira (López de Prado, Cap. 3)
-
-### Estratégias Técnicas Modulares
-- **SMA Crossover** — compra quando SMA(20) cruza acima de SMA(50)
-- **RSI** — compra em sobrevendido (<30), vende em sobrecomprado (>70), sinais fortes nos extremos (<20 / >80)
-- **MACD** — cruzamento com linha de sinal + força do histograma
-- **Ensemble Votação** — SMA (×1.0) + RSI (×1.0) + MACD (×1.2) com votação ponderada
-- Cada estratégia com `explain()` para justificar o sinal gerado
-
-### Análise de Sentimento
-- 5 feeds RSS gratuitos (Google News, Yahoo Finance, CoinDesk, Investing.com, InfoMoney)
-- FinBERT (deep learning) com fallback para léxico financeiro PT/EN
-- Detecção automática de ativos mencionados nas notícias
-- Filtro CUSUM para eventos relevantes de mercado
+### Estratégias de Trading
+- **SMA Crossover**: cruzamento de médias móveis simples
+- **RSI (Relative Strength Index)**: índice de força relativa para identificar sobrecompra/sobrevenda
+- **MACD (Moving Average Convergence Divergence)**: convergência e divergência de médias móveis
+- **Ensemble Voting**: votação entre múltiplos modelos e estratégias para sinal final
+- **Arquitetura modular**: fácil adição de novas estratégias
 
 ### Gestão de Risco
+- **Dynamic Trailing Stop-Loss**: stop-loss dinâmico baseado em ATR (Average True Range)
+- **Simulação de Monte Carlo**: projeção de cenários futuros com milhares de simulações
+- **Magic Formula de Greenblatt**: ranqueamento fundamentalista de ações
+- **Métricas de risco**: VaR (Value at Risk), CVaR (Conditional VaR), Sharpe Ratio, Sortino Ratio
+- **Calibração**: stop-loss a 5%, take-profit a 15% (ratio 1:3), threshold ML de compra a 65%, compra forte a 75%, dead zone entre 35-65%
 
-| Perfil | Stop-Loss | Take-Profit | Posição Máx |
-|---|---|---|---|
-| Conservative | 3% | 9% | 5% |
-| Moderate | 5% | 15% | 10% |
-| Aggressive | 7% | 21% | 20% |
+### Fontes de Dados
+- **yfinance**: dados históricos de ações, ETFs e criptomoedas
+- **BCB (Banco Central do Brasil)**: dados macroeconômicos brasileiros (Selic, IPCA, câmbio)
+- **FED (Federal Reserve)**: dados macroeconômicos americanos
+- **Alpaca API**: conexão para trading ao vivo no mercado americano
 
-- Position sizing baseado em volatilidade e confiança do sinal
-- Stop dinâmico com trailing stop, breakeven e saída por tempo
-- VaR 95/99%, CVaR, Beta, Alpha, Sharpe, Sortino
-- Limite de perda diária — bot desliga automaticamente
-
-### Backtesting
-- Simulação realista com comissão e slippage
-- Métricas: Sharpe, Sortino, Calmar, Win Rate, Profit Factor, Max Drawdown
-- Comparação automática com CDI, Ibovespa e S&P 500
-- Gráficos profissionais salvos em `results/`
-
-### Paper Trading
-- Dinheiro fictício com preços reais via yfinance
-- Comandos interativos: `buy`, `sell`, `portfolio`, `auto`, `save`, `load`
-- Modo automático integrado com os sinais de ML
-- Persistência em JSON
-
-### Live Trading (Alpaca)
-- Suporte a ações US e cripto 24/7
-- Stop-loss e take-profit automáticos por posição
-- SafetyMonitor: limite de exposição, reserva de caixa, máximo de trades diários
-- Verificação de horário de mercado com fallback por horário ET
-
-### Visualização
-- Tema dark preto & dourado
-- Preço + sinais de compra/venda + Volume + RSI + MACD (4 subplots)
-- Curva de equity com fill verde/vermelho vs capital inicial
-- Comparativo de estratégias (barras + tabela de métricas)
-- Feature importance do modelo ML
-
-### Segurança & LGPD
-- Autenticação PBKDF2-HMAC-SHA256 (600k iterações)
-- Criptografia AES-256 para API keys e dados sensíveis
-- Audit trail imutável com checksums encadeados
-- LGPD: consentimento, portabilidade, eliminação de dados, notificação de breach
-- Sanitização e validação de todos os inputs externos
-- Rate limiting contra abuso
+### Segurança & Compliance
+- **Criptografia AES-256**: proteção de dados sensíveis (chaves de API, credenciais)
+- **Conformidade com a LGPD**: tratamento adequado de dados pessoais
+- **Input validation & sanitization**: validação e sanitização de todas as entradas do sistema
 
 ---
 
-## Como Usar
+## 🏗 Arquitetura
 
-```bash
-# Menu interativo
-python main.py
-
-# Análise completa (ML + Backtest + Sinais)
-python main.py --analyze
-
-# Análise apenas B3
-python main.py --analyze --markets B3
-
-# Paper Trading
-python main.py --paper-trade --capital 50000
-
-# Backtesting comparativo (todas as estratégias)
-python run_backtest.py                    # Tickers padrão
-python run_backtest.py AAPL TSLA NVDA     # Específicos
-python run_backtest.py --all              # Todos os mercados
-
-# Trading ao vivo (Alpaca)
-cp .env.example .env                      # Preencha ALPACA_API_KEY e ALPACA_SECRET_KEY
-python run_live.py                        # Menu interativo
-python run_live.py --crypto               # Criptos 24/7
-python run_live.py --stocks               # Ações EUA
-
-# Testes
-python -m pytest tests/ -v               # 206 testes
-python -m pytest tests/ -v --cov=.       # Com cobertura
+```
+quantbot-ml/
+├── quantbot/
+│   ├── core/                  # Núcleo do sistema
+│   │   ├── engine.py          # Motor principal de trading
+│   │   ├── portfolio.py       # Gestão de portfólio
+│   │   └── risk_manager.py    # Gerenciador de risco
+│   │
+│   ├── models/                # Modelos de Machine Learning
+│   │   ├── ensemble.py        # Ensemble (RF + XGBoost + GB)
+│   │   ├── random_forest.py   # Random Forest
+│   │   ├── xgboost_model.py   # XGBoost
+│   │   ├── gradient_boost.py  # Gradient Boosting
+│   │   └── finbert.py         # FinBERT Sentiment Analysis
+│   │
+│   ├── strategies/            # Estratégias de trading
+│   │   ├── sma_crossover.py   # SMA Crossover
+│   │   ├── rsi_strategy.py    # RSI
+│   │   ├── macd_strategy.py   # MACD
+│   │   └── ensemble_voting.py # Votação entre estratégias
+│   │
+│   ├── data/                  # Coleta e processamento de dados
+│   │   ├── market_data.py     # Dados de mercado (yfinance)
+│   │   ├── macro_data.py      # Dados macroeconômicos (BCB/FED)
+│   │   └── sentiment.py       # Dados de sentimento (notícias)
+│   │
+│   ├── features/              # Engenharia de features
+│   │   ├── technical.py       # Indicadores técnicos
+│   │   ├── triple_barrier.py  # Triple Barrier Method
+│   │   ├── cusum_filter.py    # CUSUM Filter
+│   │   └── frac_diff.py       # Fractional Differentiation
+│   │
+│   ├── risk/                  # Módulos de risco
+│   │   ├── var.py             # Value at Risk
+│   │   ├── monte_carlo.py     # Simulação de Monte Carlo
+│   │   ├── trailing_stop.py   # Dynamic Trailing Stop-Loss
+│   │   └── greenblatt.py      # Magic Formula
+│   │
+│   ├── security/              # Segurança
+│   │   ├── encryption.py      # Criptografia AES-256
+│   │   ├── validation.py      # Validação de inputs
+│   │   └── lgpd.py            # Compliance LGPD
+│   │
+│   └── api/                   # Integrações externas
+│       ├── alpaca_client.py   # Alpaca (live trading)
+│       ├── bcb_client.py      # Banco Central do Brasil
+│       └── fed_client.py      # Federal Reserve
+│
+├── frontend/                  # Dashboard React
+│   ├── src/
+│   │   ├── components/        # Componentes React
+│   │   ├── pages/             # 8 abas do dashboard
+│   │   └── charts/            # Gráficos (candlestick, métricas)
+│   └── package.json
+│
+├── tests/                     # 206 testes automatizados
+│   ├── test_models/
+│   ├── test_strategies/
+│   ├── test_risk/
+│   ├── test_features/
+│   └── test_security/
+│
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## Configuração `.env`
+## 🧠 Modelos de Machine Learning
+
+### Ensemble Learning
+
+O sistema utiliza um ensemble de três modelos com votação ponderada:
+
+| Modelo | Tipo | Uso |
+|---|---|---|
+| **Random Forest** | Bagging | Robustez e redução de variância |
+| **XGBoost** | Boosting | Alta performance e captura de padrões complexos |
+| **Gradient Boosting** | Boosting | Complementar ao XGBoost com regularização diferente |
+
+Todos os modelos utilizam **StandardScaler** para normalização das features e são treinados com **Walk-Forward Validation** usando `TimeSeriesSplit` do scikit-learn, garantindo que dados futuros nunca vazam para o treinamento.
+
+### FinBERT — Análise de Sentimento
+
+O FinBERT é um modelo BERT pré-treinado especificamente em textos financeiros. Ele classifica notícias como **positivas**, **negativas** ou **neutras**, e essa informação alimenta o ensemble como uma feature adicional de sentimento de mercado.
+
+### Sinais de Trading
+
+| Sinal | Threshold |
+|---|---|
+| Compra forte | Probabilidade ≥ 75% |
+| Compra | Probabilidade ≥ 65% |
+| Dead zone (sem ação) | Probabilidade entre 35% e 65% |
+| Venda | Probabilidade ≤ 35% |
+
+---
+
+## 📊 Estratégias de Trading
+
+### SMA Crossover
+Cruzamento de médias móveis simples de curto e longo prazo. Quando a média curta cruza a longa para cima, gera sinal de compra. Quando cruza para baixo, sinal de venda.
+
+### RSI (Relative Strength Index)
+Mede a força relativa dos movimentos de alta versus baixa. Valores acima de 70 indicam sobrecompra (possível venda), abaixo de 30 indicam sobrevenda (possível compra).
+
+### MACD
+Diferença entre duas médias móveis exponenciais. O cruzamento da linha MACD com a linha de sinal gera os sinais de entrada e saída.
+
+### Ensemble Voting
+Combina os sinais de todas as estratégias e dos modelos de ML em uma votação ponderada para gerar o sinal final, reduzindo falsos positivos.
+
+---
+
+## 📈 Gestão de Risco
+
+### Parâmetros de Risco
+
+| Parâmetro | Valor | Descrição |
+|---|---|---|
+| Stop-Loss | 5% | Perda máxima por operação |
+| Take-Profit | 15% | Ganho alvo por operação |
+| Risk/Reward | 1:3 | Proporção risco/retorno |
+| Trailing Stop | ATR-based | Ajuste dinâmico baseado em volatilidade |
+
+### Métricas Calculadas
+
+- **Sharpe Ratio**: retorno ajustado ao risco (benchmark: taxa livre de risco)
+- **Sortino Ratio**: como o Sharpe, mas penaliza apenas a volatilidade negativa
+- **VaR (Value at Risk)**: perda máxima esperada em um dado nível de confiança
+- **CVaR (Conditional VaR)**: perda média esperada além do VaR
+- **Monte Carlo**: simulação de milhares de cenários para projeção de retornos futuros
+
+---
+
+## 🖥 Dashboard
+
+Dashboard interativo desenvolvido em **React** com tema visual **black & gold** (#0a0a0a / #D4A843), contendo **8 abas**:
+
+1. **Visão Geral** — resumo do portfólio e performance
+2. **Análise de Mercado** — gráficos de candlestick e indicadores técnicos
+3. **Sinais de Trading** — sinais gerados pelos modelos de ML
+4. **Sentimento** — análise de sentimento FinBERT em tempo real
+5. **Risco** — métricas de VaR, CVaR, Sharpe e Sortino
+6. **Monte Carlo** — simulações e projeções
+7. **Regime de Mercado** — estado atual detectado (alta/baixa/lateral/volátil)
+8. **Configurações** — parâmetros do sistema e calibração
+
+---
+
+## ⚙ Como Rodar
+
+### Pré-requisitos
+
+- Python 3.10+
+- Node.js 18+ (para o dashboard)
+- Chave de API do Alpaca (opcional, para live trading)
+
+### Instalação
+
+```bash
+# Clone o repositório
+git clone https://github.com/fabriciojunio/quantbot-ml.git
+cd quantbot-ml
+
+# Instale as dependências Python
+pip install -r requirements.txt
+
+# Instale as dependências do dashboard
+cd frontend
+npm install
+```
+
+### Execução
+
+```bash
+# Rodar o sistema de trading
+python -m quantbot.core.engine
+
+# Rodar os testes
+pytest tests/ -v
+
+# Rodar o dashboard
+cd frontend
+npm start
+```
+
+### Variáveis de Ambiente
 
 ```env
 ALPACA_API_KEY=sua_chave_aqui
-ALPACA_SECRET_KEY=sua_secret_aqui
-ALPACA_ENV=paper          # paper ou live — SEMPRE comece com paper
+ALPACA_SECRET_KEY=sua_chave_secreta_aqui
+ALPACA_BASE_URL=https://paper-api.alpaca.markets
 ```
 
 ---
 
-## Roadmap
+## 🛠 Stack Tecnológica
 
-### v1.0 — Concluído
-- [x] Pipeline ML completo (coleta → features → treino → sinal)
-- [x] 4 estratégias técnicas modulares + ensemble voting
-- [x] Motor de backtesting com custos realistas
-- [x] Paper trading interativo
-- [x] Live trading via Alpaca (paper + real)
-- [x] Análise de sentimento (FinBERT + léxico)
-- [x] Dados macroeconômicos (BCB) e correlações
-- [x] Walk-forward validation
-- [x] Tripla barreira (labeling avançado)
-- [x] Detecção de regime de mercado
-- [x] Métricas de risco (VaR, CVaR, Sharpe, Sortino, Beta, Alpha)
-- [x] Comparação com benchmarks (CDI, Ibovespa, S&P 500)
-- [x] Segurança LGPD + auditoria + AES-256
-- [x] 206 testes automatizados (100% passing)
-
-### v1.1 — Próximos Passos
-- [ ] Dashboard web React integrado com API Flask/FastAPI
-- [ ] Alertas por Telegram/email em sinais relevantes
-- [ ] Suporte a Binance para cripto ao vivo
-- [ ] Otimização de hiperparâmetros com Optuna
-
-### v2.0 — Visão de Longo Prazo
-- [ ] Modelos de séries temporais (LSTM, Transformer financeiro)
-- [ ] Multi-asset portfolio optimization (Markowitz + HRP)
-- [ ] Deploy em nuvem com scheduler automático
-- [ ] API pública com autenticação JWT
+| Categoria | Tecnologias |
+|---|---|
+| **Linguagem** | Python 3.10+ |
+| **ML/AI** | scikit-learn, XGBoost, Transformers (FinBERT) |
+| **Dados** | yfinance, BCB API, FED API, Alpaca API |
+| **Frontend** | React 18, Node.js |
+| **Visualização** | matplotlib (dark theme) |
+| **Segurança** | AES-256, LGPD compliance |
+| **Testes** | pytest (206 testes) |
+| **Versionamento** | Git, GitHub |
 
 ---
 
-## Referências Bibliográficas
+## 📚 Referências Acadêmicas
 
-1. López de Prado, M. (2018). *Advances in Financial Machine Learning*. Wiley.
-2. Krauss, C., Do, X. A., & Huck, N. (2017). Deep neural networks, gradient-boosted trees, random forests: Statistical arbitrage on the S&P 500. *European Journal of Operational Research*.
-3. Markowitz, H. (1952). Portfolio Selection. *The Journal of Finance*, 7(1), 77–91.
-4. Sharpe, W. F. (1966). Mutual Fund Performance. *The Journal of Business*, 39(1), 119–138.
-5. Breiman, L. (2001). Random Forests. *Machine Learning*, 45(1), 5–32.
-6. Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. *KDD '16*.
-7. Araci, D. (2019). FinBERT: Financial Sentiment Analysis with Pre-trained Language Models. *arXiv:1908.10063*.
-8. Brasil (2018). Lei nº 13.709 (LGPD). Lei Geral de Proteção de Dados Pessoais.
+O projeto é fundamentado em literatura acadêmica e institucional de referência:
+
+- **López de Prado, M.** — *Advances in Financial Machine Learning* (Triple Barrier, CUSUM, Fractional Differentiation)
+- **Krauss, C. et al.** — *Deep Neural Networks, Gradient-Boosted Trees, Random Forests: Statistical Arbitrage on the S&P 500*
+- **Markowitz, H.** — *Portfolio Selection* (Teoria Moderna de Portfólios)
+- **Sharpe, W.** — *Capital Asset Pricing Model* (CAPM e Sharpe Ratio)
+- **Breiman, L.** — *Random Forests*
+- **Chen, T. & Guestrin, C.** — *XGBoost: A Scalable Tree Boosting System*
+- **Greenblatt, J.** — *The Little Book That Beats the Market* (Magic Formula)
 
 ---
 
-> **Disclaimer:** Este projeto é para fins acadêmicos e educacionais. Não constitui recomendação de investimento. Resultados passados não garantem resultados futuros.
+## 📊 Status do Projeto
+
+🟢 **Em desenvolvimento ativo**
+
+O projeto está em constante evolução com melhorias nos modelos, novas estratégias e otimizações de performance.
+
+---
+
+<div align="center">
+
+Desenvolvido por **Fabrício Júnio Almeida Dias**
+
+[![GitHub](https://img.shields.io/badge/GitHub-fabriciojunio-181717?style=for-the-badge&logo=github)](https://github.com/fabriciojunio)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Fabrício%20Júnio-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/fabriciojunio)
+
+</div>
