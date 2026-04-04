@@ -284,7 +284,7 @@ pytest tests/ -v
 python -m quantbot.core.engine
 ```
 
-> **Nota:** O dashboard funciona mesmo sem o backend — usa dados simulados como fallback. Com o backend rodando, exibe dados reais do mercado.
+> **Nota:** O dashboard funciona mesmo sem o backend — usa dados simulados como fallback. Com o backend rodando, exibe dados reais do mercado e o badge **LIVE** aparece no header.
 
 ### Variáveis de Ambiente
 
@@ -293,6 +293,130 @@ ALPACA_API_KEY=sua_chave_aqui
 ALPACA_SECRET_KEY=sua_chave_secreta_aqui
 ALPACA_BASE_URL=https://paper-api.alpaca.markets
 ```
+
+---
+
+## 🌐 API Backend (FastAPI)
+
+O backend serve dados reais de mercado para o dashboard React via REST API.
+
+### Endpoints Disponíveis
+
+| Método | Endpoint | Descrição | Cache (TTL) |
+|---|---|---|---|
+| `GET` | `/api/health` | Health check do servidor | — |
+| `GET` | `/api/dashboard` | Dados consolidados (ativos + indicadores + sinais + Selic + CDI + crypto) | 5 min |
+| `GET` | `/api/assets` | Todos os ativos com preços, indicadores técnicos e sinais ML | 5 min |
+| `GET` | `/api/asset/{symbol}` | Dados de um ativo específico (ex: `PETR4`, `AAPL`, `BTC`) | 5 min |
+| `GET` | `/api/selic` | Taxa Selic atual do Banco Central | 1 hora |
+| `GET` | `/api/cdi` | Histórico CDI diário dos últimos 30 dias | 1 hora |
+| `GET` | `/api/crypto` | Dados de mercado crypto via CoinGecko (market cap, volume 24h) | 2 min |
+
+### Documentação Interativa
+
+Com o backend rodando, acesse a documentação Swagger em:
+```
+http://localhost:8000/api/docs
+```
+
+### Fontes de Dados (todas gratuitas)
+
+| Fonte | Dados | Limite |
+|---|---|---|
+| **Yahoo Finance** (yfinance) | Preços históricos de ações BR, US e crypto | Sem limite oficial |
+| **Banco Central (BCB)** | Taxa Selic atual e CDI diário | Sem limite |
+| **CoinGecko** | Market cap, volume 24h, variação crypto | 30 req/min |
+
+### Segurança da API
+
+- **CORS**: apenas `localhost:3000` pode acessar (frontend React)
+- **Rate Limiting**: máximo 60 requisições por minuto por IP
+- **Métodos**: apenas `GET` permitido (somente leitura)
+- **Validação**: símbolos de ativos são validados (tamanho, caracteres)
+- **Cache**: evita chamadas excessivas às APIs externas
+
+### Ativos Monitorados
+
+| Mercado | Ativos |
+|---|---|
+| **B3 (Brasil)** | PETR4, VALE3, ITUB4, WEGE3, BBDC4 |
+| **US (EUA)** | AAPL, MSFT, NVDA, GOOGL, AMZN |
+| **Crypto** | BTC, ETH, SOL |
+
+### Indicadores Técnicos Calculados
+
+Para cada ativo, a API calcula automaticamente:
+- **RSI** (14 períodos) — sobrecompra/sobrevenda
+- **SMA 20 e SMA 50** — médias móveis
+- **MACD** — convergência/divergência
+- **Volatilidade** — anualizada (%)
+- **Momentum** — variação 20 dias (%)
+- **Sharpe Ratio** — retorno ajustado ao risco
+
+### Sinais de Trading
+
+A API gera sinais baseados nos indicadores:
+
+| Sinal | Score | Significado |
+|---|---|---|
+| `COMPRA_FORTE` | > 75 | Forte tendência de alta |
+| `COMPRA` | 65–75 | Tendência de alta |
+| `NEUTRO` | 35–65 | Sem tendência clara |
+| `VENDA` | 25–35 | Tendência de baixa |
+| `VENDA_FORTE` | < 25 | Forte tendência de baixa |
+
+---
+
+## 🖥 Dashboard
+
+Dashboard interativo desenvolvido em **React** com tema visual **black & gold** (#0a0a0a / #D4A843).
+
+### Modos de Operação
+
+| Modo | Badge | Descrição |
+|---|---|---|
+| **LIVE** | 🟢 Verde | Conectado ao backend, exibindo dados reais do mercado |
+| **SIMULADO** | 🟡 Laranja | Backend indisponível, usando dados simulados como fallback |
+
+O dashboard detecta automaticamente se o backend está rodando e alterna entre os modos.
+
+### 8 Abas do Dashboard
+
+1. **Visão Geral** — valor total do portfólio, retorno anual, Sharpe, equity curve vs benchmark, alocação por mercado
+2. **Performance** — métricas detalhadas de performance, retorno semanal/mensal/anual, comparação com CDI/Ibovespa/S&P500
+3. **Notícias** — feed de notícias com análise de sentimento (positivo/negativo/neutro)
+4. **Sinais ML** — sinais de compra/venda gerados pelo ensemble de modelos, score e confiança por ativo
+5. **Paper Trading** — simulação de operações com capital fictício, compra/venda manual
+6. **Acurácia** — hit rate dos modelos por mercado (B3, US, Crypto), profit factor
+7. **Memória** — log de decisões do bot e eventos processados
+8. **Risco** — VaR, CVaR, Beta, Alpha, métricas de risco do portfólio
+
+---
+
+## 🧪 Testes
+
+```bash
+# Rodar todos os testes
+cd quantbot
+python -m pytest tests/ -v
+
+# Rodar apenas testes da API
+python -m pytest tests/test_api.py -v
+
+# Rodar com cobertura
+python -m pytest tests/ --cov=. --cov-report=term-missing
+```
+
+### Cobertura de Testes da API (26 testes)
+
+| Categoria | Testes | O que valida |
+|---|---|---|
+| Indicadores técnicos | 5 | RSI, SMA, volatilidade, dados insuficientes |
+| Sinais ML | 5 | Compra, venda, neutro, confiança, input vazio |
+| Endpoints API | 7 | Health, assets, selic, cdi, crypto, erros 400/503 |
+| Cache | 3 | Set/get, expiração TTL, cache miss |
+| Rate Limiting | 3 | Dentro do limite, acima do limite, IPs independentes |
+| Segurança | 3 | CORS, métodos HTTP, rotas inexistentes |
 
 ---
 
