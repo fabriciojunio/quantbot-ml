@@ -186,7 +186,9 @@ class BenchmarkComparator:
     def _generate_estimated(self, period_days: int) -> Dict[str, pd.Series]:
         """Gera dados estimados quando yfinance não está disponível."""
         np.random.seed(42)
-        dates = pd.bdate_range(end=pd.Timestamp.now(), periods=period_days)
+        end_date = pd.Timestamp.today().normalize()
+        # Request extra dates then slice to guarantee exactly period_days entries
+        dates = pd.bdate_range(end=end_date, periods=period_days + 10)[-period_days:]
 
         estimates = {
             "Ibovespa": {"annual_return": 0.12, "annual_vol": 0.22},
