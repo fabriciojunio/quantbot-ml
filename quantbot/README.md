@@ -68,9 +68,16 @@ O sistema cobre três mercados: **B3 (Brasil)**, **mercado americano (EUA)** e *
 - **Métricas de risco**: VaR (Value at Risk), CVaR (Conditional VaR), Sharpe Ratio, Sortino Ratio
 - **Calibração**: stop-loss a 5%, take-profit a 15% (ratio 1:3), threshold ML de compra a 65%, compra forte a 75%, dead zone entre 35-65%
 
+### API Backend (FastAPI)
+- **Servidor REST**: API FastAPI servindo dados reais para o dashboard
+- **Cache inteligente**: cache em memória com TTL configurável por endpoint
+- **Rate limiting**: proteção contra abuso com limite por IP
+- **CORS seguro**: apenas origens autorizadas (localhost)
+
 ### Fontes de Dados
-- **yfinance**: dados históricos de ações, ETFs e criptomoedas
-- **BCB (Banco Central do Brasil)**: dados macroeconômicos brasileiros (Selic, IPCA, câmbio)
+- **yfinance**: dados históricos de ações, ETFs e criptomoedas (gratuito)
+- **BCB (Banco Central do Brasil)**: dados macroeconômicos brasileiros — Selic, CDI (gratuito)
+- **CoinGecko**: dados complementares de crypto — market cap, volume 24h (gratuito)
 - **FED (Federal Reserve)**: dados macroeconômicos americanos
 - **Alpaca API**: conexão para trading ao vivo no mercado americano
 
@@ -126,16 +133,16 @@ quantbot-ml/
 │   │   ├── validation.py      # Validação de inputs
 │   │   └── lgpd.py            # Compliance LGPD
 │   │
-│   └── api/                   # Integrações externas
-│       ├── alpaca_client.py   # Alpaca (live trading)
-│       ├── bcb_client.py      # Banco Central do Brasil
-│       └── fed_client.py      # Federal Reserve
+│   └── api/                   # API Backend (FastAPI)
+│       ├── server.py          # Servidor FastAPI (endpoints REST)
+│       ├── market_data.py     # Serviço de dados reais (yfinance, BCB, CoinGecko)
+│       └── run.py             # Script de inicialização
 │
 ├── frontend/                  # Dashboard React
 │   ├── src/
-│   │   ├── components/        # Componentes React
-│   │   ├── pages/             # 8 abas do dashboard
-│   │   └── charts/            # Gráficos (candlestick, métricas)
+│   │   ├── App.jsx            # Dashboard principal (8 abas)
+│   │   ├── useMarketData.js   # Hook de dados reais com fallback simulado
+│   │   └── index.js           # Entry point
 │   └── package.json
 │
 ├── tests/                     # 206 testes automatizados
@@ -258,16 +265,26 @@ npm install
 ### Execução
 
 ```bash
-# Rodar o sistema de trading
-python -m quantbot.core.engine
+# 1. Iniciar o backend (API com dados reais)
+cd quantbot
+python -m api.run
+# API disponível em http://localhost:8000
+# Documentação em http://localhost:8000/api/docs
+
+# 2. Iniciar o frontend (em outro terminal)
+cd quantbot/frontend
+npm start
+# Dashboard em http://localhost:3000
 
 # Rodar os testes
+cd quantbot
 pytest tests/ -v
 
-# Rodar o dashboard
-cd frontend
-npm start
+# Rodar o sistema de trading
+python -m quantbot.core.engine
 ```
+
+> **Nota:** O dashboard funciona mesmo sem o backend — usa dados simulados como fallback. Com o backend rodando, exibe dados reais do mercado.
 
 ### Variáveis de Ambiente
 
@@ -285,7 +302,8 @@ ALPACA_BASE_URL=https://paper-api.alpaca.markets
 |---|---|
 | **Linguagem** | Python 3.10+ |
 | **ML/AI** | scikit-learn, XGBoost, Transformers (FinBERT) |
-| **Dados** | yfinance, BCB API, FED API, Alpaca API |
+| **Backend** | FastAPI, Uvicorn |
+| **Dados** | yfinance, BCB API, CoinGecko API, Alpaca API |
 | **Frontend** | React 18, Node.js |
 | **Visualização** | matplotlib (dark theme) |
 | **Segurança** | AES-256, LGPD compliance |
