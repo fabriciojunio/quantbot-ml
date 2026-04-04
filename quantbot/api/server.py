@@ -13,6 +13,7 @@ Endpoints:
     GET /api/dashboard      — dados consolidados para o dashboard
 """
 
+import re
 import time
 import threading
 from datetime import datetime, timedelta
@@ -171,11 +172,9 @@ async def get_assets():
 @app.get("/api/asset/{symbol}")
 async def get_asset(symbol: str):
     """Retorna dados de um ativo específico."""
-    # Valida input
-    if not symbol.isalnum() and "-" not in symbol and "." not in symbol:
+    # Valida input com regex (letras, números, ponto e hífen, máx 15 chars)
+    if not re.match(r"^[A-Za-z0-9.\-]{1,15}$", symbol):
         raise HTTPException(status_code=400, detail="Invalid symbol")
-    if len(symbol) > 15:
-        raise HTTPException(status_code=400, detail="Symbol too long")
 
     cached = cache.get("assets", TTL_ASSETS)
     if cached and symbol in cached.get("assets", {}):

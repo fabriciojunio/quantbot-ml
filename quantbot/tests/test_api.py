@@ -154,6 +154,10 @@ class TestAPIEndpoints:
         resp = client.get("/api/asset/" + "A" * 20)
         assert resp.status_code == 400
 
+    def test_get_asset_injection_attempt(self, client):
+        resp = client.get("/api/asset/'; DROP TABLE--")
+        assert resp.status_code == 400
+
     @patch("api.server.fetch_selic_rate")
     def test_get_selic(self, mock_selic, client):
         mock_selic.return_value = 13.25
