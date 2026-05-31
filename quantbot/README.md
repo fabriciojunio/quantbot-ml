@@ -1,100 +1,14 @@
-<div align="center">
+# QuantBot ML
 
-# 🤖 QuantBot ML
+Sistema de trading quantitativo com ensemble de Machine Learning, análise de sentimento via FinBERT e gestão de risco por regime de mercado. Cobre B3, EUA e criptomoedas.
 
-### Sistema de Trading Quantitativo com Inteligência Artificial
-
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![XGBoost](https://img.shields.io/badge/XGBoost-Ensemble-FF6600?style=for-the-badge)
-![Tests](https://img.shields.io/badge/Tests-233%20passing-brightgreen?style=for-the-badge)
-
-**Sistema completo de trading quantitativo que combina Machine Learning, análise de sentimentos com FinBERT e gestão de risco institucional para tomada de decisão em mercados financeiros.**
-
-[Funcionalidades](#-funcionalidades) •
-[Arquitetura](#-arquitetura) •
-[Modelos de ML](#-modelos-de-machine-learning) •
-[API](#-api) •
-[Estratégias](#-estratégias-de-trading) •
-[Como Rodar](#-como-rodar) •
-[Dashboard](#-dashboard)
-
-</div>
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Tests](https://img.shields.io/badge/testes-233%20passando-brightgreen?style=flat-square)
 
 ---
 
-## 📋 Sobre o Projeto
-
-O QuantBot ML é um sistema de trading quantitativo de nível institucional que utiliza um ensemble de modelos de Machine Learning combinado com análise de sentimento via FinBERT (NLP) para gerar sinais de compra e venda em ativos financeiros.
-
-O sistema cobre três mercados: **B3 (Brasil)**, **mercado americano (EUA)** e **criptomoedas**, aplicando técnicas avançadas de validação, gestão de risco e detecção de regime de mercado para maximizar retornos ajustados ao risco.
-
-### Números do Projeto
-
-| Métrica | Valor |
-|---|---|
-| Linhas de código | ~13.000 |
-| Arquivos de código | 65 |
-| Testes automatizados | 233 (todos passando) |
-| Modelos de ML | 3 + FinBERT NLP |
-| Mercados cobertos | B3, EUA, Cripto |
-| Ativos monitorados | 25 |
-
----
-
-## 🚀 Funcionalidades
-
-### Machine Learning & NLP
-- **Ensemble de 3 modelos**: Random Forest, XGBoost e Gradient Boosting com StandardScaler
-- **FinBERT Sentiment Analysis**: análise de sentimento de notícias financeiras utilizando o modelo FinBERT (BERT pré-treinado em textos financeiros)
-- **Walk-Forward Validation**: validação temporal com `TimeSeriesSplit` para evitar data leakage e overfitting
-- **Detecção de Regime de Mercado**: identificação automática de 4 estados de mercado (bull_low_vol, bull_high_vol, bear_low_vol, bear_high_vol) com ajuste dinâmico de estratégia e position sizing adaptativo
-
-### Técnicas Quantitativas Avançadas (López de Prado)
-- **Triple Barrier Method**: rotulagem de retornos com barreiras de take-profit, stop-loss e tempo máximo
-- **CUSUM Filter**: filtro de mudança estrutural para detecção de eventos relevantes no preço
-- **Fractional Differentiation**: diferenciação fracionária para manter memória da série temporal enquanto torna os dados estacionários
-
-### Estratégias de Trading
-- **SMA Crossover**: cruzamento de médias móveis simples
-- **RSI (Relative Strength Index)**: índice de força relativa para identificar sobrecompra/sobrevenda
-- **MACD (Moving Average Convergence Divergence)**: convergência e divergência de médias móveis
-- **Ensemble Voting**: votação entre múltiplos modelos e estratégias para sinal final
-- **Arquitetura modular**: fácil adição de novas estratégias via classe base
-
-### Gestão de Risco
-- **3 perfis de risco**: Conservative, Moderate e Aggressive com parâmetros calibrados
-- **Dynamic Trailing Stop-Loss**: stop-loss dinâmico baseado em ATR (Average True Range)
-- **Simulação de Monte Carlo**: projeção de cenários futuros com milhares de simulações
-- **Métricas de risco**: VaR (Value at Risk), CVaR (Conditional VaR), Sharpe Ratio, Sortino Ratio, Beta, Alpha
-- **Position sizing adaptativo**: ajusta tamanho da posição automaticamente baseado no regime de mercado
-- **Calibração Moderate**: stop-loss a 5%, take-profit a 15% (ratio 1:3), threshold ML de compra a 65%, compra forte a 75%, dead zone entre 35-65%
-
-### API REST (FastAPI)
-- **Endpoints de dados**: `/api/assets`, `/api/asset/{symbol}`, `/api/selic`, `/api/cdi`, `/api/crypto`
-- **Dashboard endpoint**: `/api/dashboard` com dados consolidados
-- **Cache em memória**: thread-safe com TTL para evitar chamadas repetidas
-- **CORS configurado**: permite conexão do frontend React
-- **Rate limiting**: proteção contra abuso de requisições
-
-### Fontes de Dados
-- **yfinance**: dados históricos de ações, ETFs e criptomoedas
-- **BCB (Banco Central do Brasil)**: taxa Selic, histórico CDI
-- **CoinGecko**: dados de criptomoedas
-- **Google News / Yahoo Finance / CoinDesk / Investing.com**: notícias para análise de sentimento
-- **Alpaca API**: conexão para trading ao vivo no mercado americano (opcional)
-
-### Segurança & Compliance
-- **Criptografia AES-256**: proteção de dados sensíveis (chaves de API, credenciais)
-- **Conformidade com a LGPD**: registro de consentimento, exportação e exclusão de dados, relatório de breach
-- **Audit Trail**: log de auditoria com verificação de integridade
-- **Rate Limiter**: proteção contra abuso
-- **Input validation & sanitization**: validação e sanitização de todas as entradas do sistema
-
----
-
-## 🏗 Arquitetura
+## Arquitetura
 
 ```
 quantbot-ml/
@@ -154,80 +68,62 @@ quantbot-ml/
 │   │       └── useMarketData.js   # Hook para conexão com API
 │   │
 │   ├── tests/                     # 233 testes automatizados
-│   │   ├── test_quantbot.py       # Testes core
-│   │   ├── test_strategies.py     # Testes de estratégias
-│   │   ├── test_advanced.py       # Testes avançados (CUSUM, Triple Barrier, regime)
-│   │   ├── test_security.py       # Testes de segurança (AES, LGPD, audit)
-│   │   ├── test_live_trading.py   # Testes de trading ao vivo
-│   │   ├── test_news_sentiment.py # Testes de NLP/sentimento
-│   │   ├── test_benchmarks.py     # Testes de benchmarks
-│   │   ├── test_accuracy.py       # Testes de acurácia
-│   │   ├── test_performance.py    # Testes de performance
-│   │   └── test_api.py            # Testes da API FastAPI
+│   │   ├── test_quantbot.py
+│   │   ├── test_strategies.py
+│   │   ├── test_advanced.py       # CUSUM, Triple Barrier, regime
+│   │   ├── test_security.py       # AES, LGPD, audit
+│   │   ├── test_live_trading.py
+│   │   ├── test_news_sentiment.py
+│   │   ├── test_benchmarks.py
+│   │   ├── test_accuracy.py
+│   │   ├── test_performance.py
+│   │   └── test_api.py
 │   │
-│   ├── utils/                     # Utilitários
-│   │   ├── logger.py              # Logging configurado
-│   │   ├── formatters.py          # Formatação de moeda e percentual
-│   │   └── security.py            # Helpers de segurança
-│   │
-│   ├── dashboard.jsx              # Dashboard React standalone (39KB)
-│   ├── main.py                    # Ponto de entrada principal
-│   ├── run_backtest.py            # Script de backtest direto
-│   ├── run_live.py                # Script de trading ao vivo
-│   └── requirements.txt           # Dependências Python
+│   ├── main.py                    # Ponto de entrada
+│   ├── run_backtest.py
+│   ├── run_live.py
+│   └── requirements.txt
 │
 └── README.md
 ```
 
 ---
 
-## 🧠 Modelos de Machine Learning
+## Modelos de ML
 
-### Ensemble Learning
-
-O sistema utiliza um ensemble de modelos com votação ponderada pela probabilidade:
+O sistema usa ensemble com votação ponderada pela probabilidade:
 
 | Modelo | Tipo | Configuração |
 |---|---|---|
-| **Random Forest** | Bagging | 200 estimators, max_depth=10, class_weight balanced |
-| **XGBoost** | Boosting | 200 estimators, lr=0.05, subsample=0.8 |
-| **Gradient Boosting** | Boosting | Fallback quando XGBoost não está disponível |
+| Random Forest | Bagging | 200 estimators, max_depth=10, class_weight balanced |
+| XGBoost | Boosting | 200 estimators, lr=0.05, subsample=0.8 |
+| Gradient Boosting | Boosting | Fallback quando XGBoost não está disponível |
 
-Todos os modelos utilizam **StandardScaler** para normalização das 32 features técnicas e são treinados com **Walk-Forward Validation** usando `TimeSeriesSplit` do scikit-learn.
+Todos os modelos usam StandardScaler com 32 features técnicas e são treinados com Walk-Forward Validation (`TimeSeriesSplit`).
 
 ### FinBERT: Análise de Sentimento
 
-Coleta notícias de 5 fontes (Google News BR, Yahoo Finance, CoinDesk, Investing.com BR) e classifica como **positivas**, **negativas** ou **neutras**. Inclui fallback para análise léxica bilíngue (PT/EN) quando FinBERT não está disponível.
+Coleta notícias de 5 fontes (Google News BR, Yahoo Finance, CoinDesk, Investing.com BR) e classifica como positivas, negativas ou neutras. Fallback para análise léxica bilíngue (PT/EN) quando FinBERT não está disponível.
 
 ### Sinais de Trading
 
 | Sinal | Threshold |
 |---|---|
-| Compra forte | Probabilidade ≥ 75% |
-| Compra | Probabilidade ≥ 65% |
-| Dead zone (sem ação) | Probabilidade entre 35% e 65% |
-| Venda | Probabilidade ≤ 35% |
-| Venda forte | Probabilidade ≤ 25% |
+| Compra forte | Probabilidade >= 75% |
+| Compra | Probabilidade >= 65% |
+| Dead zone (sem ação) | 35% a 65% |
+| Venda | Probabilidade <= 35% |
+| Venda forte | Probabilidade <= 25% |
+
+### Técnicas Quantitativas (López de Prado)
+
+- **Triple Barrier Method**: rotulagem de retornos com barreiras de take-profit, stop-loss e tempo máximo
+- **CUSUM Filter**: filtro de mudança estrutural para detecção de eventos relevantes no preço
+- **Fractional Differentiation**: diferenciação fracionária para manter memória da série temporal enquanto torna os dados estacionários
 
 ---
 
-## 🌐 API
-
-API REST construída com FastAPI que serve dados em tempo real para o dashboard:
-
-| Endpoint | Descrição |
-|---|---|
-| `GET /api/health` | Health check do servidor |
-| `GET /api/assets` | Todos os ativos com preços e indicadores |
-| `GET /api/asset/{symbol}` | Dados detalhados de um ativo |
-| `GET /api/selic` | Taxa Selic atual (BCB) |
-| `GET /api/cdi` | Histórico CDI |
-| `GET /api/crypto` | Dados CoinGecko |
-| `GET /api/dashboard` | Dados consolidados para o dashboard |
-
----
-
-## 📈 Gestão de Risco
+## Gestão de Risco
 
 ### Perfis de Risco
 
@@ -247,26 +143,40 @@ API REST construída com FastAPI que serve dados em tempo real para o dashboard:
 | Bull + Low Vol | Operar normalmente | 100% |
 | Bull + High Vol | Posições menores | 50% |
 | Bear + Low Vol | Reduzir exposição | 0% |
-| Bear + High Vol | NÃO operar | 0% |
+| Bear + High Vol | Não operar | 0% |
 
 ---
 
-## 🖥 Dashboard
+## API
 
-Dashboard interativo em **React** com tema **black & gold**, contendo **8 abas**:
-
-1. **Visão Geral**: equity curve vs benchmark, alocação por mercado, métricas resumo
-2. **Performance**: retornos semanal/mensal/anual, comparação com CDI/Ibovespa/S&P 500
-3. **Notícias**: feed de notícias com filtro por sentimento
-4. **Sinais ML**: score por ativo, votação dos modelos, feature importance
-5. **Paper Trading**: simulação com capital virtual, bot automático
-6. **Acurácia**: taxa de acerto, matriz de confusão, acurácia por mercado
-7. **Memória**: log de eventos que impactaram decisões
-8. **Risco**: VaR, CVaR, Beta, Alpha, Max Drawdown, Sortino
+| Endpoint | Descrição |
+|---|---|
+| `GET /api/health` | Health check |
+| `GET /api/assets` | Todos os ativos com preços e indicadores |
+| `GET /api/asset/{symbol}` | Dados detalhados de um ativo |
+| `GET /api/selic` | Taxa Selic atual (BCB) |
+| `GET /api/cdi` | Histórico CDI |
+| `GET /api/crypto` | Dados CoinGecko |
+| `GET /api/dashboard` | Dados consolidados para o dashboard |
 
 ---
 
-## ⚙ Como Rodar
+## Dashboard
+
+React com tema black & gold, 8 abas:
+
+1. Visão Geral: equity curve vs benchmark, alocação por mercado
+2. Performance: retornos semanal/mensal/anual vs CDI/Ibovespa/S&P 500
+3. Notícias: feed com filtro por sentimento
+4. Sinais ML: score por ativo, votação dos modelos, feature importance
+5. Paper Trading: simulação com capital virtual
+6. Acurácia: taxa de acerto, matriz de confusão por mercado
+7. Memória: log de eventos que impactaram decisões
+8. Risco: VaR, CVaR, Beta, Alpha, Max Drawdown, Sortino
+
+---
+
+## Como Rodar
 
 ### Pré-requisitos
 
@@ -305,22 +215,22 @@ cd frontend && npm install && npm start
 
 ---
 
-## 🛠 Stack Tecnológica
+## Stack
 
 | Categoria | Tecnologias |
 |---|---|
-| **Linguagem** | Python 3.10+ |
-| **ML/AI** | scikit-learn, XGBoost, Transformers (FinBERT) |
-| **API** | FastAPI, Uvicorn |
-| **Dados** | yfinance, BCB API, CoinGecko, Google News |
-| **Frontend** | React 18, Node.js |
-| **Visualização** | matplotlib (dark theme) |
-| **Segurança** | AES-256, LGPD compliance |
-| **Testes** | pytest (233 testes) |
+| Linguagem | Python 3.10+ |
+| ML/AI | scikit-learn, XGBoost, Transformers (FinBERT) |
+| API | FastAPI, Uvicorn |
+| Dados | yfinance, BCB API, CoinGecko, Google News |
+| Frontend | React 18, Node.js |
+| Visualização | matplotlib (dark theme) |
+| Segurança | AES-256, LGPD compliance |
+| Testes | pytest (233 testes) |
 
 ---
 
-## 📚 Referências Acadêmicas
+## Referências
 
 - **López de Prado, M.**: *Advances in Financial Machine Learning*
 - **Krauss, C. et al.**: *Statistical Arbitrage on the S&P 500*
@@ -331,13 +241,4 @@ cd frontend && npm install && npm start
 
 ---
 
-<div align="center">
-
-🟢 **Em desenvolvimento ativo**
-
-Desenvolvido por **Fabrício Júnio Alves Dias**
-
-[![GitHub](https://img.shields.io/badge/GitHub-fabriciojunio-181717?style=for-the-badge&logo=github)](https://github.com/fabriciojunio)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Fabrício%20Júnio-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/fabr%C3%ADcioj%C3%BAnio/)
-
-</div>
+Desenvolvido por **Fabrício Júnio Alves Dias** · [GitHub](https://github.com/fabriciojunio) · [LinkedIn](https://www.linkedin.com/in/fabríciojúnio/)
