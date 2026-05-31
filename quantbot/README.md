@@ -195,7 +195,7 @@ O sistema utiliza um ensemble de modelos com votação ponderada pela probabilid
 
 Todos os modelos utilizam **StandardScaler** para normalização das 32 features técnicas e são treinados com **Walk-Forward Validation** usando `TimeSeriesSplit` do scikit-learn.
 
-### FinBERT — Análise de Sentimento
+### FinBERT: Análise de Sentimento
 
 Coleta notícias de 5 fontes (Google News BR, Yahoo Finance, CoinDesk, Investing.com BR) e classifica como **positivas**, **negativas** ou **neutras**. Inclui fallback para análise léxica bilíngue (PT/EN) quando FinBERT não está disponível.
 
@@ -255,14 +255,14 @@ API REST construída com FastAPI que serve dados em tempo real para o dashboard:
 
 Dashboard interativo em **React** com tema **black & gold**, contendo **8 abas**:
 
-1. **Visão Geral** — equity curve vs benchmark, alocação por mercado, métricas resumo
-2. **Performance** — retornos semanal/mensal/anual, comparação com CDI/Ibovespa/S&P 500
-3. **Notícias** — feed de notícias com filtro por sentimento
-4. **Sinais ML** — score por ativo, votação dos modelos, feature importance
-5. **Paper Trading** — simulação com capital virtual, bot automático
-6. **Acurácia** — taxa de acerto, matriz de confusão, acurácia por mercado
-7. **Memória** — log de eventos que impactaram decisões
-8. **Risco** — VaR, CVaR, Beta, Alpha, Max Drawdown, Sortino
+1. **Visão Geral**: equity curve vs benchmark, alocação por mercado, métricas resumo
+2. **Performance**: retornos semanal/mensal/anual, comparação com CDI/Ibovespa/S&P 500
+3. **Notícias**: feed de notícias com filtro por sentimento
+4. **Sinais ML**: score por ativo, votação dos modelos, feature importance
+5. **Paper Trading**: simulação com capital virtual, bot automático
+6. **Acurácia**: taxa de acerto, matriz de confusão, acurácia por mercado
+7. **Memória**: log de eventos que impactaram decisões
+8. **Risco**: VaR, CVaR, Beta, Alpha, Max Drawdown, Sortino
 
 ---
 
@@ -322,12 +322,12 @@ cd frontend && npm install && npm start
 
 ## 📚 Referências Acadêmicas
 
-- **López de Prado, M.** — *Advances in Financial Machine Learning*
-- **Krauss, C. et al.** — *Statistical Arbitrage on the S&P 500*
-- **Markowitz, H.** — *Portfolio Selection*
-- **Sharpe, W.** — *Capital Asset Pricing Model*
-- **Breiman, L.** — *Random Forests*
-- **Chen, T. & Guestrin, C.** — *XGBoost: A Scalable Tree Boosting System*
+- **López de Prado, M.**: *Advances in Financial Machine Learning*
+- **Krauss, C. et al.**: *Statistical Arbitrage on the S&P 500*
+- **Markowitz, H.**: *Portfolio Selection*
+- **Sharpe, W.**: *Capital Asset Pricing Model*
+- **Breiman, L.**: *Random Forests*
+- **Chen, T. & Guestrin, C.**: *XGBoost: A Scalable Tree Boosting System*
 
 ---
 
@@ -335,7 +335,7 @@ cd frontend && npm install && npm start
 
 🟢 **Em desenvolvimento ativo**
 
-Desenvolvido por **Fabrício Júnio Almeida Dias**
+Desenvolvido por **Fabrício Júnio Alves Dias**
 
 [![GitHub](https://img.shields.io/badge/GitHub-fabriciojunio-181717?style=for-the-badge&logo=github)](https://github.com/fabriciojunio)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Fabrício%20Júnio-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/fabr%C3%ADcioj%C3%BAnio/)
