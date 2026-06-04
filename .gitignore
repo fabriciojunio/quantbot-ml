@@ -1,9 +1,15 @@
-# Claude Code config (local only)
-.claude/
-
-# Environment secrets
+# Secrets — NUNCA commit
 .env
-*.env
+*.key
+*.pem
+
+# Dados pessoais
+data/risk_state.json
+data/portfolio.json
+data/dividends.json
+data/allocation.json
+data/decisions/
+data/cache/
 
 # Python
 __pycache__/
@@ -14,9 +20,23 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+*.egg
+.eggs/
+
+# Testes
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
 
 # OS
 .DS_Store
 Thumbs.db
 
-.github/java-upgrade/
+# Logs
+*.log
