@@ -1,6 +1,6 @@
 # QuantBot — Relatório 2026-06-04
 
-_Gerado em 04/06/2026 18:54._
+_Gerado em 04/06/2026 22:04._
 
 ## Macro (Banco Central)
 
@@ -11,10 +11,10 @@ _Gerado em 04/06/2026 18:54._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.29 (😀 28 · 😐 176 · 😟 125) via finbert
+- **Hoje:** -0.28 (😀 29 · 😐 176 · 😟 121) via finbert
 - **Média 14 dias:** -0.29
-- **Tendência:** ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ITUB4.SA (39), MSFT (36), NVDA (35), AAPL (35), BBDC4.SA (35), ADA-USD (31)
+- **Tendência:** ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** MSFT (41), ITUB4.SA (41), NVDA (39), AAPL (38), BBDC4.SA (37), ADA-USD (32)
 
 ## FIIs — screening do dia
 
