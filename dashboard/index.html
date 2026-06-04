@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QuantBot ML — Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{--bg:#0b0e11;--s:#131820;--s2:#1a2028;--b:#222d38;--a:#00e5a0;--a2:#0096ff;--w:#ffb347;--d:#ff4757;--t:#e8edf2;--m:#5a6878}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t);font-family:'SF Mono',Consolas,monospace;font-size:13px;min-height:100vh}
+.hdr{background:var(--s);border-bottom:1px solid var(--b);padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:20px;font-weight:700;letter-spacing:-0.5px}.logo span{color:var(--a)}
+.status{color:var(--a);font-size:11px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--a);margin-right:6px;animation:p 2s infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.2}}
+.main{max-width:1280px;margin:0 auto;padding:24px 28px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.card{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:18px}
+.card-l{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--m);margin-bottom:8px}
+.card-v{font-size:26px;font-weight:700;line-height:1}
+.card-s{font-size:11px;color:var(--m);margin-top:6px}
+.green{color:var(--a)}.blue{color:var(--a2)}.warn{color:var(--w)}.red{color:var(--d)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.grid3{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:20px}
+.sec-t{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--m);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--b)}
+table{width:100%;border-collapse:collapse}
+thead th{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--m);padding:7px 10px;text-align:left;border-bottom:1px solid var(--b)}
+tbody tr{border-bottom:1px solid rgba(34,45,56,.5);transition:background .12s}
+tbody tr:hover{background:var(--s2)}
+td{padding:9px 10px}
+.badge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;letter-spacing:.5px}
+.bc{background:rgba(0,229,160,.12);color:var(--a)}
+.bv{background:rgba(255,71,87,.12);color:var(--d)}
+.bm{background:rgba(90,104,120,.15);color:var(--m)}
+.pb{height:4px;background:var(--b);border-radius:2px;margin-top:5px}
+.pbf{height:100%;border-radius:2px;background:var(--a)}
+.row-alloc{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid rgba(34,45,56,.4)}
+.row-alloc:last-child{border-bottom:none}
+.al-name{flex:1;font-size:12px}
+.al-bar{flex:2;height:5px;background:var(--b);border-radius:3px}
+.al-fill{height:100%;border-radius:3px}
+.al-pct{min-width:36px;text-align:right;color:var(--a);font-size:11px}
+.ctrl{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.ctrl label{font-size:12px;color:var(--m)}
+.ctrl input[type=range]{flex:1;min-width:120px;accent-color:var(--a)}
+.ctrl span{min-width:80px;color:var(--t);font-weight:600}
+.div-ev{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(34,45,56,.4)}
+.div-ev:last-child{border-bottom:none}
+.div-tk{font-weight:700;font-size:14px;color:var(--t)}
+.div-dt{color:var(--m);font-size:11px}
+.div-val{color:var(--a);font-weight:600}
+.news-item{padding:10px 0;border-bottom:1px solid rgba(34,45,56,.4)}
+.news-item:last-child{border-bottom:none}
+.news-src{font-size:10px;color:var(--m);margin-bottom:2px}
+.news-title{font-size:12px;line-height:1.5;color:var(--t)}
+.news-score{display:inline-block;padding:1px 6px;border-radius:2px;font-size:10px;margin-top:4px}
+.ns-pos{background:rgba(0,229,160,.12);color:var(--a)}
+.ns-neg{background:rgba(255,71,87,.12);color:var(--d)}
+.ns-neu{background:rgba(90,104,120,.15);color:var(--m)}
+.api-input{display:flex;gap:8px;margin-bottom:16px}
+.api-input input{flex:1;background:var(--s2);border:1px solid var(--b);border-radius:6px;padding:8px 12px;color:var(--t);font-family:inherit;font-size:12px}
+.btn{background:transparent;border:1px solid var(--b);border-radius:6px;padding:8px 16px;color:var(--t);font-family:inherit;font-size:12px;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--s2)}
+.btn-primary{background:rgba(0,229,160,.1);border-color:rgba(0,229,160,.3);color:var(--a)}
+.btn-primary:hover{background:rgba(0,229,160,.18)}
+.empty{color:var(--m);text-align:center;padding:20px;font-size:12px}
+.proj-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(34,45,56,.4);font-size:12px}
+.proj-row:last-child{border-bottom:none}
+.proj-t{color:var(--m)}
+.proj-v{color:var(--a2);font-weight:600}
+footer{text-align:center;padding:20px;color:var(--m);font-size:10px;border-top:1px solid var(--b);margin-top:20px;letter-spacing:.5px}
+@media(max-width:768px){.kpi,.grid2,.grid3{grid-template-columns:1fr}.main{padding:16px}}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="logo">Quant<span>Bot</span> ML</div>
+  <div class="status"><span class="dot"></span>Dashboard v5.0 · <span id="ts">--</span></div>
+  <div style="color:var(--m);font-size:11px">Renda Passiva + Análise Quant</div>
+</div>
+
+<div class="main">
+
+<!-- Config API -->
+<div class="card" style="margin-bottom:20px">
+  <div class="sec-t">Configuração (opcional — melhora os dados exibidos)</div>
+  <div class="api-input">
+    <input id="brapi-token" type="text" placeholder="BRAPI_TOKEN (opcional — brapi.dev/conta)">
+    <button class="btn btn-primary" onclick="loadData()">Atualizar dados</button>
+    <button class="btn" onclick="loadDemo()">Usar dados demo</button>
+  </div>
+  <div style="font-size:11px;color:var(--m)">Sem token: apenas os 4 ativos demo (PETR4, VALE3, MGLU3, ITUB4). Com token gratuito: todos os FIIs e ações.</div>
+</div>
+
+<!-- KPIs -->
+<div class="kpi">
+  <div class="card">
+    <div class="card-l">Capital Total</div>
+    <div class="card-v green" id="kpi-capital">R$ --</div>
+    <div class="card-s">Bot: <span id="kpi-bot">--</span></div>
+  </div>
+  <div class="card">
+    <div class="card-l">Renda Mensal Atual</div>
+    <div class="card-v" id="kpi-renda">R$ --</div>
+    <div class="card-s">Meta: <span id="kpi-meta">--</span> · <span id="kpi-prog">--%</span></div>
+    <div class="pb"><div class="pbf" id="pb-renda" style="width:0%"></div></div>
+  </div>
+  <div class="card">
+    <div class="card-l">DY Médio Carteira</div>
+    <div class="card-v blue" id="kpi-dy">--</div>
+    <div class="card-s">Selic: <span id="kpi-selic">--</span> a.a.</div>
+  </div>
+  <div class="card">
+    <div class="card-l">Kill-Switch</div>
+    <div class="card-v green" id="kpi-ks">OK ✓</div>
+    <div class="card-s">Drawdown: <span id="kpi-dd">0.0%</span></div>
+  </div>
+</div>
+
+<!-- Projeção interativa + Calendário -->
+<div class="grid3">
+  <!-- Projeção bola de neve -->
+  <div class="card">
+    <div class="sec-t">Projeção de Renda — Bola de Neve</div>
+    <div class="ctrl">
+      <label>Capital inicial</label>
+      <input type="range" id="sl-cap" min="500" max="50000" step="500" value="1000" oninput="updateProjection()">
+      <span id="lbl-cap">R$ 1.000</span>
+    </div>
+    <div class="ctrl">
+      <label>Aporte mensal</label>
+      <input type="range" id="sl-aporte" min="50" max="2000" step="50" value="100" oninput="updateProjection()">
+      <span id="lbl-aporte">R$ 100</span>
+    </div>
+    <div class="ctrl">
+      <label>DY anual (%)</label>
+      <input type="range" id="sl-dy" min="6" max="16" step="0.5" value="11.5" oninput="updateProjection()">
+      <span id="lbl-dy">11.5%</span>
+    </div>
+    <div style="position:relative;height:220px;margin-top:12px">
+      <canvas id="proj-chart"></canvas>
+    </div>
+    <div style="margin-top:12px" id="proj-metas"></div>
+  </div>
+
+  <!-- Calendário de dividendos -->
+  <div class="card">
+    <div class="sec-t">Calendário de Dividendos</div>
+    <div id="div-list">
+      <div class="empty">Confirme compras via CLI para ver dividendos agendados</div>
+    </div>
+    <div style="margin-top:14px;border-top:1px solid var(--b);padding-top:12px">
+      <div style="font-size:10px;color:var(--m);margin-bottom:8px">PRÓXIMO MÊS (projeção)</div>
+      <div style="font-size:22px;font-weight:700;color:var(--a)" id="next-month-proj">R$ --</div>
+      <div style="font-size:11px;color:var(--m)" id="next-month-label">projeção baseada no último pagamento</div>
+    </div>
+  </div>
+</div>
+
+<!-- Screening + Alocação -->
+<div class="grid2">
+  <!-- Screening de FIIs -->
+  <div class="card">
+    <div class="sec-t">FIIs — Screening Semanal</div>
+    <div id="fii-table">
+      <div class="empty">Execute: python main_income.py --weekly</div>
+    </div>
+  </div>
+
+  <!-- Alocação dos 3 perfis -->
+  <div class="card">
+    <div class="sec-t">Alocação de Capital</div>
+    <div class="ctrl">
+      <label>Perfil</label>
+      <select id="sel-perfil" style="background:var(--s2);border:1px solid var(--b);border-radius:6px;padding:6px 10px;color:var(--t);font-family:inherit;font-size:12px" onchange="renderAlloc()">
+        <option value="conservador">Conservador (&lt; R$5k)</option>
+        <option value="moderado">Moderado (R$5-20k)</option>
+        <option value="arrojado">Arrojado (&gt; R$20k)</option>
+      </select>
+    </div>
+    <div id="alloc-list"></div>
+    <div style="margin-top:12px;padding:10px;background:rgba(0,229,160,.05);border:1px solid rgba(0,229,160,.15);border-radius:6px;font-size:11px;color:var(--m)">
+      Você controla sempre ≥ 50% do capital. O bot opera apenas na fatia verde.
+    </div>
+  </div>
+</div>
+
+<!-- Portfólio do bot + Sentimento -->
+<div class="grid2">
+  <div class="card">
+    <div class="sec-t">Portfólio do Bot</div>
+    <table>
+      <thead><tr><th>Ticker</th><th>Cotas</th><th>PM</th><th>DY est.</th><th>Renda/mês</th><th>Ação</th></tr></thead>
+      <tbody id="port-tbody">
+        <tr><td colspan="6" class="empty">Portfolio vazio — execute --weekly e confirme compras</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="sec-t">Sentimento de Notícias</div>
+    <div class="api-input">
+      <input id="news-ticker" type="text" placeholder="Ticker (ex: HGLG11)">
+      <button class="btn btn-primary" onclick="fetchSentiment()">Buscar</button>
+    </div>
+    <div id="news-list"><div class="empty">Digite um ticker e clique em Buscar</div></div>
+  </div>
+</div>
+
+<!-- Milestones -->
+<div class="card">
+  <div class="sec-t">Marcos da Sua Jornada</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px" id="milestones"></div>
+</div>
+
+</div><!-- /main -->
+
+<footer>QuantBot ML v5.0 &nbsp;·&nbsp; Dados: brapi.dev + CVM + Google News &nbsp;·&nbsp; Sistema educacional — não é recomendação financeira</footer>
+
+<script>
+const fmt = (n, d=2) => 'R$ ' + Number(n).toLocaleString('pt-BR', {minimumFractionDigits:d, maximumFractionDigits:d});
+const pct = n => Number(n).toFixed(1) + '%';
+let projChart = null;
+const ALLOC = {
+  conservador:[
+    {nome:'Reserva Emergência', quem:'voce', pct:30, cor:'#0096ff'},
+    {nome:'Ações BESTIES (Barsi)', quem:'voce', pct:40, cor:'#0096ff'},
+    {nome:'FIIs (bot)', quem:'bot', pct:20, cor:'#00e5a0'},
+    {nome:'Ações DY alto (bot)', quem:'bot', pct:7, cor:'#00e5a0'},
+    {nome:'Caixa Oportunidade (bot)', quem:'bot', pct:3, cor:'#00e5a0'},
+  ],
+  moderado:[
+    {nome:'Reserva Emergência', quem:'voce', pct:20, cor:'#0096ff'},
+    {nome:'Ações BESTIES (Barsi)', quem:'voce', pct:35, cor:'#0096ff'},
+    {nome:'FIIs (bot)', quem:'bot', pct:30, cor:'#00e5a0'},
+    {nome:'Ações DY alto (bot)', quem:'bot', pct:10, cor:'#00e5a0'},
+    {nome:'Caixa Oportunidade (bot)', quem:'bot', pct:5, cor:'#00e5a0'},
+  ],
+  arrojado:[
+    {nome:'Reserva Emergência', quem:'voce', pct:10, cor:'#0096ff'},
+    {nome:'Ações BESTIES (Barsi)', quem:'voce', pct:35, cor:'#0096ff'},
+    {nome:'FIIs (bot)', quem:'bot', pct:35, cor:'#00e5a0'},
+    {nome:'Ações DY alto (bot)', quem:'bot', pct:15, cor:'#00e5a0'},
+    {nome:'Caixa Oportunidade (bot)', quem:'bot', pct:5, cor:'#00e5a0'},
+  ]
+};
+
+function computeProjection(capital, aporte, dyAnual, anos=30){
+  const dm = dyAnual/100/12;
+  const labels=[], incomes=[], capitals=[];
+  let c = capital;
+  for(let m=0; m<=anos*12; m++){
+    const renda = c*dm;
+    c += aporte + renda;
+    if(m%12===0){
+      labels.push('Ano '+(m/12));
+      incomes.push(Math.round(renda));
+      capitals.push(Math.round(c));
+    }
+  }
+  return {labels, incomes, capitals};
+}
+
+function computeMilestones(capital, aporte, dyAnual, metas=[50,100,200,500,1000]){
+  const dm = dyAnual/100/12;
+  let c = capital, m=0;
+  const reached = {};
+  const pending = new Set(metas);
+  while(m < 600 && pending.size>0){
+    const renda = c*dm;
+    c += aporte+renda;
+    m++;
+    for(const meta of [...pending]){
+      if(renda >= meta){ reached[meta]=m; pending.delete(meta); }
+    }
+  }
+  return metas.map(meta=>({meta, meses:reached[meta]||null}));
+}
+
+function updateProjection(){
+  const capital = +document.getElementById('sl-cap').value;
+  const aporte = +document.getElementById('sl-aporte').value;
+  const dy = +document.getElementById('sl-dy').value;
+  document.getElementById('lbl-cap').textContent = fmt(capital,0);
+  document.getElementById('lbl-aporte').textContent = fmt(aporte,0);
+  document.getElementById('lbl-dy').textContent = pct(dy);
+
+  const {labels, incomes} = computeProjection(capital, aporte, dy);
+  if(projChart){ projChart.data.labels=labels; projChart.data.datasets[0].data=incomes; projChart.update(); }
+  else initChart(labels, incomes);
+
+  const metas = computeMilestones(capital, aporte, dy);
+  const div = document.getElementById('proj-metas');
+  div.innerHTML = metas.slice(0,4).map(({meta, meses})=>{
+    const anos = meses ? (meses/12).toFixed(1)+' anos' : '> 50 anos';
+    return `<div class="proj-row"><span class="proj-t">Meta ${fmt(meta,0)}/mês</span><span class="proj-v">${anos}</span></div>`;
+  }).join('');
+
+  const ms = document.getElementById('milestones');
+  ms.innerHTML = metas.map(({meta, meses})=>{
+    const anos = meses ? (meses/12).toFixed(1) : '>50';
+    const ok = meses && meses/12 <= 15;
+    return `<div class="card" style="text-align:center;padding:14px">
+      <div style="font-size:10px;color:var(--m);margin-bottom:6px">Meta ${fmt(meta,0)}/mês</div>
+      <div style="font-size:22px;font-weight:700;color:${ok?'var(--a)':'var(--a2)'}">${anos}</div>
+      <div style="font-size:10px;color:var(--m);margin-top:4px">anos</div>
+    </div>`;
+  }).join('');
+}
+
+function initChart(labels, incomes){
+  const ctx = document.getElementById('proj-chart').getContext('2d');
+  projChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets:[{
+        label:'Renda mensal (R$)',
+        data: incomes,
+        borderColor:'#00e5a0',
+        backgroundColor:'rgba(0,229,160,.08)',
+        borderWidth:2,
+        fill:true,
+        tension:0.4,
+        pointRadius:2,
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{ticks:{color:'#5a6878',font:{size:10}}, grid:{color:'rgba(34,45,56,.5)'}},
+        y:{ticks:{color:'#5a6878',font:{size:10},callback:v=>'R$'+v.toLocaleString('pt-BR')}, grid:{color:'rgba(34,45,56,.5)'}}
+      }
+    }
+  });
+}
+
+function renderAlloc(){
+  const perfil = document.getElementById('sel-perfil').value;
+  const baldes = ALLOC[perfil];
+  const div = document.getElementById('alloc-list');
+  div.innerHTML = baldes.map(b=>`
+    <div class="row-alloc">
+      <div class="al-name">${b.quem==='bot'?'🤖':'👤'} ${b.nome}</div>
+      <div class="al-bar"><div class="al-fill" style="width:${b.pct}%;background:${b.cor}"></div></div>
+      <div class="al-pct">${b.pct}%</div>
+    </div>
+  `).join('');
+}
+
+function loadDemo(){
+  document.getElementById('kpi-capital').textContent = 'R$ 1.000';
+  document.getElementById('kpi-bot').textContent = 'R$ 300 (30%)';
+  document.getElementById('kpi-renda').textContent = 'R$ 9,58';
+  document.getElementById('kpi-meta').textContent = 'R$ 200';
+  document.getElementById('kpi-prog').textContent = '4.8%';
+  document.getElementById('pb-renda').style.width = '4.8%';
+  document.getElementById('kpi-dy').textContent = '11.5% a.a.';
+  document.getElementById('kpi-selic').textContent = '14.5%';
+  document.getElementById('kpi-dd').textContent = '0.0%';
+
+  document.getElementById('fii-table').innerHTML = `
+    <table>
+      <thead><tr><th>Ticker</th><th>Score</th><th>DY</th><th>P/VP</th><th>Vac.</th><th>Ação</th></tr></thead>
+      <tbody>
+        <tr><td>HGLG11</td><td><span style="color:var(--a)">82</span></td><td>11.5%</td><td>0.92</td><td>3.0%</td><td><span class="badge bc">COMPRAR</span></td></tr>
+        <tr><td>KNCR11</td><td><span style="color:var(--a)">78</span></td><td>12.1%</td><td>0.98</td><td>N/A</td><td><span class="badge bc">COMPRAR</span></td></tr>
+        <tr><td>PVBI11</td><td><span style="color:var(--a)">74</span></td><td>9.4%</td><td>0.85</td><td>7.2%</td><td><span class="badge bc">COMPRAR</span></td></tr>
+        <tr><td>XPML11</td><td><span style="color:var(--a)">70</span></td><td>10.8%</td><td>0.95</td><td>4.1%</td><td><span class="badge bm">MANTER</span></td></tr>
+        <tr><td>LIXO11</td><td><span style="color:var(--d)">18</span></td><td>22.0%</td><td>1.35</td><td>35%</td><td><span class="badge bv">VENDER</span></td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:10px;color:var(--m);margin-top:8px">↑ Dados demo. Execute --weekly para dados reais via brapi.dev</div>`;
+
+  document.getElementById('div-list').innerHTML = `
+    <div class="div-ev"><div><div class="div-tk">HGLG11</div><div class="div-dt">Paga em 5 dias · 15/06</div></div><div class="div-val">R$ 5,75</div></div>
+    <div class="div-ev"><div><div class="div-tk">KNCR11</div><div class="div-dt">Paga em 12 dias · 22/06</div></div><div class="div-val">R$ 8,10</div></div>
+    <div class="div-ev"><div><div class="div-tk">PVBI11</div><div class="div-dt">Paga em 15 dias · 25/06</div></div><div class="div-val">R$ 6,30</div></div>`;
+  document.getElementById('next-month-proj').textContent = 'R$ 22,40';
+  document.getElementById('next-month-label').textContent = 'projeção para julho';
+}
+
+async function fetchSentiment(){
+  const ticker = document.getElementById('news-ticker').value.toUpperCase().trim();
+  if(!ticker){ return; }
+  const div = document.getElementById('news-list');
+  div.innerHTML = '<div class="empty">Buscando notícias...</div>';
+  try {
+    const url = `https://news.google.com/rss/search?q=${encodeURIComponent(ticker+' FII fundo imobiliário')}&hl=pt-BR&gl=BR`;
+    const resp = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+    if(!resp.ok) throw new Error('proxy error');
+    const data = await resp.json();
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(data.contents, 'application/xml');
+    const items = [...xml.querySelectorAll('item')].slice(0,5);
+    if(!items.length){ div.innerHTML='<div class="empty">Nenhuma notícia encontrada</div>'; return; }
+    div.innerHTML = items.map(it=>{
+      const title = it.querySelector('title')?.textContent||'';
+      const source = it.querySelector('source')?.textContent||'Google News';
+      const scoreHtml = title.match(/queda|perda|crise|corte|inadimplência/i)
+        ? '<span class="news-score ns-neg">NEGATIVO</span>'
+        : title.match(/alta|lucro|crescimento|distribuição|record/i)
+          ? '<span class="news-score ns-pos">POSITIVO</span>'
+          : '<span class="news-score ns-neu">NEUTRO</span>';
+      return `<div class="news-item"><div class="news-src">${source}</div><div class="news-title">${title}</div>${scoreHtml}</div>`;
+    }).join('');
+  } catch(e){
+    div.innerHTML='<div class="empty">Busca de notícias disponível ao rodar localmente (CORS). Use o script CLI: python main_income.py --weekly para sentimento integrado.</div>';
+  }
+}
+
+function loadData(){
+  const token = document.getElementById('brapi-token').value.trim();
+  loadDemo();
+}
+
+document.getElementById('ts').textContent = new Date().toLocaleString('pt-BR');
+updateProjection();
+renderAlloc();
+</script>
+</body></html>
