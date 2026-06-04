@@ -10,9 +10,6 @@ data/dividends.json
 data/allocation.json
 data/decisions/
 data/cache/
-# Base de aprendizado (runtime — cresce com o tempo, não versionar)
-data/news_history.jsonl
-data/sentiment_index.jsonl
 
 # Python
 __pycache__/
