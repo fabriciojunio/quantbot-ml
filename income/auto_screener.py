@@ -35,6 +35,8 @@ from datetime import datetime, timezone
 from typing import Dict, List, Optional, Tuple
 
 from data.brapi_client import BrapiClient
+from data.fundamentus_client import FundamentusClient
+from data.bcb_client import BCBClient
 from income.fii_screener import (
     FIIMetrics, FIISegment, FIIRiskLevel,
     FIIScreener, ScreenerCriteria, ScreeningResult,
@@ -102,6 +104,8 @@ class AutoScreener:
         selic_override: Optional[float] = None,
     ):
         self.client = brapi_client or BrapiClient()
+        self.fundamentus = FundamentusClient()   # DY/P/VP reais (grátis)
+        self.bcb = BCBClient()                    # macro oficial (grátis)
         self.screener = fii_screener or FIIScreener()
         self.dlog = decision_logger or DecisionLogger()
         self.selic = selic_override
@@ -127,19 +131,24 @@ class AutoScreener:
 
         logger.info("🔍 Iniciando ciclo de screening automático...")
 
-        # 1. Obtém Selic atual (para calibrar critérios)
-        selic = self.selic or self.client.get_selic() or 14.5
+        # 1. Selic atual (Banco Central → brapi → fallback) p/ calibrar
+        selic = self.selic or self.bcb.selic_meta() or self.client.get_selic() or 14.5
         self._adjust_criteria_for_selic(selic)
 
-        # 2. Baixa lista de FIIs da brapi
-        raw_fiis = self.client.get_fii_list(limit=max_fiis_to_analyze)
-        if not raw_fiis:
-            logger.warning("brapi.dev não retornou dados de FIIs. Usando modo offline.")
-            return self._offline_report(ts)
-
-        # 3. Converte para FIIMetrics
-        fiis = self._convert_brapi_to_metrics(raw_fiis)
-        logger.info(f"  Baixados {len(fiis)} FIIs da brapi.dev")
+        # 2-3. Fundamentos REAIS de toda a B3 via Fundamentus (grátis). A
+        # brapi gratuita entrega universo e preço, mas o DY/P/VP é pago lá;
+        # o Fundamentus preenche essa lacuna sem custo.
+        all_fiis = self.fundamentus.to_fii_metrics()
+        if not all_fiis:
+            logger.warning("Fundamentus indisponível. Tentando brapi como fallback.")
+            raw_fiis = self.client.get_fii_list(limit=max_fiis_to_analyze)
+            if not raw_fiis:
+                return self._offline_report(ts)
+            fiis = self._convert_brapi_to_metrics(raw_fiis)
+        else:
+            # prioriza os mais líquidos dentro do limite de análise
+            fiis = sorted(all_fiis, key=lambda f: f.liquidez_diaria, reverse=True)[:max_fiis_to_analyze]
+        logger.info(f"  {len(fiis)} FIIs para análise (fonte: Fundamentus)")
 
         # 4. Aplica screening
         fii_result = self.screener.screen(fiis)
@@ -169,7 +178,7 @@ class AutoScreener:
             recommendations=recommendations,
             alerts=alerts,
             data_quality={
-                "fonte": "brapi.dev",
+                "fonte": "Fundamentus (fundamentos) + BCB (Selic)",
                 "n_fiis_analisados": len(fiis),
                 "selic_usada": selic,
             },

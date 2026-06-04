@@ -4,13 +4,15 @@ Coletor de Notícias via RSS Feeds.
 Busca notícias financeiras de fontes gratuitas e públicas,
 sem necessidade de API key ou conta paga.
 
-Fontes:
-- InfoMoney (BR)
-- Valor Econômico (BR)
-- Google News Finance (BR + Global)
-- CoinDesk (Crypto)
-- Investing.com (BR)
-- Yahoo Finance (Global)
+Fontes (todas gratuitas, sem API key, testadas ao vivo):
+- BR: InfoMoney, Money Times, Exame, Brazil Journal, Suno, InvestNews,
+      Investing.com
+- Google News (busca por tema): dividendos, FIIs, Selic/Copom, IPCA,
+      Ibovespa, bancos/energia — alta cobertura do mercado brasileiro
+- Global: Yahoo Finance, MarketWatch, CNBC, Seeking Alpha, CoinDesk
+
+São ~19 feeds. Para macroeconomia histórica (Selic, IPCA, CDI, câmbio),
+veja data/bcb_client.py (API do Banco Central, também gratuita).
 
 Uso:
     fetcher = NewsFetcher()
@@ -71,37 +73,84 @@ class NewsArticle:
 # RSS FEED SOURCES
 # ═══════════════════════════════════════════════════════════════
 
+# Busca no Google News (formato estável e confiável, agrega centenas de
+# veículos). Cada query traz ~100 manchetes recentes do tema, em PT-BR.
+def _gnews(query: str) -> str:
+    from urllib.parse import quote_plus
+    return (
+        f"https://news.google.com/rss/search?q={quote_plus(query)}"
+        "&hl=pt-BR&gl=BR&ceid=BR:pt-419"
+    )
+
+
+# Todas as fontes abaixo foram testadas ao vivo (scripts/_probe_sources.py).
+# Gratuitas, sem API key. Para adicionar uma fonte, basta um item aqui.
 RSS_FEEDS = [
-    {
-        "name": "Google News - Negócios BR",
-        "url": "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FuQjBHZ0pDVWlnQVAB?hl=pt-BR&gl=BR&ceid=BR:pt-419",
-        "category": "Negócios",
-        "lang": "pt",
-    },
-    {
-        "name": "Google News - Economia BR",
-        "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNR2RtZUhJU0JYQjBMVUpTS0FBUAE?hl=pt-BR&gl=BR&ceid=BR:pt-419",
-        "category": "Economia",
-        "lang": "pt",
-    },
-    {
-        "name": "Yahoo Finance",
-        "url": "https://finance.yahoo.com/news/rssindex",
-        "category": "Mercado Global",
-        "lang": "en",
-    },
-    {
-        "name": "CoinDesk",
-        "url": "https://www.coindesk.com/arc/outboundfeeds/rss/",
-        "category": "Crypto",
-        "lang": "en",
-    },
-    {
-        "name": "Investing.com BR",
-        "url": "https://br.investing.com/rss/news.rss",
-        "category": "Investimentos",
-        "lang": "pt",
-    },
+    # ── Veículos brasileiros (RSS próprio) ──────────────────────────────
+    {"name": "InfoMoney", "url": "https://www.infomoney.com.br/feed/",
+     "category": "Investimentos", "lang": "pt"},
+    {"name": "Money Times", "url": "https://www.moneytimes.com.br/feed/",
+     "category": "Mercados", "lang": "pt"},
+    {"name": "Exame", "url": "https://exame.com/feed/",
+     "category": "Negócios", "lang": "pt"},
+    {"name": "Brazil Journal", "url": "https://braziljournal.com/feed/",
+     "category": "Negócios", "lang": "pt"},
+    {"name": "Suno Notícias", "url": "https://www.suno.com.br/noticias/feed/",
+     "category": "Investimentos", "lang": "pt"},
+    {"name": "InvestNews", "url": "https://investnews.com.br/feed/",
+     "category": "Economia", "lang": "pt"},
+    {"name": "Investing.com BR", "url": "https://br.investing.com/rss/news.rss",
+     "category": "Investimentos", "lang": "pt"},
+    # ── Google News (busca por tema — alta cobertura de dividendos/FIIs) ─
+    {"name": "Google News - Negócios BR",
+     "url": "https://news.google.com/rss/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FuQjBHZ0pDVWlnQVAB?hl=pt-BR&gl=BR&ceid=BR:pt-419",
+     "category": "Negócios", "lang": "pt"},
+    {"name": "Google News - Economia BR",
+     "url": "https://news.google.com/rss/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNR2RtZUhJU0JYQjBMVUpTS0FBUAE?hl=pt-BR&gl=BR&ceid=BR:pt-419",
+     "category": "Economia", "lang": "pt"},
+    {"name": "Google News - Dividendos", "url": _gnews("dividendos ações B3"),
+     "category": "Resultados", "lang": "pt"},
+    {"name": "Google News - FIIs", "url": _gnews("fundos imobiliários FII rendimento"),
+     "category": "Investimentos", "lang": "pt"},
+    {"name": "Google News - Selic/Copom", "url": _gnews("Selic Copom juros"),
+     "category": "Política Monetária", "lang": "pt"},
+    {"name": "Google News - IPCA", "url": _gnews("IPCA inflação Brasil"),
+     "category": "Macro", "lang": "pt"},
+    {"name": "Google News - Ibovespa", "url": _gnews("Ibovespa bolsa"),
+     "category": "Mercados", "lang": "pt"},
+    {"name": "Google News - Bancos/Energia", "url": _gnews("dividendos bancos energia elétrica"),
+     "category": "Resultados", "lang": "pt"},
+    # ── Grandes casas de investimento ───────────────────────────────────
+    {"name": "Google News - XP", "url": _gnews("XP Investimentos research"),
+     "category": "Corporativo", "lang": "pt"},
+    {"name": "Google News - BTG Pactual", "url": _gnews("BTG Pactual"),
+     "category": "Corporativo", "lang": "pt"},
+    {"name": "Google News - Itaú BBA", "url": _gnews("Itaú BBA análise mercado"),
+     "category": "Corporativo", "lang": "pt"},
+    {"name": "Google News - Faria Lima", "url": _gnews("Faria Lima mercado financeiro"),
+     "category": "Mercados", "lang": "pt"},
+    # ── Figuras que mexem com a economia ────────────────────────────────
+    {"name": "Google News - Galípolo (BC)", "url": _gnews("Galípolo Banco Central"),
+     "category": "Política Monetária", "lang": "pt"},
+    {"name": "Google News - Haddad (Fazenda)", "url": _gnews("Haddad Ministério da Fazenda"),
+     "category": "Macro", "lang": "pt"},
+    {"name": "Google News - Política fiscal", "url": _gnews("arcabouço fiscal déficit governo"),
+     "category": "Macro", "lang": "pt"},
+    {"name": "Google News - Dólar/Câmbio", "url": _gnews("dólar real câmbio"),
+     "category": "Mercados", "lang": "pt"},
+    {"name": "Google News - Tesouro Direto", "url": _gnews("Tesouro Direto renda fixa"),
+     "category": "Investimentos", "lang": "pt"},
+    # ── Globais ─────────────────────────────────────────────────────────
+    {"name": "Yahoo Finance", "url": "https://finance.yahoo.com/news/rssindex",
+     "category": "Mercado Global", "lang": "en"},
+    {"name": "MarketWatch", "url": "http://feeds.marketwatch.com/marketwatch/topstories/",
+     "category": "Mercado Global", "lang": "en"},
+    {"name": "CNBC Markets", "url": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+     "category": "Mercado Global", "lang": "en"},
+    {"name": "Seeking Alpha", "url": "https://seekingalpha.com/feed.xml",
+     "category": "Mercado Global", "lang": "en"},
+    {"name": "CoinDesk", "url": "https://www.coindesk.com/arc/outboundfeeds/rss/",
+     "category": "Crypto", "lang": "en"},
 ]
 
 # Mapeamento de palavras-chave para símbolos de ativos
@@ -205,9 +254,27 @@ class NewsFetcher:
             })
 
             with urlopen(req, timeout=self.timeout) as response:
-                content = response.read()
+                raw = response.read()
+                http_charset = response.headers.get_content_charset()
 
-            root = ET.fromstring(content)
+            # Decodifica de forma robusta: charset do HTTP > UTF-8 > latin-1.
+            # Evita o mojibake clássico ("Ã©" no lugar de "é") de feeds cujo
+            # prólogo XML mente sobre o encoding.
+            text = None
+            for enc in (http_charset, "utf-8", "latin-1"):
+                if not enc:
+                    continue
+                try:
+                    text = raw.decode(enc)
+                    break
+                except (UnicodeDecodeError, LookupError):
+                    continue
+            if text is None:
+                text = raw.decode("utf-8", "replace")
+
+            # Remove a declaração de encoding para o ElementTree aceitar str.
+            text = re.sub(r"<\?xml[^>]*\?>", "", text, count=1)
+            root = ET.fromstring(text)
 
             # Tenta RSS 2.0 e Atom
             items = root.findall(".//item")
