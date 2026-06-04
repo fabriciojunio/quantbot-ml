@@ -1,0 +1,67 @@
+name: Coleta diária QuantBot
+
+# Roda na NUVEM do GitHub, de graça, sem o seu PC ligado.
+# Todo dia coleta notícias, lê o sentimento (FinBERT-PT-BR se instalar,
+# senão léxico), gera um relatório e commita a base de volta no repo.
+# Assim a base "aprende" (acumula) de jun/2026 até jan/2027 sozinha.
+
+on:
+  schedule:
+    - cron: "0 22 * * *"   # 22:00 UTC = 19:00 de Brasília, todo dia
+  workflow_dispatch: {}      # permite rodar manualmente pelo botão "Run workflow"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: coleta-diaria
+  cancel-in-progress: false
+
+jobs:
+  coleta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Mantém o modelo FinBERT em cache entre execuções (evita baixar 400MB todo dia)
+      - name: Cache do modelo FinBERT
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-finbert-ptbr-v1
+
+      # FinBERT é opcional: se a instalação falhar, o sistema cai no léxico sozinho
+      - name: Instalar FinBERT (opcional)
+        continue-on-error: true
+        run: |
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install transformers safetensors
+
+      - name: Coletar notícias + sentimento
+        env:
+          QUANTBOT_USE_FINBERT: "1"
+        run: python scripts/coletar_noticias.py --sem-gdelt
+
+      - name: Gerar relatório do dia
+        env:
+          QUANTBOT_USE_FINBERT: "1"
+        run: python scripts/gerar_relatorio.py
+
+      - name: Commitar base e relatórios
+        run: |
+          git config user.name "quantbot-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/news_history.jsonl data/sentiment_index.jsonl relatorios/ || true
+          if git diff --cached --quiet; then
+            echo "Nada novo para commitar."
+          else
+            git commit -m "chore: coleta diária $(date +%F) [skip ci]"
+            git push
+          fi
