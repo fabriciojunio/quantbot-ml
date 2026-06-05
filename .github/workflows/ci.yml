@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Dependências
-        run: pip install numpy pandas scipy scikit-learn xgboost yfinance python-dotenv fastapi uvicorn httpx pytest ruff
+        run: pip install -r requirements-ci.txt
 
       - name: Lint (ruff) — informativo
         continue-on-error: true
