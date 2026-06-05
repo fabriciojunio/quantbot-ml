@@ -1,5 +1,18 @@
 {
   "faixas": {},
-  "sentimento": {},
-  "atualizado_em": "2026-06-04"
+  "sentimento": {
+    "medo": {
+      "n": 0,
+      "soma_retorno_fwd": 0.0
+    },
+    "neutro": {
+      "n": 0,
+      "soma_retorno_fwd": 0.0
+    },
+    "otimismo": {
+      "n": 0,
+      "soma_retorno_fwd": 0.0
+    }
+  },
+  "atualizado_em": "2026-06-05"
 }
