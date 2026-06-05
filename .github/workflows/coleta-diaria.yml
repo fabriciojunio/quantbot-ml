@@ -48,10 +48,10 @@ jobs:
           pip install --index-url https://download.pytorch.org/whl/cpu torch
           pip install transformers safetensors
 
-      - name: Coletar notícias + sentimento
+      - name: Coletar notícias + sentimento (com GDELT histórico)
         env:
           QUANTBOT_USE_FINBERT: "1"
-        run: python scripts/coletar_noticias.py --sem-gdelt
+        run: python scripts/coletar_noticias.py
 
       - name: Gerar relatório do dia
         env:
