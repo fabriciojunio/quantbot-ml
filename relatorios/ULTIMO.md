@@ -1,20 +1,20 @@
-# QuantBot — Relatório 2026-06-04
+# QuantBot — Relatório 2026-06-05
 
-_Gerado em 04/06/2026 23:18._
+_Gerado em 05/06/2026 02:18._
 
 ## Macro (Banco Central)
 
-- **Selic meta:** 14.5
-- **CDI:** n/d
+- **Selic meta:** n/d
+- **CDI:** 14.4
 - **IPCA 12m:** 4.39
 - **Dólar:** 5.0415
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.29 (😀 28 · 😐 169 · 😟 122) via finbert
+- **Hoje:** -0.29 (😀 26 · 😐 178 · 😟 120) via finbert
 - **Média 14 dias:** -0.29
-- **Tendência:** ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ITUB4.SA (40), MSFT (38), NVDA (37), BBDC4.SA (36), AAPL (35), ADA-USD (33)
+- **Tendência:** ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ITUB4.SA (40), BBDC4.SA (36), NVDA (32), MSFT (32), AAPL (29), ADA-USD (29)
 
 ## FIIs — screening do dia
 
