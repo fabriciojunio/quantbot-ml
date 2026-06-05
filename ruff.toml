@@ -1,0 +1,14 @@
+# Lint do QuantBot — leve e pragmático (não bloqueia o CI por enquanto).
+line-length = 100
+target-version = "py312"
+
+[lint]
+select = ["E", "F", "W", "I"]   # erros, pyflakes, warnings, imports
+ignore = [
+  "E501",  # comprimento de linha (já temos line-length acima como guia)
+  "E741",  # nomes ambíguos (l, I) — comuns em scripts de dados
+]
+
+[lint.per-file-ignores]
+"tests/*" = ["F811", "F401"]    # fixtures/reimports são comuns em testes
+"scripts/*" = ["E402"]          # ajuste de sys.path antes dos imports

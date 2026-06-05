@@ -53,16 +53,20 @@ jobs:
           QUANTBOT_USE_FINBERT: "1"
         run: python scripts/coletar_noticias.py
 
+      - name: Operar paper (o bot decide sozinho e aprende)
+        run: python scripts/operar_paper.py
+
       - name: Gerar relatório do dia
         env:
           QUANTBOT_USE_FINBERT: "1"
         run: python scripts/gerar_relatorio.py
 
-      - name: Commitar base e relatórios
+      - name: Commitar base, aprendizado e relatórios
         run: |
           git config user.name "quantbot-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/news_history.jsonl data/sentiment_index.jsonl relatorios/ || true
+          git add data/news_history.jsonl data/sentiment_index.jsonl \
+                  data/paper_book.json data/feedback.json relatorios/ || true
           if git diff --cached --quiet; then
             echo "Nada novo para commitar."
           else
