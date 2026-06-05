@@ -112,6 +112,38 @@ def sentimento_bloco() -> str:
     return "\n".join(linhas)
 
 
+def paper_bloco() -> str:
+    """Carteira simulada + o que o bot aprendeu (decisões e notícias)."""
+    book_f = ROOT / "data" / "paper_book.json"
+    if not book_f.exists():
+        return "## Carteira simulada\n\n_O bot ainda não operou. Rode scripts/operar_paper.py._"
+    book = json.loads(book_f.read_text(encoding="utf-8"))
+    serie = book.get("serie_valor", [])
+    valor = serie[-1]["valor_total"] if serie else book.get("caixa", 0)
+    cap = book.get("capital_inicial", 1)
+    ret = (valor - cap) / cap * 100
+    fechadas = book.get("fechadas", [])
+    acertos = sum(1 for f in fechadas if f["retorno_total_pct"] > 0)
+    posicoes = book.get("posicoes", {})
+
+    linhas = [
+        "## Carteira simulada (paper — o bot operando sozinho)",
+        "",
+        f"- **Valor:** R${valor:,.2f}  (**{ret:+.2f}%** vs R${cap:,.0f} inicial)",
+        f"- **Posições abertas:** {len(posicoes)} · **Caixa:** R${book.get('caixa',0):,.2f}",
+        f"- **Operações fechadas:** {len(fechadas)} ({acertos} no lucro)",
+    ]
+    if posicoes:
+        nomes = ", ".join(sorted(posicoes.keys())[:12])
+        linhas.append(f"- **Carteira:** {nomes}")
+
+    learned = _safe(lambda: __import__("income.feedback", fromlist=["Feedback"])
+                    .Feedback().resumo_texto(), "")
+    if learned:
+        linhas += ["", learned]
+    return "\n".join(linhas)
+
+
 def _barra(v: float) -> str:
     if v <= -0.4:
         return "▁"
@@ -132,6 +164,7 @@ def main():
         f"_Gerado em {datetime.now().strftime('%d/%m/%Y %H:%M')}._",
         macro_bloco(),
         sentimento_bloco(),
+        paper_bloco(),
         screening_bloco(),
         "---\n*O bot analisa e informa. Você decide e executa. "
         "DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*",

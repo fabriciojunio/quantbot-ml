@@ -1,0 +1,31 @@
+name: CI
+
+# Integração contínua: roda os testes e o lint a cada push/PR.
+# Os commits automáticos do bot usam [skip ci], então não disparam isto.
+
+on:
+  push:
+    branches: [main]
+  pull_request: {}
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependências
+        run: pip install numpy pandas scipy scikit-learn xgboost yfinance python-dotenv pytest ruff
+
+      - name: Lint (ruff) — informativo
+        continue-on-error: true
+        run: ruff check .
+
+      - name: Testes
+        run: python -m pytest -q
