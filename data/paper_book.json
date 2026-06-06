@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 375.39,
+  "caixa": 448.8,
   "posicoes": {
     "GGRC11": {
       "ticker": "GGRC11",
@@ -11,7 +11,7 @@
       "dy_entrada": 11.86,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.54
+      "dividendos": 1.08
     },
     "GARE11": {
       "ticker": "GARE11",
@@ -22,7 +22,7 @@
       "dy_entrada": 12.0,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.54
+      "dividendos": 1.09
     },
     "RBRR11": {
       "ticker": "RBRR11",
@@ -33,7 +33,7 @@
       "dy_entrada": 11.71,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.48
+      "dividendos": 0.96
     },
     "BTHF11": {
       "ticker": "BTHF11",
@@ -44,7 +44,7 @@
       "dy_entrada": 12.31,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.56
+      "dividendos": 1.12
     },
     "BTCI11": {
       "ticker": "BTCI11",
@@ -55,7 +55,7 @@
       "dy_entrada": 12.4,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.56
+      "dividendos": 1.13
     },
     "BCIA11": {
       "ticker": "BCIA11",
@@ -66,7 +66,7 @@
       "dy_entrada": 12.31,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.54
+      "dividendos": 1.09
     },
     "ICRI11": {
       "ticker": "ICRI11",
@@ -77,7 +77,7 @@
       "dy_entrada": 12.35,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.52
+      "dividendos": 1.04
     },
     "KFOF11": {
       "ticker": "KFOF11",
@@ -88,7 +88,7 @@
       "dy_entrada": 11.78,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.52
+      "dividendos": 1.04
     },
     "KNHF11": {
       "ticker": "KNHF11",
@@ -99,7 +99,7 @@
       "dy_entrada": 12.23,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.52
+      "dividendos": 1.04
     },
     "RBVA11": {
       "ticker": "RBVA11",
@@ -110,7 +110,7 @@
       "dy_entrada": 11.48,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.52
+      "dividendos": 1.04
     },
     "HGCR11": {
       "ticker": "HGCR11",
@@ -121,21 +121,37 @@
       "dy_entrada": 12.34,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.52
+      "dividendos": 1.04
     },
-    "RECR11": {
+    "PCIP11": {
+      "ticker": "PCIP11",
+      "cotas": 9.0,
+      "preco_entrada": 84.26,
+      "data_entrada": "2026-06-06",
+      "score_entrada": 78.7,
+      "dy_entrada": 12.94,
+      "sentimento_entrada": "medo",
+      "ultima_avaliacao": "2026-06-06",
+      "dividendos": 0.0
+    }
+  },
+  "fechadas": [
+    {
       "ticker": "RECR11",
-      "cotas": 10.0,
-      "preco_entrada": 82.04,
       "data_entrada": "2026-06-04",
+      "data_saida": "2026-06-06",
+      "preco_entrada": 82.04,
+      "preco_saida": 82.59,
+      "dias": 2,
+      "retorno_preco_pct": 0.67,
+      "dividendos": 0.58,
+      "retorno_total_pct": 0.74,
       "score_entrada": 78.6,
       "dy_entrada": 12.79,
       "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-06-04",
-      "dividendos": 0.58
+      "motivo": "saiu da lista de aprovados"
     }
-  },
-  "fechadas": [],
+  ],
   "serie_valor": [
     {
       "data": "2026-06-04",
@@ -148,6 +164,10 @@
     {
       "data": "2026-06-05",
       "valor_total": 10006.4
+    },
+    {
+      "data": "2026-06-06",
+      "valor_total": 9996.83
     }
   ],
   "log": [
@@ -258,6 +278,23 @@
       "preco": 82.04,
       "score": 78.6,
       "dy": 12.79
+    },
+    {
+      "data": "2026-06-06",
+      "acao": "VENDER",
+      "ticker": "RECR11",
+      "preco": 82.59,
+      "retorno_total_pct": 0.74,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-06-06",
+      "acao": "COMPRAR",
+      "ticker": "PCIP11",
+      "cotas": 9.0,
+      "preco": 84.26,
+      "score": 78.7,
+      "dy": 12.94
     }
   ]
 }
