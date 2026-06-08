@@ -1,25 +1,25 @@
-# QuantBot — Relatório 2026-06-07
+# QuantBot — Relatório 2026-06-08
 
-_Gerado em 07/06/2026 23:05._
+_Gerado em 08/06/2026 23:17._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.5
 - **CDI:** 14.4
 - **IPCA 12m:** 4.39
-- **Dólar:** 5.1244
+- **Dólar:** 5.1695
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.28 (😀 29 · 😐 158 · 😟 114) via finbert
+- **Hoje:** -0.24 (😀 32 · 😐 164 · 😟 104) via finbert
 - **Média 14 dias:** -0.29
-- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (60), NVDA (49), MSFT (48), AAPL (47), ITUB4.SA (38), BBDC4.SA (36)
+- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (61), ITUB4.SA (45), BBDC4.SA (43), NVDA (40), MSFT (35), AAPL (35)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,005.84  (**+0.06%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$457.81
+- **Valor:** R$10,018.03  (**+0.18%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$470.00
 - **Operações fechadas:** 1 (1 no lucro)
 - **Carteira:** BCIA11, BTCI11, BTHF11, GARE11, GGRC11, HGCR11, ICRI11, KFOF11, KNHF11, PCIP11, RBRR11, RBVA11
 
