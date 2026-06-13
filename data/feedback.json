@@ -2,8 +2,8 @@
   "faixas": {},
   "sentimento": {
     "medo": {
-      "n": 0,
-      "soma_retorno_fwd": 0.0
+      "n": 1,
+      "soma_retorno_fwd": -0.13824382329198065
     },
     "neutro": {
       "n": 6,
@@ -14,5 +14,5 @@
       "soma_retorno_fwd": 0.0
     }
   },
-  "atualizado_em": "2026-06-12"
+  "atualizado_em": "2026-06-13"
 }
