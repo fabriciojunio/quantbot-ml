@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-06-13
+# QuantBot — Relatório 2026-06-14
 
-_Gerado em 13/06/2026 23:05._
+_Gerado em 14/06/2026 23:09._
 
 ## Macro (Banco Central)
 
@@ -11,21 +11,21 @@ _Gerado em 13/06/2026 23:05._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.24 (😀 39 · 😐 166 · 😟 116) via finbert
+- **Hoje:** -0.25 (😀 32 · 😐 167 · 😟 109) via finbert
 - **Média 14 dias:** -0.26
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (48), NVDA (37), MSFT (37), ITUB4.SA (37), AAPL (36), BBDC4.SA (35)
+- **Ativos mais citados:** ADA-USD (47), MSFT (46), AAPL (46), NVDA (46), ITUB4.SA (28), BBDC4.SA (25)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$9,983.01  (**-0.17%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$399.32
+- **Valor:** R$10,010.38  (**+0.10%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$426.69
 - **Operações fechadas:** 8 (2 no lucro)
 - **Carteira:** AZPL11, BCIA11, BTCI11, BTHF11, GARE11, GGRC11, ICRI11, ITRI11, KFOF11, KNHF11, RBRR11, RBVA11
 
 ### O que o bot aprendeu até aqui
 - Picks: ainda coletando (precisa de mais avaliações).
-- Sentimento → retorno ~7 dias depois: neutro: -0.83% (n=6)
+- Sentimento → retorno ~7 dias depois: neutro: -0.71% (n=7)
 
 ## FIIs — screening do dia
 
