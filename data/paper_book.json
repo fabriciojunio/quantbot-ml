@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 457.27,
+  "caixa": 503.89,
   "posicoes": {
     "GGRC11": {
       "ticker": "GGRC11",
@@ -11,7 +11,7 @@
       "dy_entrada": 11.86,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 17.99
+      "dividendos": 21.209999999999997
     },
     "GARE11": {
       "ticker": "GARE11",
@@ -22,7 +22,7 @@
       "dy_entrada": 12.0,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 18.28
+      "dividendos": 21.560000000000002
     },
     "RBRR11": {
       "ticker": "RBRR11",
@@ -33,7 +33,7 @@
       "dy_entrada": 11.71,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 16.18
+      "dividendos": 19.08
     },
     "BTHF11": {
       "ticker": "BTHF11",
@@ -44,7 +44,7 @@
       "dy_entrada": 12.31,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 18.64
+      "dividendos": 21.98
     },
     "BTCI11": {
       "ticker": "BTCI11",
@@ -55,18 +55,7 @@
       "dy_entrada": 12.4,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 18.95
-    },
-    "BCIA11": {
-      "ticker": "BCIA11",
-      "cotas": 9.0,
-      "preco_entrada": 90.0,
-      "data_entrada": "2026-06-04",
-      "score_entrada": 79.8,
-      "dy_entrada": 12.31,
-      "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-06-04",
-      "dividendos": 18.3
+      "dividendos": 22.34
     },
     "ICRI11": {
       "ticker": "ICRI11",
@@ -77,7 +66,7 @@
       "dy_entrada": 12.35,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 17.35
+      "dividendos": 20.46
     },
     "KFOF11": {
       "ticker": "KFOF11",
@@ -88,7 +77,7 @@
       "dy_entrada": 11.78,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 17.27
+      "dividendos": 20.36
     },
     "KNHF11": {
       "ticker": "KNHF11",
@@ -99,7 +88,7 @@
       "dy_entrada": 12.23,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 17.42
+      "dividendos": 20.540000000000003
     },
     "RBVA11": {
       "ticker": "RBVA11",
@@ -110,7 +99,7 @@
       "dy_entrada": 11.48,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 17.45
+      "dividendos": 20.58
     },
     "AZPL11": {
       "ticker": "AZPL11",
@@ -121,7 +110,7 @@
       "dy_entrada": 12.01,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-12",
-      "dividendos": 1.63
+      "dividendos": 2.7199999999999998
     },
     "ITRI11": {
       "ticker": "ITRI11",
@@ -132,7 +121,18 @@
       "dy_entrada": 12.54,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-13",
-      "dividendos": 0.85
+      "dividendos": 1.7
+    },
+    "VGIP11": {
+      "ticker": "VGIP11",
+      "cotas": 10.0,
+      "preco_entrada": 79.12,
+      "data_entrada": "2026-06-16",
+      "score_entrada": 78.7,
+      "dy_entrada": 12.61,
+      "sentimento_entrada": "neutro",
+      "ultima_avaliacao": "2026-06-16",
+      "dividendos": 0.0
     }
   },
   "fechadas": [
@@ -255,6 +255,21 @@
       "dy_entrada": 12.64,
       "sentimento_entrada": "neutro",
       "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "BCIA11",
+      "data_entrada": "2026-06-04",
+      "data_saida": "2026-06-16",
+      "preco_entrada": 90.0,
+      "preco_saida": 89.7,
+      "dias": 12,
+      "retorno_preco_pct": -0.33,
+      "dividendos": 18.3,
+      "retorno_total_pct": 1.93,
+      "score_entrada": 79.8,
+      "dy_entrada": 12.31,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
     }
   ],
   "serie_valor": [
@@ -309,6 +324,10 @@
     {
       "data": "2026-06-15",
       "valor_total": 10040.96
+    },
+    {
+      "data": "2026-06-16",
+      "valor_total": 10108.74
     }
   ],
   "log": [
@@ -555,6 +574,23 @@
       "preco": 82.95,
       "score": 79.1,
       "dy": 12.54
+    },
+    {
+      "data": "2026-06-16",
+      "acao": "VENDER",
+      "ticker": "BCIA11",
+      "preco": 89.7,
+      "retorno_total_pct": 1.93,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-06-16",
+      "acao": "COMPRAR",
+      "ticker": "VGIP11",
+      "cotas": 10.0,
+      "preco": 79.12,
+      "score": 78.7,
+      "dy": 12.61
     }
   ]
 }

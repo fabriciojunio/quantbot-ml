@@ -1,50 +1,50 @@
-# QuantBot — Relatório 2026-06-15
+# QuantBot — Relatório 2026-06-16
 
-_Gerado em 15/06/2026 23:46._
+_Gerado em 16/06/2026 23:25._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.5
 - **CDI:** 14.4
 - **IPCA 12m:** 4.72
-- **Dólar:** 5.043
+- **Dólar:** 5.078
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.32 (😀 26 · 😐 159 · 😟 125) via finbert
+- **Hoje:** -0.29 (😀 29 · 😐 172 · 😟 121) via finbert
 - **Média 14 dias:** -0.26
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** NVDA (63), AAPL (62), MSFT (60), ADA-USD (48), ITUB4.SA (42), BBDC4.SA (40)
+- **Ativos mais citados:** BBDC4.SA (58), ITUB4.SA (57), ADA-USD (50), AAPL (48), MSFT (47), NVDA (47)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,040.96  (**+0.41%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$457.27
-- **Operações fechadas:** 8 (2 no lucro)
-- **Carteira:** AZPL11, BCIA11, BTCI11, BTHF11, GARE11, GGRC11, ICRI11, ITRI11, KFOF11, KNHF11, RBRR11, RBVA11
+- **Valor:** R$10,108.74  (**+1.09%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$503.89
+- **Operações fechadas:** 9 (3 no lucro)
+- **Carteira:** AZPL11, BTCI11, BTHF11, GARE11, GGRC11, ICRI11, ITRI11, KFOF11, KNHF11, RBRR11, RBVA11, VGIP11
 
 ### O que o bot aprendeu até aqui
 - Picks: ainda coletando (precisa de mais avaliações).
-- Sentimento → retorno ~7 dias depois: neutro: -0.59% (n=8)
+- Sentimento → retorno ~7 dias depois: neutro: -0.40% (n=9)
 
 ## FIIs — screening do dia
 
-Analisados: **558** | Aprovados: **78** | DY mínimo: 10.1% (Selic 14.5%)
+Analisados: **559** | Aprovados: **73** | DY mínimo: 10.1% (Selic 14.5%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
-| 1 | GGRC11 | 81.4 | 12.0% | 0.90 |
-| 2 | RBRR11 | 81.0 | 12.0% | 0.88 |
-| 3 | AZPL11 | 80.9 | 12.0% | 0.88 |
-| 4 | GARE11 | 80.4 | 12.1% | 0.87 |
-| 5 | KFOF11 | 79.8 | 11.9% | 0.84 |
-| 6 | RBVA11 | 79.8 | 11.9% | 0.84 |
-| 7 | BCIA11 | 79.7 | 12.3% | 0.87 |
-| 8 | BTCI11 | 79.7 | 12.6% | 0.90 |
-| 9 | ICRI11 | 79.5 | 12.5% | 0.92 |
-| 10 | ITRI11 | 79.1 | 12.5% | 0.87 |
-| 11 | KNHF11 | 79.1 | 12.4% | 0.95 |
-| 12 | BTHF11 | 79.0 | 12.8% | 0.89 |
+| 1 | GGRC11 | 81.2 | 11.9% | 0.90 |
+| 2 | RBRR11 | 80.9 | 12.0% | 0.88 |
+| 3 | AZPL11 | 80.8 | 12.1% | 0.88 |
+| 4 | GARE11 | 80.5 | 12.1% | 0.87 |
+| 5 | BTCI11 | 79.8 | 12.6% | 0.90 |
+| 6 | RBVA11 | 79.7 | 11.8% | 0.85 |
+| 7 | KFOF11 | 79.6 | 11.8% | 0.85 |
+| 8 | BTHF11 | 79.5 | 12.7% | 0.90 |
+| 9 | ICRI11 | 79.4 | 12.4% | 0.93 |
+| 10 | KNHF11 | 79.2 | 12.3% | 0.95 |
+| 11 | ITRI11 | 79.1 | 12.6% | 0.87 |
+| 12 | VGIP11 | 78.7 | 12.6% | 0.86 |
 
 ---
 *O bot analisa e informa. Você decide e executa. DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*
