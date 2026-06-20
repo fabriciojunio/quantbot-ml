@@ -137,11 +137,80 @@ def paper_bloco() -> str:
         nomes = ", ".join(sorted(posicoes.keys())[:12])
         linhas.append(f"- **Carteira:** {nomes}")
 
+    # Benchmark: +X% só faz sentido comparado ao custo de oportunidade (CDI).
+    bench = _benchmark_bloco(serie, ret)
+    if bench:
+        linhas += ["", *bench]
+
+    # Expectancy: win rate sozinho engana — o que importa é ganho médio × perda média.
+    exp = _expectancy_bloco(fechadas)
+    if exp:
+        linhas += ["", *exp]
+
     learned = _safe(lambda: __import__("income.feedback", fromlist=["Feedback"])
                     .Feedback().resumo_texto(), "")
     if learned:
         linhas += ["", learned]
     return "\n".join(linhas)
+
+
+def _periodo_dias(serie: list) -> int:
+    """Dias corridos entre o primeiro e o último ponto da série de valor."""
+    if len(serie) < 2:
+        return len(serie)
+    try:
+        d0 = datetime.fromisoformat(str(serie[0]["data"])[:10])
+        d1 = datetime.fromisoformat(str(serie[-1]["data"])[:10])
+        return max(1, (d1 - d0).days)
+    except Exception:
+        return len(serie)
+
+
+def _benchmark_bloco(serie: list, ret: float) -> list:
+    """Compara o retorno do bot com o CDI acumulado no mesmo período (alpha)."""
+    dias = _periodo_dias(serie)
+    if dias < 1:
+        return []
+    cdi_anual = _safe(lambda: __import__("data.bcb_client", fromlist=["BCBClient"])
+                      .BCBClient().snapshot().get("cdi_anual"), None) or 14.15
+    cdi_periodo = ((1 + cdi_anual / 100.0) ** (dias / 365.0) - 1.0) * 100.0
+    alpha = ret - cdi_periodo
+    marca = "✅ acima do CDI" if alpha > 0 else "❌ abaixo do CDI"
+    return [
+        "### Desempenho vs benchmark",
+        f"- **Período:** {dias} dias · **Bot:** {ret:+.2f}% · "
+        f"**CDI:** {cdi_periodo:+.2f}% (a.a. {cdi_anual:.2f}%)",
+        f"- **Alpha vs CDI:** {alpha:+.2f} pontos percentuais — {marca}",
+        "- _Janela curta: leia como acompanhamento, não como prova de edge._"
+        if dias < 90 else "",
+    ]
+
+
+def _expectancy_bloco(fechadas: list) -> list:
+    """Win rate, ganho/perda médios, payoff e expectancy por operação."""
+    rets = [f.get("retorno_total_pct", 0.0) for f in fechadas]
+    if len(rets) < 1:
+        return []
+    wins = [r for r in rets if r > 0]
+    losses = [r for r in rets if r <= 0]
+    n = len(rets)
+    win_rate = len(wins) / n * 100
+    avg_win = (sum(wins) / len(wins)) if wins else 0.0
+    avg_loss = (sum(losses) / len(losses)) if losses else 0.0  # <= 0
+    payoff = (avg_win / abs(avg_loss)) if avg_loss != 0 else float("inf")
+    # Expectancy por trade (%) = p(win)*ganho_médio + p(loss)*perda_média.
+    expectancy = (win_rate / 100) * avg_win + (1 - win_rate / 100) * avg_loss
+    payoff_txt = "∞" if payoff == float("inf") else f"{payoff:.2f}"
+    sinal = "✅ positiva" if expectancy > 0 else "⚠️ negativa"
+    return [
+        "### Expectativa estatística (operações fechadas)",
+        f"- **Win rate:** {win_rate:.0f}% ({len(wins)}/{n})",
+        f"- **Ganho médio:** {avg_win:+.2f}% · **Perda média:** {avg_loss:+.2f}%",
+        f"- **Payoff (ganho/perda):** {payoff_txt} · **Expectancy/trade:** "
+        f"{expectancy:+.2f}% — {sinal}",
+        f"- _Amostra pequena (n={n}): ainda sem significância; acumule mais trades._"
+        if n < 30 else "",
+    ]
 
 
 def _barra(v: float) -> str:
