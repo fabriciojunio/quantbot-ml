@@ -38,6 +38,11 @@ class TripleBarrierLabeler:
         vol = get_daily_volatility(close, self.vol_span).fillna(0.0)
         prices = close.values
         vols = vol.values
+        # Usa máxima/mínima intradiárias para detectar o toque das barreiras: o
+        # preço pode tocar TP/SL DENTRO do dia mesmo que o fechamento não mostre.
+        # Olhar só o Close subestima toques. Sem OHLC, cai no próprio Close.
+        highs = (df["High"] if "High" in df.columns else (df["high"] if "high" in df.columns else close)).astype(float).values
+        lows = (df["Low"] if "Low" in df.columns else (df["low"] if "low" in df.columns else close)).astype(float).values
         n = len(prices)
         labels = np.zeros(n, dtype=int)
 
@@ -51,11 +56,16 @@ class TripleBarrierLabeler:
             end = min(i + self.max_holding, n - 1)
             label = 0
             for j in range(i + 1, end + 1):
-                if prices[j] >= tp:
-                    label = 1
-                    break
-                if prices[j] <= sl:
+                tocou_tp = highs[j] >= tp
+                tocou_sl = lows[j] <= sl
+                # Barra ambígua (tocou as duas): a ordem intradiária é
+                # desconhecida no OHLC, então assumimos o pior caso (SL) para
+                # não superestimar o edge nos rótulos.
+                if tocou_sl:
                     label = -1
+                    break
+                if tocou_tp:
+                    label = 1
                     break
             labels[i] = label
 
