@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 862.35,
+  "caixa": 920.54,
   "posicoes": {
     "GGRC11": {
       "ticker": "GGRC11",
@@ -11,7 +11,7 @@
       "dy_entrada": 11.86,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 77.03
+      "dividendos": 83.74
     },
     "GARE11": {
       "ticker": "GARE11",
@@ -22,7 +22,7 @@
       "dy_entrada": 12.0,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 78.33
+      "dividendos": 85.15
     },
     "BTHF11": {
       "ticker": "BTHF11",
@@ -33,7 +33,7 @@
       "dy_entrada": 12.31,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 79.85000000000002
+      "dividendos": 86.81000000000002
     },
     "ICRI11": {
       "ticker": "ICRI11",
@@ -44,7 +44,7 @@
       "dy_entrada": 12.35,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 74.29999999999998
+      "dividendos": 80.76999999999998
     },
     "KFOF11": {
       "ticker": "KFOF11",
@@ -55,7 +55,7 @@
       "dy_entrada": 11.78,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 73.93
+      "dividendos": 80.37
     },
     "KNHF11": {
       "ticker": "KNHF11",
@@ -66,7 +66,7 @@
       "dy_entrada": 12.23,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 74.61999999999999
+      "dividendos": 81.11999999999999
     },
     "RBVA11": {
       "ticker": "RBVA11",
@@ -77,7 +77,7 @@
       "dy_entrada": 11.48,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-04",
-      "dividendos": 74.77
+      "dividendos": 81.28999999999999
     },
     "AZPL11": {
       "ticker": "AZPL11",
@@ -88,7 +88,7 @@
       "dy_entrada": 12.01,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-12",
-      "dividendos": 35.34
+      "dividendos": 39.96
     },
     "TRXF11": {
       "ticker": "TRXF11",
@@ -99,7 +99,7 @@
       "dy_entrada": 12.73,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-17",
-      "dividendos": 18.72
+      "dividendos": 22.18
     },
     "VGIP11": {
       "ticker": "VGIP11",
@@ -110,7 +110,7 @@
       "dy_entrada": 12.55,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-23",
-      "dividendos": 4.1000000000000005
+      "dividendos": 5.74
     },
     "CLIN11": {
       "ticker": "CLIN11",
@@ -121,7 +121,7 @@
       "dy_entrada": 12.87,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-06-24",
-      "dividendos": 2.8899999999999997
+      "dividendos": 4.33
     },
     "BTCI11": {
       "ticker": "BTCI11",
@@ -132,7 +132,7 @@
       "dy_entrada": 12.78,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-27",
-      "dividendos": 0.3
+      "dividendos": 0.9099999999999999
     }
   },
   "fechadas": [
@@ -462,6 +462,10 @@
     {
       "data": "2026-06-28",
       "valor_total": 10518.86
+    },
+    {
+      "data": "2026-06-29",
+      "valor_total": 10577.05
     }
   ],
   "log": [

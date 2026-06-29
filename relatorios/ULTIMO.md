@@ -1,31 +1,31 @@
-# QuantBot — Relatório 2026-06-28
+# QuantBot — Relatório 2026-06-29
 
-_Gerado em 28/06/2026 23:03._
+_Gerado em 29/06/2026 22:57._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.25
 - **CDI:** 14.15
 - **IPCA 12m:** 4.72
-- **Dólar:** 5.1695
+- **Dólar:** 5.1717
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.25 (😀 37 · 😐 170 · 😟 117) via finbert
-- **Média 14 dias:** -0.28
-- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (59), NVDA (39), MSFT (38), AAPL (37), ITUB4.SA (27), PETR4.SA (25)
+- **Hoje:** -0.25 (😀 38 · 😐 159 · 😟 115) via finbert
+- **Média 14 dias:** -0.27
+- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (59), PETR4.SA (33), NVDA (31), VALE3.SA (31), AAPL (28), MSFT (28)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,518.86  (**+5.19%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$862.35
+- **Valor:** R$10,577.05  (**+5.77%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$920.54
 - **Operações fechadas:** 15 (6 no lucro)
 - **Carteira:** AZPL11, BTCI11, BTHF11, CLIN11, GARE11, GGRC11, ICRI11, KFOF11, KNHF11, RBVA11, TRXF11, VGIP11
 
 ### Desempenho vs benchmark
-- **Período:** 24 dias · **Bot:** +5.19% · **CDI:** +0.87% (a.a. 14.15%)
-- **Alpha vs CDI:** +4.31 pontos percentuais — ✅ acima do CDI
+- **Período:** 25 dias · **Bot:** +5.77% · **CDI:** +0.91% (a.a. 14.15%)
+- **Alpha vs CDI:** +4.86 pontos percentuais — ✅ acima do CDI
 - _Janela curta: leia como acompanhamento, não como prova de edge._
 
 ### Expectativa estatística (operações fechadas)
@@ -36,7 +36,7 @@ _Gerado em 28/06/2026 23:03._
 
 ### O que o bot aprendeu até aqui
 - Picks: ainda coletando (precisa de mais avaliações).
-- Sentimento → retorno ~7 dias depois: medo: +2.22% (n=5) · neutro: +0.40% (n=16)
+- Sentimento → retorno ~7 dias depois: medo: +2.22% (n=5) · neutro: +0.60% (n=17)
 
 ## FIIs — screening do dia
 
