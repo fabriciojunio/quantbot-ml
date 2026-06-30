@@ -1,31 +1,31 @@
-# QuantBot — Relatório 2026-06-29
+# QuantBot — Relatório 2026-06-30
 
-_Gerado em 29/06/2026 22:57._
+_Gerado em 30/06/2026 23:12._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.25
 - **CDI:** 14.15
 - **IPCA 12m:** 4.72
-- **Dólar:** 5.1717
+- **Dólar:** 5.1766
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.25 (😀 38 · 😐 159 · 😟 115) via finbert
+- **Hoje:** -0.25 (😀 34 · 😐 159 · 😟 110) via finbert
 - **Média 14 dias:** -0.27
-- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (59), PETR4.SA (33), NVDA (31), VALE3.SA (31), AAPL (28), MSFT (28)
+- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (50), PETR4.SA (38), VALE3.SA (37), ITUB4.SA (32), BBDC4.SA (31), NVDA (26)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,577.05  (**+5.77%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$920.54
+- **Valor:** R$10,697.87  (**+6.98%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$982.01
 - **Operações fechadas:** 15 (6 no lucro)
 - **Carteira:** AZPL11, BTCI11, BTHF11, CLIN11, GARE11, GGRC11, ICRI11, KFOF11, KNHF11, RBVA11, TRXF11, VGIP11
 
 ### Desempenho vs benchmark
-- **Período:** 25 dias · **Bot:** +5.77% · **CDI:** +0.91% (a.a. 14.15%)
-- **Alpha vs CDI:** +4.86 pontos percentuais — ✅ acima do CDI
+- **Período:** 26 dias · **Bot:** +6.98% · **CDI:** +0.95% (a.a. 14.15%)
+- **Alpha vs CDI:** +6.03 pontos percentuais — ✅ acima do CDI
 - _Janela curta: leia como acompanhamento, não como prova de edge._
 
 ### Expectativa estatística (operações fechadas)
@@ -36,26 +36,26 @@ _Gerado em 29/06/2026 22:57._
 
 ### O que o bot aprendeu até aqui
 - Picks: ainda coletando (precisa de mais avaliações).
-- Sentimento → retorno ~7 dias depois: medo: +2.22% (n=5) · neutro: +0.60% (n=17)
+- Sentimento → retorno ~7 dias depois: medo: +2.22% (n=5) · neutro: +0.82% (n=18)
 
 ## FIIs — screening do dia
 
-Analisados: **560** | Aprovados: **76** | DY mínimo: 10.0% (Selic 14.25%)
+Analisados: **560** | Aprovados: **75** | DY mínimo: 10.0% (Selic 14.25%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
-| 1 | GGRC11 | 80.7 | 12.2% | 0.89 |
-| 2 | GARE11 | 80.6 | 12.1% | 0.88 |
-| 3 | KFOF11 | 80.3 | 11.9% | 0.86 |
-| 4 | AZPL11 | 79.7 | 12.3% | 0.86 |
-| 5 | RBVA11 | 79.6 | 11.9% | 0.84 |
-| 6 | VGIP11 | 79.3 | 12.5% | 0.87 |
-| 7 | ICRI11 | 79.2 | 12.5% | 0.93 |
-| 8 | KNHF11 | 78.9 | 12.4% | 0.95 |
-| 9 | BTCI11 | 78.7 | 12.8% | 0.88 |
-| 10 | TRXF11 | 78.6 | 12.7% | 0.93 |
-| 11 | BTHF11 | 78.4 | 12.9% | 0.89 |
-| 12 | CLIN11 | 78.4 | 12.8% | 0.93 |
+| 1 | GGRC11 | 80.9 | 12.1% | 0.89 |
+| 2 | GARE11 | 80.8 | 12.1% | 0.88 |
+| 3 | AZPL11 | 80.3 | 12.1% | 0.87 |
+| 4 | KFOF11 | 80.0 | 11.8% | 0.87 |
+| 5 | VGIP11 | 79.7 | 12.4% | 0.88 |
+| 6 | ICRI11 | 79.5 | 12.4% | 0.93 |
+| 7 | RBVA11 | 79.4 | 11.7% | 0.85 |
+| 8 | BTCI11 | 79.3 | 12.7% | 0.89 |
+| 9 | KNHF11 | 79.0 | 12.4% | 0.95 |
+| 10 | CLIN11 | 78.6 | 12.7% | 0.93 |
+| 11 | TRXF11 | 78.6 | 12.7% | 0.93 |
+| 12 | BTHF11 | 78.4 | 13.0% | 0.89 |
 
 ---
 *O bot analisa e informa. Você decide e executa. DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*
