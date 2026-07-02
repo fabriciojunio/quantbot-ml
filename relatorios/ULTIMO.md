@@ -1,31 +1,31 @@
-# QuantBot — Relatório 2026-07-01
+# QuantBot — Relatório 2026-07-02
 
-_Gerado em 01/07/2026 23:16._
+_Gerado em 02/07/2026 23:05._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.25
 - **CDI:** 14.15
 - **IPCA 12m:** 4.72
-- **Dólar:** 5.195
+- **Dólar:** 5.1945
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.22 (😀 41 · 😐 171 · 😟 113) via finbert
-- **Média 14 dias:** -0.27
-- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (63), ITUB4.SA (39), NVDA (36), AAPL (35), MSFT (35), BBDC4.SA (34)
+- **Hoje:** -0.16 (😀 42 · 😐 172 · 😟 89) via finbert
+- **Média 14 dias:** -0.26
+- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (55), NVDA (51), MSFT (50), AAPL (50), VALE3.SA (35), ITUB4.SA (31)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,812.77  (**+8.13%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$1,046.76
+- **Valor:** R$10,880.80  (**+8.81%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$1,114.79
 - **Operações fechadas:** 15 (6 no lucro)
 - **Carteira:** AZPL11, BTCI11, BTHF11, CLIN11, GARE11, GGRC11, ICRI11, KFOF11, KNHF11, RBVA11, TRXF11, VGIP11
 
 ### Desempenho vs benchmark
-- **Período:** 27 dias · **Bot:** +8.13% · **CDI:** +0.98% (a.a. 14.15%)
-- **Alpha vs CDI:** +7.14 pontos percentuais — ✅ acima do CDI
+- **Período:** 28 dias · **Bot:** +8.81% · **CDI:** +1.02% (a.a. 14.15%)
+- **Alpha vs CDI:** +7.79 pontos percentuais — ✅ acima do CDI
 - _Janela curta: leia como acompanhamento, não como prova de edge._
 
 ### Expectativa estatística (operações fechadas)
@@ -36,7 +36,7 @@ _Gerado em 01/07/2026 23:16._
 
 ### O que o bot aprendeu até aqui
 - Picks: ainda coletando (precisa de mais avaliações).
-- Sentimento → retorno ~7 dias depois: medo: +2.80% (n=6) · neutro: +0.82% (n=18)
+- Sentimento → retorno ~7 dias depois: medo: +3.23% (n=7) · neutro: +0.82% (n=18)
 
 ## FIIs — screening do dia
 
