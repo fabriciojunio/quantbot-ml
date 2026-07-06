@@ -1,31 +1,31 @@
-# QuantBot — Relatório 2026-07-05
+# QuantBot — Relatório 2026-07-06
 
-_Gerado em 05/07/2026 23:02._
+_Gerado em 06/07/2026 23:09._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.25
 - **CDI:** 14.15
 - **IPCA 12m:** 4.72
-- **Dólar:** 5.1717
+- **Dólar:** 5.167
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.23 (😀 27 · 😐 173 · 😟 95) via finbert
+- **Hoje:** -0.17 (😀 41 · 😐 166 · 😟 92) via finbert
 - **Média 14 dias:** -0.23
-- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (54), NVDA (42), MSFT (40), AAPL (40), ITUB4.SA (22), BBDC4.SA (21)
+- **Tendência:** ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (55), VALE3.SA (37), NVDA (37), AAPL (35), MSFT (35), PETR4.SA (32)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,977.42  (**+9.77%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$1,264.20
+- **Valor:** R$10,995.37  (**+9.95%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$1,282.15
 - **Operações fechadas:** 17 (8 no lucro)
 - **Carteira:** AZPL11, BTCI11, BTHF11, GARE11, GGRC11, HTMX11, ICRI11, KFOF11, KNHF11, RBVA11, TRXF11, VGIP11
 
 ### Desempenho vs benchmark
-- **Período:** 31 dias · **Bot:** +9.77% · **CDI:** +1.13% (a.a. 14.15%)
-- **Alpha vs CDI:** +8.64 pontos percentuais — ✅ acima do CDI
+- **Período:** 32 dias · **Bot:** +9.95% · **CDI:** +1.17% (a.a. 14.15%)
+- **Alpha vs CDI:** +8.79 pontos percentuais — ✅ acima do CDI
 - _Janela curta: leia como acompanhamento, não como prova de edge._
 
 ### Expectativa estatística (operações fechadas)
@@ -36,7 +36,7 @@ _Gerado em 05/07/2026 23:02._
 
 ### O que o bot aprendeu até aqui
 - Picks: ainda coletando (precisa de mais avaliações).
-- Sentimento → retorno ~7 dias depois: medo: +3.23% (n=7) · neutro: +1.38% (n=21)
+- Sentimento → retorno ~7 dias depois: medo: +3.23% (n=7) · neutro: +1.50% (n=22)
 
 ## FIIs — screening do dia
 
