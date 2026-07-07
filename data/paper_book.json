@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 1282.15,
+  "caixa": 1300.08,
   "posicoes": {
     "GGRC11": {
       "ticker": "GGRC11",
@@ -11,7 +11,7 @@
       "dy_entrada": 11.86,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 122.12
+      "dividendos": 122.93
     },
     "GARE11": {
       "ticker": "GARE11",
@@ -22,7 +22,7 @@
       "dy_entrada": 12.0,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 124.19
+      "dividendos": 125.00999999999999
     },
     "BTHF11": {
       "ticker": "BTHF11",
@@ -33,7 +33,7 @@
       "dy_entrada": 12.31,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 126.60000000000002
+      "dividendos": 127.43000000000002
     },
     "ICRI11": {
       "ticker": "ICRI11",
@@ -44,7 +44,7 @@
       "dy_entrada": 12.35,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 117.79999999999998
+      "dividendos": 118.57999999999998
     },
     "KFOF11": {
       "ticker": "KFOF11",
@@ -55,7 +55,7 @@
       "dy_entrada": 11.78,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 117.21000000000001
+      "dividendos": 117.98
     },
     "KNHF11": {
       "ticker": "KNHF11",
@@ -66,7 +66,7 @@
       "dy_entrada": 12.23,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 118.3
+      "dividendos": 119.08
     },
     "RBVA11": {
       "ticker": "RBVA11",
@@ -77,7 +77,7 @@
       "dy_entrada": 11.48,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 118.57
+      "dividendos": 119.35
     },
     "AZPL11": {
       "ticker": "AZPL11",
@@ -88,7 +88,7 @@
       "dy_entrada": 12.01,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-12",
-      "dividendos": 79.92
+      "dividendos": 86.72
     },
     "VGIP11": {
       "ticker": "VGIP11",
@@ -99,7 +99,7 @@
       "dy_entrada": 12.55,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-23",
-      "dividendos": 24.87
+      "dividendos": 28.700000000000003
     },
     "BTCI11": {
       "ticker": "BTCI11",
@@ -110,7 +110,7 @@
       "dy_entrada": 12.78,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-06-27",
-      "dividendos": 13.65
+      "dividendos": 16.69
     },
     "HTMX11": {
       "ticker": "HTMX11",
@@ -121,18 +121,18 @@
       "dy_entrada": 12.4,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-03",
-      "dividendos": 1.6800000000000002
+      "dividendos": 2.8000000000000003
     },
-    "TRXF11": {
-      "ticker": "TRXF11",
+    "CLIN11": {
+      "ticker": "CLIN11",
       "cotas": 9.0,
-      "preco_entrada": 91.43,
-      "data_entrada": "2026-07-04",
+      "preco_entrada": 91.67,
+      "data_entrada": "2026-07-07",
       "score_entrada": 78.5,
       "dy_entrada": 12.76,
       "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-07-04",
-      "dividendos": 0.8699999999999999
+      "ultima_avaliacao": "2026-07-07",
+      "dividendos": 0.0
     }
   },
   "fechadas": [
@@ -390,6 +390,21 @@
       "dy_entrada": 12.87,
       "sentimento_entrada": "medo",
       "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "TRXF11",
+      "data_entrada": "2026-07-04",
+      "data_saida": "2026-07-07",
+      "preco_entrada": 91.43,
+      "preco_saida": 91.4,
+      "dias": 3,
+      "retorno_preco_pct": -0.03,
+      "dividendos": 0.87,
+      "retorno_total_pct": 0.07,
+      "score_entrada": 78.5,
+      "dy_entrada": 12.76,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
     }
   ],
   "serie_valor": [
@@ -524,6 +539,10 @@
     {
       "data": "2026-07-06",
       "valor_total": 10995.37
+    },
+    {
+      "data": "2026-07-07",
+      "valor_total": 11017.67
     }
   ],
   "log": [
@@ -921,6 +940,23 @@
       "ticker": "TRXF11",
       "cotas": 9.0,
       "preco": 91.43,
+      "score": 78.5,
+      "dy": 12.76
+    },
+    {
+      "data": "2026-07-07",
+      "acao": "VENDER",
+      "ticker": "TRXF11",
+      "preco": 91.4,
+      "retorno_total_pct": 0.07,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-07-07",
+      "acao": "COMPRAR",
+      "ticker": "CLIN11",
+      "cotas": 9.0,
+      "preco": 91.67,
       "score": 78.5,
       "dy": 12.76
     }
