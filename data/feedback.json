@@ -27,13 +27,13 @@
       "soma_retorno_fwd": 22.580970099142583
     },
     "neutro": {
-      "n": 25,
-      "soma_retorno_fwd": 39.076964810576264
+      "n": 27,
+      "soma_retorno_fwd": 41.80779776555008
     },
     "otimismo": {
       "n": 0,
       "soma_retorno_fwd": 0.0
     }
   },
-  "atualizado_em": "2026-07-09"
+  "atualizado_em": "2026-07-11"
 }
