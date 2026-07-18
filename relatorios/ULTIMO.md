@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-07-17
+# QuantBot — Relatório 2026-07-18
 
-_Gerado em 17/07/2026 22:49._
+_Gerado em 18/07/2026 22:48._
 
 ## Macro (Banco Central)
 
@@ -11,21 +11,21 @@ _Gerado em 17/07/2026 22:49._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.29 (😀 29 · 😐 157 · 😟 116) via finbert
-- **Média 14 dias:** -0.25
+- **Hoje:** -0.31 (😀 25 · 😐 148 · 😟 114) via finbert
+- **Média 14 dias:** -0.26
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** NVDA (59), AAPL (55), MSFT (50), ADA-USD (50), PETR4.SA (39), VALE3.SA (35)
+- **Ativos mais citados:** ADA-USD (57), NVDA (54), AAPL (50), MSFT (48), PETR4.SA (40), VALE3.SA (35)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,285.08  (**+12.85%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$1,514.51
+- **Valor:** R$11,362.68  (**+13.63%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$1,561.74
 - **Operações fechadas:** 20 (9 no lucro)
 - **Carteira:** AZPL11, BTCI11, BTHF11, CLIN11, GARE11, GGRC11, HTMX11, ICRI11, KFOF11, KNHF11, RBVA11, VGIP11
 
 ### Desempenho vs benchmark
-- **Período:** 43 dias · **Bot:** +12.85% · **CDI:** +1.57% (a.a. 14.15%)
-- **Alpha vs CDI:** +11.28 pontos percentuais — ✅ acima do CDI
+- **Período:** 44 dias · **Bot:** +13.63% · **CDI:** +1.61% (a.a. 14.15%)
+- **Alpha vs CDI:** +12.02 pontos percentuais — ✅ acima do CDI
 - _Janela curta: leia como acompanhamento, não como prova de edge._
 
 ### Expectativa estatística (operações fechadas)
@@ -36,7 +36,7 @@ _Gerado em 17/07/2026 22:49._
 
 ### O que o bot aprendeu até aqui
 - Picks: ainda coletando (precisa de mais avaliações).
-- Sentimento → retorno ~7 dias depois: medo: +3.23% (n=7) · neutro: +1.52% (n=32)
+- Sentimento → retorno ~7 dias depois: medo: +3.23% (n=7) · neutro: +1.56% (n=33)
 
 ## FIIs — screening do dia
 
@@ -44,17 +44,17 @@ Analisados: **560** | Aprovados: **74** | DY mínimo: 10.0% (Selic 14.25%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
-| 1 | GGRC11 | 81.0 | 12.1% | 0.89 |
+| 1 | GGRC11 | 81.4 | 12.0% | 0.90 |
 | 2 | GARE11 | 80.6 | 12.1% | 0.88 |
-| 3 | BTCI11 | 80.1 | 12.5% | 0.90 |
-| 4 | KFOF11 | 80.1 | 12.1% | 0.85 |
-| 5 | HTMX11 | 80.0 | 12.2% | 0.94 |
+| 3 | BTCI11 | 80.4 | 12.4% | 0.90 |
+| 4 | KFOF11 | 80.4 | 12.0% | 0.86 |
+| 5 | HTMX11 | 80.2 | 12.1% | 0.94 |
 | 6 | AZPL11 | 79.8 | 12.2% | 0.86 |
-| 7 | RBVA11 | 79.6 | 11.8% | 0.85 |
-| 8 | VGIP11 | 79.6 | 12.4% | 0.87 |
-| 9 | BTHF11 | 79.5 | 12.6% | 0.91 |
-| 10 | ICRI11 | 79.1 | 12.6% | 0.92 |
-| 11 | KNHF11 | 79.0 | 12.4% | 0.95 |
+| 7 | BTHF11 | 79.7 | 12.6% | 0.90 |
+| 8 | VGIP11 | 79.7 | 12.3% | 0.87 |
+| 9 | RBVA11 | 79.6 | 11.7% | 0.86 |
+| 10 | ICRI11 | 79.2 | 12.7% | 0.91 |
+| 11 | KNHF11 | 79.1 | 12.3% | 0.96 |
 | 12 | CLIN11 | 78.8 | 12.7% | 0.92 |
 
 ---
