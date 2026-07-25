@@ -5,8 +5,27 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import pytest
 from core.live_trading import (
     LiveTradingEngine, SafetyLimits, SafetyMonitor,
-    PaperBrokerAdapter, BotStatus,
+    PaperBrokerAdapter, BotStatus, _assert_live_trading_allowed,
 )
+
+
+class TestLiveGuard:
+    """Trava contra operar com dinheiro real por engano."""
+
+    def test_real_bloqueado_sem_flag(self, monkeypatch):
+        monkeypatch.delenv("QUANTBOT_ALLOW_LIVE", raising=False)
+        with pytest.raises(RuntimeError, match="QUANTBOT_ALLOW_LIVE"):
+            _assert_live_trading_allowed("Binance")
+
+    def test_real_liberado_com_flag(self, monkeypatch):
+        monkeypatch.setenv("QUANTBOT_ALLOW_LIVE", "1")
+        # Não deve levantar quando a intenção é declarada explicitamente.
+        _assert_live_trading_allowed("Alpaca")
+
+    def test_valor_diferente_de_1_bloqueia(self, monkeypatch):
+        monkeypatch.setenv("QUANTBOT_ALLOW_LIVE", "true")
+        with pytest.raises(RuntimeError):
+            _assert_live_trading_allowed("Binance")
 
 
 class TestSafetyLimits:
