@@ -15,6 +15,7 @@ from typing import Dict, List
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from api.market_data import (
     compute_indicators,
@@ -87,6 +88,34 @@ app.add_middleware(
     allow_methods=["GET", "OPTIONS"],
     allow_headers=["*"],
 )
+
+
+# Cabeçalhos de segurança recomendados aplicados a toda resposta. A API é
+# só-leitura e sem HTML, mas os headers barram sniffing de MIME, clickjacking
+# e vazamento de referer caso o front embuta as respostas.
+_SECURITY_HEADERS = {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "no-referrer",
+    "Cache-Control": "no-store",
+}
+
+
+@app.middleware("http")
+async def enforce_rate_limit_and_headers(request: Request, call_next):
+    """Aplica o rate limit por IP (o objeto existia mas não estava ligado)
+    e injeta os cabeçalhos de segurança em cada resposta."""
+    client_ip = request.client.host if request.client else "desconhecido"
+    if not rate_limiter.is_allowed(client_ip):
+        resp = JSONResponse(
+            status_code=429,
+            content={"detail": "Muitas requisições. Tente novamente em instantes."},
+        )
+    else:
+        resp = await call_next(request)
+    for header, value in _SECURITY_HEADERS.items():
+        resp.headers[header] = value
+    return resp
 
 
 def _validate_symbol(symbol: str) -> str:
