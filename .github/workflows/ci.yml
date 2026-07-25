@@ -27,5 +27,15 @@ jobs:
         continue-on-error: true
         run: ruff check .
 
+      - name: Segurança do código (bandit) — bloqueia em severidade alta
+        run: bandit -r . -x ./.venv,./tests,./.pytest_cache --severity-level high
+
+      - name: Segurança do código (bandit) — relatório completo, informativo
+        continue-on-error: true
+        run: bandit -r . -x ./.venv,./tests,./.pytest_cache -ll
+
+      - name: Vulnerabilidades nas dependências (pip-audit)
+        run: pip-audit -r requirements-ci.txt
+
       - name: Testes
         run: python -m pytest -q

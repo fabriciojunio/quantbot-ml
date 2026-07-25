@@ -292,3 +292,28 @@ class TestSecurity:
     def test_invalid_endpoint_404(self, client):
         resp = client.get("/api/nonexistent")
         assert resp.status_code == 404
+
+    def test_security_headers_present(self, client):
+        resp = client.get("/api/health")
+        assert resp.headers.get("x-content-type-options") == "nosniff"
+        assert resp.headers.get("x-frame-options") == "DENY"
+        assert resp.headers.get("referrer-policy") == "no-referrer"
+
+    def test_rate_limit_returns_429(self, client):
+        """O rate limiter (antes instanciado mas nunca ligado) agora bloqueia
+        de fato via middleware, devolvendo 429 ao estourar a janela."""
+        import time as _time
+        from api.server import rate_limiter
+
+        original_max = rate_limiter.max_requests
+        rate_limiter._hits.clear()
+        rate_limiter.max_requests = 3
+        try:
+            # A janela permite 3; a 4ª deve ser barrada.
+            codes = [client.get("/api/health").status_code for _ in range(4)]
+            assert codes[-1] == 429
+            assert 200 in codes
+        finally:
+            rate_limiter.max_requests = original_max
+            rate_limiter._hits.clear()
+            _time.sleep(0)
