@@ -40,6 +40,11 @@ from typing import Dict, List, Optional, Tuple
 import urllib.request
 import urllib.error
 
+# Parser resistente a XXE: o RSS do Google News é conteúdo externo.
+from defusedxml.ElementTree import fromstring as _safe_fromstring
+
+_ALLOWED_SCHEMES = frozenset({"http", "https"})
+
 logger = logging.getLogger("quantbot.data.news_sentiment")
 
 
@@ -248,14 +253,17 @@ class NewsFetcher:
         encoded = urllib.parse.quote(query)
         url = self._GOOGLE_NEWS_RSS.format(query=encoded)
         items = []
+        if urllib.parse.urlsplit(url).scheme.lower() not in _ALLOWED_SCHEMES:
+            return items
         try:
             req = urllib.request.Request(
                 url,
                 headers={"User-Agent": "QuantBot/2.0 (RSS reader; educational)"},
             )
-            with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+            # Esquema http/https já validado logo acima.
+            with urllib.request.urlopen(req, timeout=self.timeout) as resp:  # nosec B310
                 raw = resp.read().decode("utf-8", errors="replace")
-            root = ET.fromstring(raw)
+            root = _safe_fromstring(raw)
             channel = root.find("channel")
             if channel is None:
                 return []

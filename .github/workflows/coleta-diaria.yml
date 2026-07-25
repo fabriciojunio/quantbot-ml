@@ -32,7 +32,7 @@ jobs:
 
       # Núcleo científico que o pacote data/ importa (sem o torch pesado)
       - name: Instalar dependências base
-        run: pip install numpy pandas scipy scikit-learn yfinance python-dotenv
+        run: pip install numpy pandas scipy scikit-learn yfinance python-dotenv defusedxml
 
       # Mantém o modelo FinBERT em cache entre execuções (evita baixar 400MB todo dia)
       - name: Cache do modelo FinBERT
