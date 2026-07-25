@@ -27,9 +27,18 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
+from urllib.parse import urlsplit
 from urllib.request import urlopen, Request
 from urllib.error import URLError
 from html import unescape
+
+# Parser de XML resistente a XXE / billion laughs. Os feeds RSS vêm de
+# fontes externas, então o conteúdo é sempre não confiável.
+from defusedxml.ElementTree import fromstring as _safe_fromstring
+
+# Esquemas permitidos ao abrir uma URL de feed. Bloqueia file://, ftp://,
+# gopher:// etc., fechando a superfície de SSRF/leitura de arquivo local.
+_ALLOWED_SCHEMES = frozenset({"http", "https"})
 
 from utils.logger import get_logger
 
@@ -247,13 +256,20 @@ class NewsFetcher:
         url = feed_config["url"]
         source = feed_config["name"]
 
+        # Só aceita http/https: evita que um feed mal configurado leia
+        # arquivos locais (file://) ou alcance serviços internos (SSRF).
+        if urlsplit(url).scheme.lower() not in _ALLOWED_SCHEMES:
+            logger.warning(f"  ✗ {source}: esquema de URL não permitido — {url}")
+            return articles
+
         try:
             # Request com User-Agent para evitar bloqueio
             req = Request(url, headers={
                 "User-Agent": "QuantBot-ML/1.0 (Academic Research)"
             })
 
-            with urlopen(req, timeout=self.timeout) as response:
+            # Esquema http/https já validado logo acima.
+            with urlopen(req, timeout=self.timeout) as response:  # nosec B310
                 raw = response.read()
                 http_charset = response.headers.get_content_charset()
 
@@ -274,7 +290,7 @@ class NewsFetcher:
 
             # Remove a declaração de encoding para o ElementTree aceitar str.
             text = re.sub(r"<\?xml[^>]*\?>", "", text, count=1)
-            root = ET.fromstring(text)
+            root = _safe_fromstring(text)
 
             # Tenta RSS 2.0 e Atom
             items = root.findall(".//item")

@@ -46,6 +46,7 @@ Uso:
     engine.stop()
 """
 
+import os
 import time
 import json
 import logging
@@ -59,6 +60,21 @@ from enum import Enum
 from utils.logger import get_logger
 
 logger = get_logger("quantbot.live")
+
+
+def _assert_live_trading_allowed(corretora: str) -> None:
+    """Trava de segurança contra operar com dinheiro real por engano.
+
+    Conectar a uma corretora em modo REAL (testnet/paper desligados) só é
+    permitido se o operador declarar a intenção com QUANTBOT_ALLOW_LIVE=1.
+    Sem isso, levanta erro antes de qualquer ordem tocar a conta real.
+    """
+    if os.getenv("QUANTBOT_ALLOW_LIVE", "0") != "1":
+        raise RuntimeError(
+            f"Conexão REAL com {corretora} bloqueada. O padrão é paper/testnet. "
+            "Para operar dinheiro real de propósito, defina QUANTBOT_ALLOW_LIVE=1 "
+            "no ambiente. Nunca faça isso sem antes validar em modo paper."
+        )
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -346,6 +362,7 @@ class BinanceAdapter(BrokerAdapter):
                 self.client = Client(self.api_key, self.api_secret, testnet=True)
                 logger.info("✅ Binance TESTNET conectada (dinheiro simulado)")
             else:
+                _assert_live_trading_allowed("Binance")
                 self.client = Client(self.api_key, self.api_secret)
                 logger.info("✅ Binance REAL conectada ⚠️ DINHEIRO REAL")
             return True
@@ -445,6 +462,8 @@ class AlpacaAdapter(BrokerAdapter):
     def connect(self) -> bool:
         try:
             import alpaca_trade_api as tradeapi
+            if not self.paper:
+                _assert_live_trading_allowed("Alpaca")
             base_url = (
                 "https://paper-api.alpaca.markets" if self.paper
                 else "https://api.alpaca.markets"

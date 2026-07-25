@@ -14,6 +14,19 @@ from datetime import datetime
 
 class TestNewsFetcher:
 
+    def test_feed_com_esquema_proibido_e_ignorado(self):
+        """URLs file:// (ou qualquer esquema fora http/https) não podem ser
+        abertas: trava de SSRF/leitura de arquivo local. Deve retornar vazio
+        sem tocar a rede nem o disco."""
+        fetcher = NewsFetcher()
+        artigos = fetcher.fetch_feed({
+            "url": "file:///etc/passwd",
+            "name": "malicioso",
+            "category": "Geral",
+            "lang": "pt",
+        })
+        assert artigos == []
+
     def test_detect_symbols_petrobras(self):
         article = NewsArticle(
             title="Petrobras anuncia dividendos recordes",

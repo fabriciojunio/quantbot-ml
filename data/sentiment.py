@@ -91,6 +91,10 @@ class FinBERTAnalyzer:
         self.model_name = model_name or os.getenv(
             "QUANTBOT_FINBERT_MODEL", "lucas-leme/FinBERT-PT-BR"
         )
+        # Fixar a revisão (branch, tag ou commit) evita baixar um modelo
+        # trocado no Hub sem querer — proteção de cadeia de suprimentos.
+        # Em produção, aponte para um commit específico via env.
+        self.model_revision = os.getenv("QUANTBOT_FINBERT_REVISION", "main")
         self._torch = None
         self.tokenizer = None
         self.model = None
@@ -119,9 +123,11 @@ class FinBERTAnalyzer:
             f"(primeira vez faz download ~400MB)..."
         )
         self._torch = torch
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            self.model_name, revision=self.model_revision
+        )
         self.model = AutoModelForSequenceClassification.from_pretrained(
-            self.model_name
+            self.model_name, revision=self.model_revision
         )
         self.model.eval()
         self._index_to_label = self._build_label_map()

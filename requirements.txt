@@ -11,6 +11,9 @@ xgboost>=2.0
 # Dados de mercado
 yfinance>=0.2.40
 
+# Parsing seguro de XML (feeds RSS externos, resistente a XXE)
+defusedxml>=0.7
+
 # API e dashboard backend
 fastapi>=0.110
 uvicorn>=0.29

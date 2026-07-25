@@ -260,7 +260,9 @@ class FundamentalAnalysis:
                     "AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36"
                 )
             }
-            r = requests.get(url, headers=headers)
+            # timeout obrigatório: sem ele uma resposta pendurada travaria
+            # o processo do bot indefinidamente.
+            r = requests.get(url, headers=headers, timeout=20)
             df = pd.read_html(r.text, decimal=",", thousands=".")[0]
 
             # Limpa colunas percentuais
