@@ -11,9 +11,9 @@
       "acertos": 3
     },
     "75-80|12+|neutro": {
-      "n": 2,
-      "soma_excedente": 302.61,
-      "acertos": 2
+      "n": 3,
+      "soma_excedente": 485.17,
+      "acertos": 3
     },
     "75-80|10-12|neutro": {
       "n": 2,
@@ -27,13 +27,13 @@
       "soma_retorno_fwd": 27.254330137522974
     },
     "neutro": {
-      "n": 39,
-      "soma_retorno_fwd": 66.36455256686311
+      "n": 40,
+      "soma_retorno_fwd": 68.47478008039977
     },
     "otimismo": {
       "n": 0,
       "soma_retorno_fwd": 0.0
     }
   },
-  "atualizado_em": "2026-07-26"
+  "atualizado_em": "2026-07-27"
 }
