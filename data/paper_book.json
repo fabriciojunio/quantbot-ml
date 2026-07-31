@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 1967.54,
+  "caixa": 1989.5,
   "posicoes": {
     "GGRC11": {
       "ticker": "GGRC11",
@@ -11,7 +11,7 @@
       "dy_entrada": 11.86,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 209.07999999999996
+      "dividendos": 216.32999999999996
     },
     "GARE11": {
       "ticker": "GARE11",
@@ -22,7 +22,7 @@
       "dy_entrada": 12.0,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 212.62
+      "dividendos": 219.99
     },
     "BTHF11": {
       "ticker": "BTHF11",
@@ -33,7 +33,7 @@
       "dy_entrada": 12.31,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 216.73999999999998
+      "dividendos": 224.24999999999997
     },
     "ICRI11": {
       "ticker": "ICRI11",
@@ -44,7 +44,7 @@
       "dy_entrada": 12.35,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 201.66999999999996
+      "dividendos": 208.65999999999997
     },
     "KFOF11": {
       "ticker": "KFOF11",
@@ -55,7 +55,7 @@
       "dy_entrada": 11.78,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 200.66
+      "dividendos": 207.60999999999999
     },
     "KNHF11": {
       "ticker": "KNHF11",
@@ -66,7 +66,7 @@
       "dy_entrada": 12.23,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 202.53999999999996
+      "dividendos": 209.55999999999997
     },
     "RBVA11": {
       "ticker": "RBVA11",
@@ -77,7 +77,7 @@
       "dy_entrada": 11.48,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-04",
-      "dividendos": 202.99999999999997
+      "dividendos": 210.03999999999996
     },
     "AZPL11": {
       "ticker": "AZPL11",
@@ -88,7 +88,7 @@
       "dy_entrada": 12.01,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-12",
-      "dividendos": 160.92999999999998
+      "dividendos": 166.09999999999997
     },
     "BTCI11": {
       "ticker": "BTCI11",
@@ -99,7 +99,7 @@
       "dy_entrada": 12.78,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-27",
-      "dividendos": 131.42000000000004
+      "dividendos": 132.63000000000005
     },
     "HTMX11": {
       "ticker": "HTMX11",
@@ -110,7 +110,7 @@
       "dy_entrada": 12.4,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-03",
-      "dividendos": 98.24000000000001
+      "dividendos": 106.05000000000001
     },
     "VGIP11": {
       "ticker": "VGIP11",
@@ -121,18 +121,18 @@
       "dy_entrada": 12.54,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-07-23",
-      "dividendos": 9.049999999999999
+      "dividendos": 11.639999999999999
     },
-    "HGCR11": {
-      "ticker": "HGCR11",
-      "cotas": 10.0,
-      "preco_entrada": 93.7,
-      "data_entrada": "2026-07-29",
-      "score_entrada": 78.7,
-      "dy_entrada": 12.51,
+    "CLIN11": {
+      "ticker": "CLIN11",
+      "cotas": 11.0,
+      "preco_entrada": 88.75,
+      "data_entrada": "2026-07-31",
+      "score_entrada": 78.5,
+      "dy_entrada": 12.99,
       "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-07-29",
-      "dividendos": 0.32
+      "ultima_avaliacao": "2026-07-31",
+      "dividendos": 0.0
     }
   },
   "fechadas": [
@@ -495,6 +495,21 @@
       "dy_entrada": 12.96,
       "sentimento_entrada": "neutro",
       "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "HGCR11",
+      "data_entrada": "2026-07-29",
+      "data_saida": "2026-07-31",
+      "preco_entrada": 93.7,
+      "preco_saida": 93.13,
+      "dias": 2,
+      "retorno_preco_pct": -0.61,
+      "dividendos": 0.32,
+      "retorno_total_pct": -0.57,
+      "score_entrada": 78.7,
+      "dy_entrada": 12.51,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
     }
   ],
   "serie_valor": [
@@ -717,6 +732,10 @@
     {
       "data": "2026-07-30",
       "valor_total": 11874.69
+    },
+    {
+      "data": "2026-07-31",
+      "valor_total": 11962.73
     }
   ],
   "log": [
@@ -1235,6 +1254,23 @@
       "preco": 93.7,
       "score": 78.7,
       "dy": 12.51
+    },
+    {
+      "data": "2026-07-31",
+      "acao": "VENDER",
+      "ticker": "HGCR11",
+      "preco": 93.13,
+      "retorno_total_pct": -0.57,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-07-31",
+      "acao": "COMPRAR",
+      "ticker": "CLIN11",
+      "cotas": 11.0,
+      "preco": 88.75,
+      "score": 78.5,
+      "dy": 12.99
     }
   ]
 }
