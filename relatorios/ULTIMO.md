@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-08-01
+# QuantBot — Relatório 2026-08-02
 
-_Gerado em 01/08/2026 22:55._
+_Gerado em 02/08/2026 22:57._
 
 ## Macro (Banco Central)
 
@@ -11,10 +11,10 @@ _Gerado em 01/08/2026 22:55._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.36 (😀 29 · 😐 144 · 😟 142) via finbert
+- **Hoje:** -0.29 (😀 33 · 😐 148 · 😟 122) via finbert
 - **Média 14 dias:** -0.24
-- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (46), VALE3.SA (39), ITUB4.SA (39), BBDC4.SA (36), NVDA (35), MSFT (34)
+- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (46), AAPL (44), NVDA (42), MSFT (41), ITUB4.SA (35), BBDC4.SA (34)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
@@ -38,24 +38,9 @@ _Gerado em 01/08/2026 22:55._
 - Picks: ainda coletando (precisa de mais avaliações).
 - Sentimento → retorno ~7 dias depois: medo: +3.12% (n=10) · neutro: +1.82% (n=43)
 
-## FIIs — screening do dia
+## FIIs
 
-Analisados: **560** | Aprovados: **68** | DY mínimo: 10.0% (Selic 14.25%)
-
-| # | Ticker | Score | DY | P/VP |
-|---|--------|-------|-----|------|
-| 1 | GARE11 | 81.2 | 12.0% | 0.89 |
-| 2 | GGRC11 | 80.8 | 11.8% | 0.91 |
-| 3 | KFOF11 | 80.5 | 12.0% | 0.86 |
-| 4 | AZPL11 | 80.3 | 12.2% | 0.87 |
-| 5 | HTMX11 | 80.1 | 12.1% | 0.94 |
-| 6 | RBVA11 | 79.9 | 12.0% | 0.84 |
-| 7 | BTCI11 | 79.8 | 12.5% | 0.89 |
-| 8 | KNHF11 | 79.2 | 12.4% | 0.95 |
-| 9 | ICRI11 | 78.9 | 12.8% | 0.91 |
-| 10 | VGIP11 | 78.8 | 12.6% | 0.86 |
-| 11 | BTHF11 | 78.7 | 12.8% | 0.89 |
-| 12 | HGCR11 | 78.6 | 12.5% | 0.96 |
+_Fundamentus indisponível nesta rodada._
 
 ---
 *O bot analisa e informa. Você decide e executa. DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*
