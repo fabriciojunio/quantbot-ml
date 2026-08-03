@@ -1,24 +1,24 @@
 {
   "faixas": {
     "80+|10-12|neutro": {
-      "n": 1,
-      "soma_excedente": 132.78,
-      "acertos": 1
+      "n": 2,
+      "soma_excedente": 294.33000000000004,
+      "acertos": 2
     },
     "80+|12+|neutro": {
-      "n": 3,
-      "soma_excedente": 449.35,
-      "acertos": 3
+      "n": 5,
+      "soma_excedente": 744.27,
+      "acertos": 5
     },
     "75-80|12+|neutro": {
-      "n": 3,
-      "soma_excedente": 485.17,
-      "acertos": 3
+      "n": 6,
+      "soma_excedente": 972.0500000000001,
+      "acertos": 6
     },
     "75-80|10-12|neutro": {
-      "n": 2,
-      "soma_excedente": 278.06,
-      "acertos": 2
+      "n": 4,
+      "soma_excedente": 552.9,
+      "acertos": 4
     }
   },
   "sentimento": {
@@ -27,13 +27,13 @@
       "soma_retorno_fwd": 31.211780509672504
     },
     "neutro": {
-      "n": 43,
-      "soma_retorno_fwd": 78.21743132865863
+      "n": 45,
+      "soma_retorno_fwd": 85.77552382005263
     },
     "otimismo": {
       "n": 0,
       "soma_retorno_fwd": 0.0
     }
   },
-  "atualizado_em": "2026-08-01"
+  "atualizado_em": "2026-08-03"
 }
