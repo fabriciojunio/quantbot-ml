@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-08-08
+# QuantBot — Relatório 2026-08-09
 
-_Gerado em 08/08/2026 22:27._
+_Gerado em 09/08/2026 22:31._
 
 ## Macro (Banco Central)
 
@@ -11,10 +11,10 @@ _Gerado em 08/08/2026 22:27._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.37 (😀 24 · 😐 156 · 😟 142) via finbert
+- **Hoje:** -0.34 (😀 20 · 😐 174 · 😟 128) via finbert
 - **Média 14 dias:** -0.27
-- **Tendência:** ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (50), PETR4.SA (31), BBDC4.SA (30), ITUB4.SA (28), VALE3.SA (26), NVDA (26)
+- **Tendência:** ▃ ▃ ▃ ▅ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (47), BBDC4.SA (32), ITUB4.SA (32), AAPL (29), NVDA (29), BBAS3.SA (26)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
@@ -38,24 +38,9 @@ _Gerado em 08/08/2026 22:27._
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
 - Sentimento → retorno ~7 dias depois: medo: +2.72% (n=11) · neutro: +1.79% (n=49)
 
-## FIIs — screening do dia
+## FIIs
 
-Analisados: **560** | Aprovados: **61** | DY mínimo: 9.8% (Selic 14.0%)
-
-| # | Ticker | Score | DY | P/VP |
-|---|--------|-------|-----|------|
-| 1 | RECR11 | 81.2 | 12.0% | 0.89 |
-| 2 | XPCI11 | 81.2 | 12.0% | 0.91 |
-| 3 | CLIN11 | 80.7 | 11.7% | 0.90 |
-| 4 | BTHF11 | 80.6 | 11.7% | 0.90 |
-| 5 | GGRC11 | 80.6 | 12.1% | 0.88 |
-| 6 | KNHF11 | 80.6 | 11.8% | 0.91 |
-| 7 | ICRI11 | 80.2 | 11.7% | 0.89 |
-| 8 | BTCI11 | 79.6 | 11.5% | 0.89 |
-| 9 | TRXF11 | 79.6 | 12.4% | 0.87 |
-| 10 | HGCR11 | 79.4 | 11.6% | 0.93 |
-| 11 | TVRI11 | 79.4 | 12.4% | 0.87 |
-| 12 | RZTR11 | 79.3 | 12.5% | 0.87 |
+_Fundamentus indisponível nesta rodada._
 
 ---
 *O bot analisa e informa. Você decide e executa. DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*
