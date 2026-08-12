@@ -1,61 +1,61 @@
-# QuantBot — Relatório 2026-08-11
+# QuantBot — Relatório 2026-08-12
 
-_Gerado em 11/08/2026 22:41._
+_Gerado em 12/08/2026 22:40._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.0
 - **CDI:** 13.9
 - **IPCA 12m:** 4.44
-- **Dólar:** 5.1285
+- **Dólar:** 5.1639
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.21 (😀 52 · 😐 157 · 😟 120) via finbert
+- **Hoje:** -0.22 (😀 45 · 😐 160 · 😟 117) via finbert
 - **Média 14 dias:** -0.28
-- **Tendência:** ▃ ▅ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (62), ITUB4.SA (57), BBDC4.SA (55), BBAS3.SA (45), NVDA (24), PETR4.SA (20)
+- **Tendência:** ▅ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (58), ITUB4.SA (57), BBDC4.SA (54), BBAS3.SA (45), NVDA (26), VALE3.SA (23)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,753.48  (**+17.53%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$578.34
-- **Operações fechadas:** 49 (25 no lucro)
-- **Carteira:** BTHF11, CPSH11, CPTS11, GGRC11, GTWR11, KNCR11, KNHF11, PORD11, RECR11, RZTR11, TVRI11, XPCI11
+- **Valor:** R$11,734.30  (**+17.34%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$645.05
+- **Operações fechadas:** 51 (25 no lucro)
+- **Carteira:** CLIN11, CPSH11, CPTS11, GGRC11, HGCR11, KNCR11, KNHF11, PORD11, RECR11, RZTR11, TVRI11, XPCI11
 
 ### Desempenho vs benchmark
-- **Período:** 68 dias · **Bot:** +17.53% · **CDI:** +2.45% (a.a. 13.90%)
-- **Alpha vs CDI:** +15.08 pontos percentuais — ✅ acima do CDI
+- **Período:** 69 dias · **Bot:** +17.34% · **CDI:** +2.49% (a.a. 13.90%)
+- **Alpha vs CDI:** +14.85 pontos percentuais — ✅ acima do CDI
 - _Janela curta: leia como acompanhamento, não como prova de edge._
 
 ### Expectativa estatística (operações fechadas)
-- **Win rate:** 51% (25/49)
+- **Win rate:** 49% (25/51)
 - **Ganho médio:** +9.31% · **Perda média:** -1.26%
-- **Payoff (ganho/perda):** 7.36 · **Expectancy/trade:** +4.13% — ✅ positiva
+- **Payoff (ganho/perda):** 7.42 · **Expectancy/trade:** +3.92% — ✅ positiva
 
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: +2.72% (n=11) · neutro: +1.64% (n=51)
+- Sentimento → retorno ~7 dias depois: medo: +2.72% (n=11) · neutro: +1.57% (n=52)
 
 ## FIIs — screening do dia
 
-Analisados: **560** | Aprovados: **61** | DY mínimo: 9.8% (Selic 14.0%)
+Analisados: **560** | Aprovados: **63** | DY mínimo: 9.8% (Selic 14.0%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
-| 1 | KNHF11 | 81.0 | 11.8% | 0.90 |
-| 2 | BTHF11 | 80.5 | 11.8% | 0.88 |
-| 3 | XPCI11 | 80.5 | 12.3% | 0.89 |
-| 4 | CLIN11 | 80.3 | 11.7% | 0.91 |
-| 5 | ICRI11 | 80.3 | 11.7% | 0.89 |
-| 6 | GGRC11 | 80.2 | 12.2% | 0.87 |
-| 7 | HGCR11 | 80.0 | 11.7% | 0.92 |
-| 8 | RECR11 | 79.8 | 12.2% | 0.86 |
-| 9 | BTCI11 | 79.5 | 11.5% | 0.88 |
-| 10 | TVRI11 | 78.7 | 12.6% | 0.86 |
-| 11 | RINV11 | 78.6 | 11.5% | 0.96 |
-| 12 | RZTR11 | 78.6 | 12.6% | 0.86 |
+| 1 | KNHF11 | 81.1 | 11.9% | 0.90 |
+| 2 | CLIN11 | 80.9 | 12.0% | 0.88 |
+| 3 | HGCR11 | 80.6 | 11.8% | 0.91 |
+| 4 | BTHF11 | 80.5 | 11.9% | 0.87 |
+| 5 | ICRI11 | 80.3 | 11.8% | 0.88 |
+| 6 | XPCI11 | 80.3 | 12.3% | 0.89 |
+| 7 | GGRC11 | 80.0 | 12.3% | 0.87 |
+| 8 | BTCI11 | 79.4 | 11.5% | 0.88 |
+| 9 | RECR11 | 79.1 | 12.4% | 0.85 |
+| 10 | RINV11 | 79.1 | 11.6% | 0.95 |
+| 11 | CPSH11 | 78.8 | 12.4% | 0.84 |
+| 12 | TVRI11 | 78.6 | 12.6% | 0.86 |
 
 ---
 *O bot analisa e informa. Você decide e executa. DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*
