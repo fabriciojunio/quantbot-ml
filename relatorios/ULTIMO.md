@@ -1,37 +1,37 @@
-# QuantBot — Relatório 2026-08-15
+# QuantBot — Relatório 2026-08-16
 
-_Gerado em 15/08/2026 22:21._
+_Gerado em 16/08/2026 22:20._
 
 ## Macro (Banco Central)
 
-- **Selic meta:** n/d
-- **CDI:** n/d
-- **IPCA 12m:** n/d
+- **Selic meta:** 14.0
+- **CDI:** 13.9
+- **IPCA 12m:** 4.44
 - **Dólar:** 5.2236
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.32 (😀 31 · 😐 162 · 😟 138) via finbert
+- **Hoje:** -0.30 (😀 24 · 😐 177 · 😟 120) via finbert
 - **Média 14 dias:** -0.28
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (52), NVDA (34), PETR4.SA (30), VALE3.SA (28), AAPL (28), MSFT (28)
+- **Ativos mais citados:** ADA-USD (60), NVDA (36), MSFT (30), AAPL (29), PETR4.SA (25), ITUB4.SA (19)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,642.11  (**+16.42%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$739.67
-- **Operações fechadas:** 56 (25 no lucro)
-- **Carteira:** BTCI11, BTHF11, CLIN11, CPSH11, GGRC11, HGCR11, ICRI11, KNHF11, MCCI11, RECR11, RINV11, XPCI11
+- **Valor:** R$11,660.76  (**+16.61%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$716.92
+- **Operações fechadas:** 59 (25 no lucro)
+- **Carteira:** BTHF11, CLIN11, CPSH11, CPTS11, GGRC11, HGCR11, ICRI11, KNCR11, KNHF11, RECR11, TVRI11, XPCI11
 
 ### Desempenho vs benchmark
-- **Período:** 72 dias · **Bot:** +16.42% · **CDI:** +2.64% (a.a. 14.15%)
-- **Alpha vs CDI:** +13.78 pontos percentuais — ✅ acima do CDI
+- **Período:** 73 dias · **Bot:** +16.61% · **CDI:** +2.64% (a.a. 13.90%)
+- **Alpha vs CDI:** +13.97 pontos percentuais — ✅ acima do CDI
 - _Janela curta: leia como acompanhamento, não como prova de edge._
 
 ### Expectativa estatística (operações fechadas)
-- **Win rate:** 45% (25/56)
-- **Ganho médio:** +9.31% · **Perda média:** -1.28%
-- **Payoff (ganho/perda):** 7.27 · **Expectancy/trade:** +3.45% — ✅ positiva
+- **Win rate:** 42% (25/59)
+- **Ganho médio:** +9.31% · **Perda média:** -1.17%
+- **Payoff (ganho/perda):** 7.97 · **Expectancy/trade:** +3.27% — ✅ positiva
 
 
 ### O que o bot aprendeu até aqui
@@ -40,7 +40,7 @@ _Gerado em 15/08/2026 22:21._
 
 ## FIIs — screening do dia
 
-Analisados: **560** | Aprovados: **58** | DY mínimo: 10.1% (Selic 14.5%)
+Analisados: **560** | Aprovados: **64** | DY mínimo: 9.8% (Selic 14.0%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
