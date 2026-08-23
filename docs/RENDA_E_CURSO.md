@@ -28,11 +28,30 @@ EMAs, Bollinger, ATR, ADX, estocástico, OBV calculados de OHLCV real) e testada
 em BTC, ETH, SOL e BNB, em 15m, 1h, 4h e 1d, comprado e comprado+vendido, com
 custo cobrado em toda ponta e validação fora da amostra.
 
-O detalhamento está em `data/cripto/estudos/` e no relatório final. O padrão é
-consistente: o resultado bruto fica perto de zero e o custo transforma isso em
-prejuízo. No caso do BTC em 1h, ao longo de 13 meses: bruto −US$ 51, custo
-−US$ 173, líquido −US$ 225 sobre US$ 1.000. **O custo foi 3,4 vezes maior que o
-resultado da estratégia.** Foram 356 operações — cada uma pagando pedágio.
+Foram 32 configurações e **22.568 operações** ao longo de 400 dias. Somando
+tudo:
+
+| | |
+|---|---|
+| Resultado bruto (antes do atrito) | **−US$ 486** |
+| Custo de execução | **−US$ 8.091** |
+| **Resultado líquido** | **−US$ 8.578** |
+
+Sobre US$ 32.000 de capital somado, o bruto foi −1,5%. Traduzindo: **a
+estratégia não tem direção nenhuma** — acerta e erra como cara ou coroa. E o
+custo foi **16,6 vezes** o resultado bruto.
+
+O padrão por tempo gráfico não deixa margem para dúvida:
+
+| Tempo gráfico | Operações | Retorno fora da amostra |
+|---|---|---|
+| 15m | 1.400 a 2.900 por config | −34% a −63% |
+| 1h | 330 a 760 | −11% a −33% |
+| 4h | 80 a 190 | −1,8% a +5,9% |
+
+Quanto mais o bot opera, mais ele perde, e a relação é direta. Das 24
+configurações que completaram a validação fora da amostra, **zero foram
+aprovadas**. O detalhamento está em `relatorios/cripto/ESTUDO_CONFLUENCIA.md`.
 
 ### 1.3 Isso não é azar, é a estatística conhecida da atividade
 
