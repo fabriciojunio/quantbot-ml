@@ -39,6 +39,23 @@ A API REST (só leitura, para o dashboard) sobe com:
 uvicorn api.server:app --reload
 ```
 
+## Motor de cripto
+
+O pacote `cripto/` é a parte de criptomoedas, com dado de exchange real e custo
+de execução cobrado em toda ponta:
+
+```bash
+python -m cripto.cli custo                      # o que custa abrir e fechar
+python -m cripto.cli backtest BTCUSDT --markdown
+python -m cripto.cli validar BTCUSDT            # walk-forward + DSR + PBO
+python -m cripto.cli carrego                    # funding, líquido de custo
+uvicorn cripto.api:app --port 8100              # API para o painel
+```
+
+Leia [`docs/CRIPTO.md`](docs/CRIPTO.md) antes de usar, e
+[`docs/AUDITORIA_SENTINELA.md`](docs/AUDITORIA_SENTINELA.md) para entender de
+onde ele veio e por que cada decisão de projeto está ali.
+
 ## Testes
 
 ```bash

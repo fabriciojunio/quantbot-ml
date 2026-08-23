@@ -1,0 +1,69 @@
+name: Monitor de cripto
+
+# Roda na nuvem, de graça, sem o PC ligado. Todo dia coleta o estado real do
+# mercado, o carrego de funding líquido de custo e o score de confluência; toda
+# segunda-feira roda a validação fora da amostra completa.
+#
+# Ele NÃO opera. Nem em papel, nem com dinheiro. O que ele constrói é a série
+# histórica que permite responder daqui a seis meses: o custo mudou? o carrego
+# mudou? a estratégia passou a ter vantagem em algum momento?
+
+on:
+  schedule:
+    - cron: "0 21 * * *"   # 21:00 UTC = 18:00 de Brasília
+  workflow_dispatch:
+    inputs:
+      validar:
+        description: "Forçar a validação completa nesta execução"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor-cripto
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependências
+        run: pip install numpy pandas scipy scikit-learn
+
+      # O cache guarda os candles já baixados entre execuções: menos pressão no
+      # limite de taxa da exchange e execução bem mais rápida.
+      - name: Cache dos candles
+        uses: actions/cache@v4
+        with:
+          path: data/cripto/candles
+          key: candles-${{ github.run_id }}
+          restore-keys: candles-
+
+      - name: Coletar e medir
+        run: |
+          python scripts/monitor_cripto.py \
+            ${{ inputs.validar && '--validar' || '' }}
+
+      - name: Commitar o registro
+        run: |
+          git config user.name "quantbot-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/cripto/monitor relatorios/cripto || true
+          if git diff --cached --quiet; then
+            echo "Nada novo para commitar."
+          else
+            git commit -m "chore: monitor de cripto $(date +%F) [skip ci]"
+            git push
+          fi
