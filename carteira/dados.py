@@ -189,6 +189,64 @@ def cdi_diario(anos: int = 5) -> pd.Series:
     raise ErroDados("sem CDI: BCB não respondeu e não há cache")
 
 
+def cambio_diario(anos: int = 25, moeda: str = "USD_BRL") -> pd.Series:
+    """Câmbio de fechamento do Banco Central (PTAX venda), série longa.
+
+    A cotação de câmbio do Yahoo não serve para história longa: `USDBRL=X` não
+    tem nenhum dia de 2005 e tem um buraco de 575 dias terminando em março de
+    2006. Um buraco desses passa despercebido depois do `dropna`, e o dia
+    seguinte ao buraco vira um retorno de 66% que contamina qualquer medida de
+    volatilidade e de queda máxima.
+
+    A PTAX é a taxa oficial, publicada desde 1984, e não tem esse problema.
+    Como no CDI, a busca é fatiada em blocos de 8 anos porque a API do BCB
+    recusa janelas maiores que 10 anos com HTTP 406.
+    """
+    CACHE_MACRO.mkdir(parents=True, exist_ok=True)
+    caminho = CACHE_MACRO / f"{moeda.lower()}_ptax.csv"
+
+    if caminho.exists():
+        idade = datetime.now() - datetime.fromtimestamp(caminho.stat().st_mtime)
+        cache = pd.read_csv(caminho, index_col="data", parse_dates=["data"])["cambio"].sort_index()
+        cobre = cache.index.min().date() <= date.today() - timedelta(days=anos * 365 - 30)
+        if idade < timedelta(hours=24) and cobre:
+            return cache
+
+    cliente = BCBClient()
+    pedacos: list[pd.Series] = []
+    fim = date.today()
+    restante = max(1, anos)
+
+    while restante > 0:
+        bloco = min(8, restante)
+        inicio = fim - timedelta(days=bloco * 365)
+        try:
+            obs = cliente.historico(moeda, data_inicial=inicio, data_final=fim)
+            if obs:
+                pedacos.append(
+                    pd.Series([o.valor for o in obs], index=pd.to_datetime([o.data for o in obs]))
+                )
+        except Exception as exc:
+            logger.warning("Bloco de câmbio %s a %s falhou: %s", inicio, fim, exc)
+        fim = inicio - timedelta(days=1)
+        restante -= bloco
+
+    if pedacos:
+        s = pd.concat(pedacos).sort_index()
+        s = s[~s.index.duplicated(keep="last")]
+        s = s[s > 0]
+        s.name = "cambio"
+        s.to_frame().to_csv(caminho, index_label="data")
+        logger.info("%s: %d dias, de %s a %s", moeda, len(s),
+                    s.index.min().date(), s.index.max().date())
+        return s
+
+    if caminho.exists():
+        logger.warning("BCB não respondeu. Usando cache de câmbio.")
+        return pd.read_csv(caminho, index_col="data", parse_dates=["data"])["cambio"].sort_index()
+    raise ErroDados(f"sem câmbio {moeda}: BCB não respondeu e não há cache")
+
+
 def macro() -> dict:
     """Selic, CDI anual, IPCA 12m e dólar, agora."""
     try:
@@ -237,4 +295,37 @@ def valida_precos(df: pd.DataFrame, nome: str = "série de preços") -> None:
         raise ValueError(
             f"{nome}: {len(suspeitos)} dia(s) com variação acima de 60%. "
             "Provável desdobramento não ajustado ou erro da fonte."
+        )
+
+
+def valida_continuidade(
+    df: pd.DataFrame,
+    nome: str = "série de preços",
+    max_dias_sem_pregao: int = 12,
+) -> None:
+    """Falha quando o calendário tem buraco maior que um feriado longo.
+
+    Existe porque um buraco sobrevive calado a tudo que vem antes dele. A série
+    de câmbio do Yahoo não tem nenhum dia de 2005; depois do `dropna` que alinha
+    os ativos, a série ficava com 26/08/2004 seguido de 24/03/2006, e a variação
+    entre esses dois dias — 66% — era lida como o retorno de um pregão. Isso
+    corrompe volatilidade, queda máxima e qualquer contagem de janela, sem
+    nenhum sinal de erro.
+
+    Doze dias é a folga certa: cobre Natal e Ano Novo emendados com fim de
+    semana, e não cobre um mês faltando.
+    """
+    if df.empty:
+        raise ValueError(f"{nome}: sem dados")
+    if len(df) < 2:
+        return
+
+    intervalos = pd.Series(df.index).diff().dt.days.dropna()
+    grandes = intervalos[intervalos > max_dias_sem_pregao]
+    if not grandes.empty:
+        datas = [str(df.index[i].date()) for i in grandes.index[:5]]
+        raise ValueError(
+            f"{nome}: {len(grandes)} buraco(s) acima de {max_dias_sem_pregao} dias no "
+            f"calendário, o maior com {int(grandes.max())} dias. Primeiros: {datas}. "
+            "Alguma fonte tem período faltando e o alinhamento apagou o intervalo."
         )
