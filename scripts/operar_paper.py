@@ -36,13 +36,14 @@ for _s in (sys.stdout, sys.stderr):
         pass
 
 import logging
+
 logging.basicConfig(level=logging.WARNING, format="%(message)s")
 
-from data.fundamentus_client import FundamentusClient
 from data.bcb_client import BCBClient
+from data.fundamentus_client import FundamentusClient
+from income.feedback import Feedback, _faixa_sent
 from income.fii_screener import FIIScreener
 from income.paper_book import PaperBook
-from income.feedback import Feedback, _faixa_sent
 
 INDEX = ROOT / "data" / "sentiment_index.jsonl"
 
