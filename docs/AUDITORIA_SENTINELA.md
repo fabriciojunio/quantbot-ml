@@ -227,9 +227,43 @@ fundação:
 - API só-leitura que devolve `sintetico: false` em cada campo, para que a
   interface possa mostrar a procedência do número.
 
-O resultado da primeira bateria de validação está em `data/cripto/estudos/` e
-no relatório final. Adianto a parte que importa: **a estratégia de confluência,
-medida com custo real, não mostrou vantagem.** Isso não é um defeito do
-trabalho do seu pai — é o que acontece com quase toda estratégia técnica de
-curto prazo quando o atrito entra na conta. Saber disso antes de arriscar
-dinheiro é exatamente para que a validação existe.
+## 6. O que a medição devolveu
+
+Bateria completa: 4 pares (BTC, ETH, SOL, BNB) × 4 tempos gráficos (15m, 1h,
+4h, 1d) × 2 modos (só comprado, comprado e vendido) = 32 configurações,
+400 dias de histórico real, custo cobrado em toda ponta. Detalhe em
+`data/cripto/estudos/estudo_confluencia_v1.json` e em
+`relatorios/cripto/ESTUDO_CONFLUENCIA.md`.
+
+**22.568 operações. Resultado bruto: −US$ 486. Custo: US$ 8.091. Líquido:
+−US$ 8.578.**
+
+Os dois números que contam a história inteira:
+
+1. **O bruto é praticamente zero.** Sobre US$ 32.000 de capital somado, o
+   resultado antes do atrito foi −1,5%. Ou seja: a estratégia **não tem
+   direção**. Ela acerta e erra em proporção de cara ou coroa.
+2. **O custo é 16,6 vezes o bruto.** Uma moeda honesta não faz ninguém perder
+   dinheiro. Uma moeda honesta com pedágio de 0,226% por lançamento, jogada
+   22 mil vezes, faz perder tudo.
+
+E o padrão por tempo gráfico é exatamente o que o modelo de custo prevê:
+
+| Tempo gráfico | Operações por configuração | Retorno fora da amostra |
+|---|---|---|
+| 15m | ~1.400 a 2.900 | −34% a −63% |
+| 1h | ~330 a 760 | −11% a −33% |
+| 4h | ~80 a 190 | −1,8% a +5,9% |
+
+Quanto mais rápido o gráfico, mais operações; quanto mais operações, mais
+pedágio; quanto mais pedágio, pior o resultado. A relação é monotônica. Nas
+24 configurações que completaram a validação fora da amostra, **nenhuma foi
+aprovada** — e as duas com retorno positivo (SOL 4h e BNB 4h) têm 6 janelas e
+Sharpe abaixo de 1, que é precisamente o tipo de resultado que o Deflated
+Sharpe existe para descartar: escolher as duas melhores entre 24 tentativas
+não é encontrar uma estratégia, é encontrar as duas caras da moeda que saíram
+juntas.
+
+Isso não é um defeito do trabalho do seu pai. É o que acontece com quase toda
+estratégia técnica de curto prazo quando o atrito entra na conta. Saber disso
+antes de arriscar dinheiro é exatamente para que a validação existe.

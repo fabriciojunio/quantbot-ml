@@ -177,6 +177,57 @@ def relatorio_estudo(estudo: dict) -> str:
         )
     )
     partes.append("")
+
+    # A tabela que separa "a estratégia erra" de "a estratégia paga pedágio".
+    completos = [c for c in estudo.get("casos", []) if "backtest_completo" in c]
+    if completos:
+        bruto = sum(c["backtest_completo"]["pnl_bruto_usd"] for c in completos)
+        custo = sum(c["backtest_completo"]["custo_total_usd"] for c in completos)
+        operacoes = sum(c["backtest_completo"]["operacoes"] for c in completos)
+        capital = sum(c["backtest_completo"]["capital_inicial"] for c in completos)
+
+        detalhe = [
+            [
+                f"{c['simbolo'][:3]} {c['intervalo']} {'long+short' if c['permite_venda'] else 'long'}",
+                c["backtest_completo"]["operacoes"],
+                f"{c['backtest_completo']['pnl_bruto_usd']:+.1f}",
+                f"{c['backtest_completo']['custo_total_usd']:.1f}",
+                f"{c['backtest_completo']['pnl_liquido_usd']:+.1f}",
+                f"{c['backtest_completo']['retorno_total_pct']:+.1f}%",
+                f"{c['backtest_completo'].get('buy_and_hold_pct', 0):+.1f}%",
+            ]
+            for c in completos
+        ]
+
+        partes += [
+            "## Onde o dinheiro foi, caso a caso",
+            "",
+            _tabela(
+                detalhe,
+                ["Configuração", "Operações", "Bruto US$", "Custo US$", "Líquido US$", "Retorno", "Buy and hold"],
+            ),
+            "",
+            "### Somando tudo",
+            "",
+            _tabela(
+                [
+                    ["Capital somado", f"US$ {capital:,.0f}"],
+                    ["Operações", f"{operacoes:,}"],
+                    ["Resultado bruto (antes do atrito)", f"US$ {bruto:+,.0f}"],
+                    ["Custo de execução", f"US$ -{custo:,.0f}"],
+                    ["**Resultado líquido**", f"**US$ {bruto - custo:+,.0f}**"],
+                    ["Bruto sobre o capital", f"{bruto / capital * 100:+.2f}%"],
+                    ["Custo dividido pelo bruto", f"{custo / abs(bruto):.1f}x" if bruto else "—"],
+                ],
+                ["Item", "Valor"],
+            ),
+            "",
+            "O bruto perto de zero diz que a estratégia não tem direção: ela acerta e",
+            "erra como cara ou coroa. O custo diz o resto. Cara ou coroa com pedágio em",
+            "cada lançamento, repetido milhares de vezes, tem um único desfecho.",
+            "",
+        ]
+
     return "\n".join(partes)
 
 
