@@ -85,7 +85,11 @@ class Perfil:
             pesos[f] = pesos.get(f, 0.0) + p * seguro
         return pesos
 
-    def pesos_por_ativo(self, satelite_liberado: bool = False) -> dict[str, float]:
+    def pesos_por_ativo(
+        self,
+        satelite_liberado: bool = False,
+        composicao: dict[Faixa, dict[str, float]] | None = None,
+    ) -> dict[str, float]:
         """Explode as faixas em ativos.
 
         O satélite só existe quando a validação aprova E quando existe algo
@@ -97,10 +101,22 @@ class Perfil:
         fazia a fatia dele evaporar: os pesos passavam a somar 0,88 e 12% da
         carteira simplesmente não era investido, sem erro nenhum. É o tipo de
         falha silenciosa que este projeto inteiro existe para não cometer.
+
+        `composicao` permite trocar quem representa cada faixa sem mexer no
+        orçamento de risco. É o que a série longa usa: as faixas são as mesmas,
+        mas os representantes mudam para os que têm história desde 2003.
         """
+        comp = composicao if composicao is not None else COMPOSICAO
+        faltantes = [f for f in self.pesos_por_faixa() if f not in comp]
+        if faltantes:
+            raise ValueError(
+                f"a composição não define as faixas {[f.value for f in faltantes]}; "
+                f"parte do dinheiro ficaria sem destino"
+            )
+
         pesos_faixa = self.pesos_por_faixa()
         peso_satelite = pesos_faixa.get(Faixa.SATELITE, 0.0)
-        tem_o_que_comprar = bool(COMPOSICAO[Faixa.SATELITE])
+        tem_o_que_comprar = bool(comp[Faixa.SATELITE])
 
         if peso_satelite > 0 and not (satelite_liberado and tem_o_que_comprar):
             pesos_faixa[Faixa.DOLAR] = pesos_faixa.get(Faixa.DOLAR, 0.0) + peso_satelite
@@ -108,7 +124,7 @@ class Perfil:
 
         ativos: dict[str, float] = {}
         for faixa, peso_faixa in pesos_faixa.items():
-            for ticker, peso_dentro in COMPOSICAO[faixa].items():
+            for ticker, peso_dentro in comp[faixa].items():
                 ativos[ticker] = ativos.get(ticker, 0.0) + peso_faixa * peso_dentro
 
         ativos = {t: p for t, p in ativos.items() if p > 1e-9}
@@ -151,9 +167,10 @@ def serie_do_perfil(
     precos: pd.DataFrame,
     cdi: pd.Series,
     satelite_liberado: bool = False,
+    composicao: dict[Faixa, dict[str, float]] | None = None,
 ) -> pd.Series:
     """Curva de um perfil, com rebalanceamento anual e o caixa rendendo CDI."""
-    pesos = perfil.pesos_por_ativo(satelite_liberado)
+    pesos = perfil.pesos_por_ativo(satelite_liberado, composicao)
     cdi_alinhado = cdi.reindex(precos.index).ffill().fillna(0.0)
 
     retornos = precos.pct_change().fillna(0.0)
@@ -237,6 +254,7 @@ def medir_perfis(
     precos: pd.DataFrame,
     cdi: pd.Series,
     perfis: dict[str, Perfil] | None = None,
+    composicao: dict[Faixa, dict[str, float]] | None = None,
 ) -> pd.DataFrame:
     """Mede todos os perfis no mesmo histórico.
 
@@ -249,7 +267,7 @@ def medir_perfis(
     linhas = []
     for nome, perfil in perfis.items():
         try:
-            curva = serie_do_perfil(perfil, precos, cdi)
+            curva = serie_do_perfil(perfil, precos, cdi, composicao=composicao)
         except ValueError:
             continue
         linhas.append({
