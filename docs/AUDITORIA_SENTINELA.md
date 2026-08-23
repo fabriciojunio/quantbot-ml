@@ -1,9 +1,8 @@
 # Auditoria do painel Sentinela Cripto
 
-Leitura completa do código de `cryptoforum-sentiment` / `FABRICIO-PAULO-ALVES-DIAS-main`
-(os dois arquivos `.zip` são o mesmo projeto: 102 arquivos, ~1,5 MB de TypeScript,
-gerado no Google AI Studio, front em React 19 + Vite e um `server.ts` de 124 KB
-em Express que faz proxy para o Gemini).
+Leitura completa do código do painel `cryptoforum-sentiment`: 102 arquivos,
+cerca de 1,5 MB de TypeScript, gerado no Google AI Studio, front em React 19 +
+Vite e um `server.ts` de 124 KB em Express que faz proxy para o Gemini.
 
 Esta auditoria olha o código, não a pessoa. As ideias de mercado que estão ali
 — confluência de indicadores, leitura de fluxo, absorção no book, delta de
@@ -196,7 +195,7 @@ setenta centavos.
 
 ## 4. Os R$ 100 → R$ 165
 
-Os R$ 165 vieram da operação **manual** do seu pai, numa plataforma de verdade,
+Os R$ 165 vieram da operação **manual** do autor do painel, numa plataforma de verdade,
 com o dinheiro dele e o julgamento dele. Isso é um resultado real e não tem
 relação com o painel: o painel nunca enviou uma ordem.
 
@@ -264,6 +263,6 @@ Sharpe existe para descartar: escolher as duas melhores entre 24 tentativas
 não é encontrar uma estratégia, é encontrar as duas caras da moeda que saíram
 juntas.
 
-Isso não é um defeito do trabalho do seu pai. É o que acontece com quase toda
+Isso não é um defeito do trabalho do autor do painel. É o que acontece com quase toda
 estratégia técnica de curto prazo quando o atrito entra na conta. Saber disso
 antes de arriscar dinheiro é exatamente para que a validação existe.

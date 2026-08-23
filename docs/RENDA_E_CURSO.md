@@ -114,7 +114,7 @@ essa taxa todo dia — se o regime virar, vocês vão saber pelo relatório.
 
 Esta é a parte que menos se fala e que mais importa.
 
-Os R$ 165 vieram de R$ 100. É um resultado real e é de mérito do seu pai. Mas
+Os R$ 165 vieram de R$ 100. É um resultado real e é de mérito do autor do painel. Mas
 percentual não paga conta — reais pagam. Nas melhores hipóteses:
 
 | Capital | 2% ao mês (excelente e improvável de sustentar) | 1% ao mês | CDI (13,9% a.a.) |
@@ -215,7 +215,7 @@ deste mesmo repositório já trata, com FIIs e reinvestimento de dividendos.
 verdade (`cripto/painel/README.md` explica passo a passo), vira uma ferramenta
 que mostra o mercado como ele é. Aí sim é um produto.
 
-**Sobre o conhecimento do seu pai.** A parte insubstituível do painel é
+**Sobre o conhecimento do autor do painel.** A parte insubstituível do painel é
 justamente a que veio dele: as regras de gestão, a leitura de fluxo, os
 conceitos. O que faltava era a fundação de dados, e essa parte agora existe.
 Vale conversar com ele sobre o que o motor mede — quem sabe de mercado costuma
