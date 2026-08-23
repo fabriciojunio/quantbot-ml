@@ -43,7 +43,10 @@ class TestPaperBook:
         book = PaperBook(arquivo=str(tmp_path / "pb.json"), capital_inicial=10_000)
         book.decidir([FakePick("AAA11", 80, 12)], {"AAA11": 100})
         p = book.estado["posicoes"]["AAA11"]
-        p["ultima_avaliacao"] = (date.today() - timedelta(days=365)).isoformat()
+        # O accrual anda por `ultimo_provento`, campo exclusivo dele. Antes ele
+        # lia `ultima_avaliacao`, que só a `avaliar()` mexe, e por isso relançava
+        # o mesmo provento a cada marcação (ver test_paper_book_provento.py).
+        p["ultimo_provento"] = (date.today() - timedelta(days=365)).isoformat()
         caixa_antes = book.caixa
         book.marcar_mercado({"AAA11": 100})
         assert book.caixa > caixa_antes          # proventos entraram no caixa

@@ -19,7 +19,7 @@ porém, é real e correto, e fica mais útil quanto mais tempo roda.
 
 import json
 import logging
-from dataclasses import dataclass, asdict, field
+from dataclasses import asdict, dataclass
 from datetime import date, datetime
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -40,6 +40,14 @@ def _dias(d1: str, d2: str) -> int:
         return 0
 
 
+# Custo de operar FII na B3 para pessoa física. A maioria das corretoras zerou
+# a corretagem, mas emolumentos e liquidação continuam existindo, e em fundo
+# pouco líquido o spread do book é o que realmente pesa.
+EMOLUMENTOS_PCT = 0.0325 / 100   # B3, por ponta
+SPREAD_MEIO_PCT = 0.15 / 100     # metade do spread típico, por ponta
+CUSTO_PONTA = EMOLUMENTOS_PCT + SPREAD_MEIO_PCT
+
+
 @dataclass
 class Posicao:
     ticker: str
@@ -49,8 +57,10 @@ class Posicao:
     score_entrada: float
     dy_entrada: float
     sentimento_entrada: str = "neutro"
-    ultima_avaliacao: str = ""
-    dividendos: float = 0.0  # proventos acumulados (vão pro caixa)
+    ultima_avaliacao: str = ""       # última foto de desempenho (aprendizado)
+    ultimo_provento: str = ""        # último accrual de provento — campo separado
+    dividendos: float = 0.0          # proventos acumulados (vão pro caixa)
+    custo_entrada: float = 0.0       # emolumentos + spread pagos na compra
 
 
 class PaperBook:
@@ -109,16 +119,25 @@ class PaperBook:
     # ── ciclo principal ─────────────────────────────────────────────────
 
     def marcar_mercado(self, precos: Dict[str, float], cdi_anual: float = 14.4) -> None:
-        """Atualiza valor, acumula proventos (DY) no caixa e registra a série."""
+        """Atualiza valor, acumula proventos (DY) no caixa e registra a série.
+
+        O accrual usa `ultimo_provento`, um campo só dele, e o atualiza sempre.
+        Até 23/08/2026 esta função lia `ultima_avaliacao` — campo que só a
+        `avaliar()` atualiza, e apenas de 30 em 30 dias. O provento de todos os
+        dias desde a entrada era relançado a cada marcação, então em n dias
+        entravam n(n+1)/2 dias de rendimento em vez de n. Em 61 dias isso
+        multiplicou o provento por 14, e o track record inteiro saiu errado.
+        """
         hoje = _hoje()
         for tk, p in self._posicoes().items():
-            # proventos do período desde a última marcação (vão pro caixa → bola de neve)
-            ref = p["ultima_avaliacao"] or p["data_entrada"]
+            ref = p.get("ultimo_provento") or p["data_entrada"]
             d = _dias(ref, hoje)
-            if d > 0 and p["dy_entrada"] > 0:
-                prov = p["cotas"] * p["preco_entrada"] * (p["dy_entrada"] / 100) * (d / 365)
-                p["dividendos"] += round(prov, 2)
-                self.estado["caixa"] = round(self.caixa + prov, 2)
+            if d <= 0 or p["dy_entrada"] <= 0:
+                continue
+            prov = p["cotas"] * p["preco_entrada"] * (p["dy_entrada"] / 100) * (d / 365)
+            p["dividendos"] = round(p["dividendos"] + prov, 2)
+            self.estado["caixa"] = round(self.caixa + prov, 2)
+            p["ultimo_provento"] = hoje  # sem isto, o accrual vira cascata
         self.estado["serie_valor"].append({"data": hoje, "valor_total": self.valor_total(precos)})
 
     def decidir(
@@ -163,13 +182,15 @@ class PaperBook:
             if cotas < 1:
                 continue
             custo = cotas * preco
-            self.estado["caixa"] = round(self.caixa - custo, 2)
+            taxa = custo * CUSTO_PONTA          # emolumentos + spread na compra
+            self.estado["caixa"] = round(self.caixa - custo - taxa, 2)
             sent = sentimento_por_ticker.get(a.ticker, ("neutro", 0.5))[0]
             pos[a.ticker] = asdict(Posicao(
                 ticker=a.ticker, cotas=cotas, preco_entrada=preco,
                 data_entrada=hoje, score_entrada=round(a.score, 1),
                 dy_entrada=round(a.dy_12m, 2), sentimento_entrada=sent,
-                ultima_avaliacao=hoje,
+                ultima_avaliacao=hoje, ultimo_provento=hoje,
+                custo_entrada=round(taxa, 2),
             ))
             dec = {"data": hoje, "acao": "COMPRAR", "ticker": a.ticker,
                    "cotas": cotas, "preco": preco, "score": round(a.score, 1),
@@ -182,16 +203,25 @@ class PaperBook:
     def _vender(self, ticker: str, preco: float, motivo: str) -> dict:
         p = self._posicoes().pop(ticker)
         valor = p["cotas"] * preco
-        self.estado["caixa"] = round(self.caixa + valor, 2)
+        taxa_saida = valor * CUSTO_PONTA
+        self.estado["caixa"] = round(self.caixa + valor - taxa_saida, 2)
+
+        investido = p["cotas"] * p["preco_entrada"]
         retorno_pct = (preco - p["preco_entrada"]) / p["preco_entrada"] * 100
-        total_pct = retorno_pct + (p["dividendos"] / (p["cotas"] * p["preco_entrada"]) * 100
-                                   if p["cotas"] and p["preco_entrada"] else 0)
+        div_pct = (p["dividendos"] / investido * 100) if investido else 0.0
+        custo_total = p.get("custo_entrada", 0.0) + taxa_saida
+        custo_pct = (custo_total / investido * 100) if investido else 0.0
+        total_pct = retorno_pct + div_pct - custo_pct
+
         fechada = {
             "ticker": ticker, "data_entrada": p["data_entrada"], "data_saida": _hoje(),
             "preco_entrada": p["preco_entrada"], "preco_saida": preco,
             "dias": _dias(p["data_entrada"], _hoje()),
             "retorno_preco_pct": round(retorno_pct, 2),
             "dividendos": round(p["dividendos"], 2),
+            "dividendos_pct": round(div_pct, 2),
+            "custo_total": round(custo_total, 2),
+            "custo_pct": round(custo_pct, 3),
             "retorno_total_pct": round(total_pct, 2),
             "score_entrada": p["score_entrada"], "dy_entrada": p["dy_entrada"],
             "sentimento_entrada": p["sentimento_entrada"], "motivo": motivo,
@@ -214,10 +244,14 @@ class PaperBook:
             if d < dias_min:
                 continue
             preco = precos.get(tk, p["preco_entrada"])
+            investido = p["cotas"] * p["preco_entrada"]
             ret_preco = (preco - p["preco_entrada"]) / p["preco_entrada"] * 100
-            ret_div = (p["dividendos"] / (p["cotas"] * p["preco_entrada"]) * 100
-                       if p["cotas"] and p["preco_entrada"] else 0)
-            total = ret_preco + ret_div
+            ret_div = (p["dividendos"] / investido * 100) if investido else 0.0
+            # Desconta o custo das duas pontas: quem avalia posição sem contar
+            # a saída está medindo um resultado que não dá para realizar.
+            custo = ((p.get("custo_entrada", 0.0) + preco * p["cotas"] * CUSTO_PONTA)
+                     / investido * 100) if investido else 0.0
+            total = ret_preco + ret_div - custo
             dias_tot = max(1, _dias(p["data_entrada"], hoje))
             anualizado = total * (365 / dias_tot)
             excedente = anualizado - cdi_anual  # bateu a renda fixa?
