@@ -35,9 +35,10 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
+from .conta import Conta, aliquota_de_venda, ativo_generico
 from .custos_b3 import ModeloCustoB3
 from .tributos import aliquota_regressiva
-from .universo import UNIVERSO_B3, Ativo, Classe, Regime
+from .universo import UNIVERSO_B3, Ativo
 
 logger = logging.getLogger("quantbot.carteira.aporte")
 
@@ -45,13 +46,10 @@ logger = logging.getLogger("quantbot.carteira.aporte")
 # que rende CDI enquanto espera.
 ORDEM_MINIMA_BRL = 100.0
 
-# Alíquota de ganho de capital por regime, para o que não é tabela regressiva.
-ALIQUOTA_POR_REGIME: dict[Regime, float] = {
-    Regime.ETF_RENDA_VARIAVEL: 0.15,
-    Regime.ACAO_INDIVIDUAL: 0.15,
-    Regime.FII: 0.20,
-    Regime.ISENTO: 0.0,
-}
+# Reexportados para quem já importava daqui. A implementação mora em `conta`,
+# que é a única que sabe mexer em posição, custo e imposto.
+_aliquota_de_venda = aliquota_de_venda
+_ativo_generico = ativo_generico
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -131,29 +129,6 @@ def tir_anual(fluxos: list[tuple[float, float]], tolerancia: float = 1e-7) -> fl
 # ─────────────────────────────────────────────────────────────────────────────
 
 @dataclass
-class Posicao:
-    """Uma posição, com base de cálculo do imposto e idade média das cotas.
-
-    O custo é **médio**, que é o que a Receita manda usar para ganho de
-    capital. A idade é média ponderada por cota, e serve só para escolher a
-    alíquota da tabela regressiva nos ETFs de renda fixa.
-    """
-
-    cotas: float = 0.0
-    custo_total: float = 0.0
-    idade_ponderada: float = 0.0  # soma de cotas x dias, atualizada na compra
-
-    @property
-    def custo_medio(self) -> float:
-        return self.custo_total / self.cotas if self.cotas > 0 else 0.0
-
-    def dias_medios(self, dia_atual: int) -> float:
-        if self.cotas <= 0:
-            return 0.0
-        return max(0.0, dia_atual - self.idade_ponderada / self.cotas)
-
-
-@dataclass
 class ResultadoAporte:
     """O que a simulação produziu, com tudo que foi pago pelo caminho."""
 
@@ -212,13 +187,6 @@ class ResultadoAporte:
         }
 
 
-def _aliquota_de_venda(ativo: Ativo, dias: float) -> float:
-    """Alíquota correta para o regime do ativo."""
-    if ativo.regime in (Regime.ETF_RENDA_FIXA, Regime.TESOURO):
-        return aliquota_regressiva(int(dias))
-    return ALIQUOTA_POR_REGIME.get(ativo.regime, 0.15)
-
-
 def _primeiros_dias_uteis(indice: pd.DatetimeIndex) -> list[pd.Timestamp]:
     """O primeiro pregão de cada mês do índice.
 
@@ -263,7 +231,7 @@ def simular(
         raise ValueError("índice de preços fora de ordem")
 
     modelo = modelo or ModeloCustoB3()
-    ativos = ativos or UNIVERSO_B3
+    ativos = dict(ativos) if ativos is not None else dict(UNIVERSO_B3)
     fn_aporte = aporte if callable(aporte) else constante(float(aporte))
 
     peso_caixa = float(pesos.get("CDI", 0.0))
@@ -281,12 +249,10 @@ def simular(
 
     cdi_dia = cdi.reindex(precos.index).ffill().fillna(0.0)
 
-    caixa = 0.0
-    posicoes: dict[str, Posicao] = {t: Posicao() for t in pesos_risco}
-    total_aportado = 0.0
-    custo_pago = 0.0
-    imposto_pago = 0.0
-    ordens = 0
+    # A mesma classe que a operação diária usa. É o que impede o backtest e o
+    # robô de calcularem imposto de formas diferentes sem ninguém perceber.
+    conta = Conta(modelo=modelo, ativos=ativos)
+    matriz = precos.to_dict("records")
     fluxos: list[tuple[float, float]] = []
     fluxos_cdi: list[tuple[pd.Timestamp, float]] = []
     curva: list[float] = []
@@ -302,67 +268,15 @@ def simular(
     mes_do_aporte = 0
     proximo_rebalanceamento = rebalancear_a_cada_meses
 
-    def patrimonio(dia: pd.Timestamp) -> float:
-        return caixa + sum(p.cotas * float(precos.at[dia, t]) for t, p in posicoes.items())
-
-    def vender(t: str, valor_desejado: float, dia: pd.Timestamp, n_dia: int) -> float:
-        """Vende até `valor_desejado` de `t`. Devolve o caixa líquido gerado."""
-        nonlocal custo_pago, imposto_pago, ordens
-        p = posicoes[t]
-        preco = float(precos.at[dia, t])
-        valor_posicao = p.cotas * preco
-        if valor_posicao <= 0 or valor_desejado <= 0:
-            return 0.0
-
-        valor = min(valor_desejado, valor_posicao)
-        cotas = valor / preco
-        ativo = ativos.get(t) or _ativo_generico(t)
-
-        custo = modelo.custo_ponta(ativo, valor)
-        ganho = max(0.0, (preco - p.custo_medio) * cotas - custo)
-        imposto = ganho * _aliquota_de_venda(ativo, p.dias_medios(n_dia))
-
-        # Base de cálculo sai proporcional às cotas vendidas (custo médio).
-        p.idade_ponderada *= (p.cotas - cotas) / p.cotas if p.cotas > 0 else 0.0
-        p.custo_total -= p.custo_medio * cotas
-        p.cotas -= cotas
-        if p.cotas < 1e-12:
-            p.cotas, p.custo_total, p.idade_ponderada = 0.0, 0.0, 0.0
-
-        custo_pago += custo
-        imposto_pago += imposto
-        ordens += 1
-        return valor - custo - imposto
-
-    def comprar(t: str, valor: float, dia: pd.Timestamp, n_dia: int) -> None:
-        nonlocal caixa, custo_pago, ordens
-        if valor <= 0:
-            return
-        ativo = ativos.get(t) or _ativo_generico(t)
-        custo = modelo.custo_ponta(ativo, valor)
-        liquido = valor - custo
-        if liquido <= 0:
-            return
-        preco = float(precos.at[dia, t])
-        cotas = liquido / preco
-
-        p = posicoes[t]
-        p.cotas += cotas
-        # O custo de entrada entra na base: é dedutível do ganho na venda.
-        p.custo_total += valor
-        p.idade_ponderada += cotas * n_dia
-
-        caixa -= valor
-        custo_pago += custo
-        ordens += 1
-
     for n_dia, dia in enumerate(precos.index):
+        hoje = matriz[n_dia]
+
         # 1. O caixa rende antes de qualquer movimentação do dia.
-        caixa *= 1 + float(cdi_dia.iloc[n_dia])
+        conta.render_caixa(float(cdi_dia.iloc[n_dia]))
 
         # 1b. Retorno do dia, medido ANTES do aporte entrar. É o que separa
         # desempenho de depósito.
-        pat_pre = patrimonio(dia)
+        pat_pre = conta.patrimonio(hoje)
         if pat_ontem > 0:
             cota *= pat_pre / pat_ontem
         cotas_twr.append(cota)
@@ -371,69 +285,49 @@ def simular(
         if dia in dias_de_aporte:
             valor = float(fn_aporte(mes_do_aporte))
             if valor > 0:
-                caixa += valor
-                total_aportado += valor
+                conta.aportar(valor)
                 anos = (dia - inicio).days / 365.25
                 fluxos.append((anos, -valor))
                 fluxos_cdi.append((dia, valor))
             mes_do_aporte += 1
 
             # 3. Investe o que passa do alvo de caixa, por rodízio.
-            pat = patrimonio(dia)
-            investivel = caixa - pat * peso_caixa
+            pat = conta.patrimonio(hoje)
+            investivel = min(conta.caixa, conta.caixa - pat * peso_caixa)
             if investivel >= ordem_minima and pesos_risco:
-                atual = {
-                    t: (posicoes[t].cotas * float(precos.at[dia, t])) / pat if pat > 0 else 0.0
-                    for t in pesos_risco
-                }
-                falta = {t: pesos_risco[t] - atual[t] for t in pesos_risco}
+                pesos_atuais = conta.pesos(hoje)
+                falta = {t: pesos_risco[t] - pesos_atuais.get(t, 0.0) for t in pesos_risco}
                 escolhido = max(falta, key=lambda k: falta[k])
-                comprar(escolhido, investivel, dia, n_dia)
+                conta.comprar(escolhido, investivel, hoje[escolhido], n_dia, "rodízio")
 
             # 4. Rebalanceamento periódico.
             if mes_do_aporte >= proximo_rebalanceamento:
                 proximo_rebalanceamento += rebalancear_a_cada_meses
-                pat = patrimonio(dia)
-                if pat > 0:
-                    alvos = {t: pat * pesos_risco[t] for t in pesos_risco}
-                    # Vende o excesso primeiro: gera o caixa que paga as compras.
-                    for t in pesos_risco:
-                        atual_v = posicoes[t].cotas * float(precos.at[dia, t])
-                        excesso = atual_v - alvos[t]
-                        if excesso > max(ordem_minima, pat * banda_de_rebalanceamento):
-                            caixa += vender(t, excesso, dia, n_dia)
-                    # Depois compra o que falta, com o que houver.
-                    disponivel = caixa - pat * peso_caixa
-                    for t in sorted(pesos_risco, key=lambda k: alvos[k] - posicoes[k].cotas * float(precos.at[dia, k]), reverse=True):
-                        if disponivel < ordem_minima:
-                            break
-                        atual_v = posicoes[t].cotas * float(precos.at[dia, t])
-                        deficit = alvos[t] - atual_v
-                        if deficit > max(ordem_minima, pat * banda_de_rebalanceamento):
-                            gasto = min(deficit, disponivel)
-                            comprar(t, gasto, dia, n_dia)
-                            disponivel -= gasto
+                _rebalancear(
+                    conta, hoje, n_dia, pesos_risco, peso_caixa,
+                    ordem_minima, banda_de_rebalanceamento,
+                )
 
-        pat_ontem = patrimonio(dia)
+        pat_ontem = conta.patrimonio(hoje)
         curva.append(pat_ontem)
 
     fim = precos.index[-1]
     n_final = len(precos) - 1
-    bruto_final = patrimonio(fim)
+    ultimo = matriz[n_final]
+    bruto_final = conta.patrimonio(ultimo)
+    liquido_final = conta.liquidar(ultimo, n_final) if liquidar_no_fim else bruto_final
 
-    if liquidar_no_fim:
-        for t in list(posicoes):
-            caixa += vender(t, posicoes[t].cotas * float(precos.at[fim, t]), fim, n_final)
-        liquido_final = caixa
-    else:
-        liquido_final = bruto_final
+    total_aportado = conta.total_aportado
+    custo_pago = conta.custo_pago
+    imposto_pago = conta.imposto_pago
+    ordens = len(conta.movimentos)
 
     anos_totais = (fim - inicio).days / 365.25
     fluxos.append((anos_totais, liquido_final))
 
     serie = pd.Series(curva, index=precos.index)
     serie_cota = pd.Series(cotas_twr, index=precos.index)
-    liq_cdi, tir_cdi = _referencia_cdi(fluxos_cdi, cdi, fim)
+    liq_cdi, tir_cdi = referencia_cdi(fluxos_cdi, cdi, fim)
 
     return ResultadoAporte(
         inicio=inicio,
@@ -457,15 +351,50 @@ def simular(
     )
 
 
-def _ativo_generico(ticker: str) -> Ativo:
-    """Para quando o ticker não está no universo: spread conservador."""
-    return Ativo(
-        ticker, ticker, Classe.ACOES_BR, Regime.ETF_RENDA_VARIAVEL,
-        spread_pct=0.0015, volume_medio_brl=1e9,
-    )
+def _rebalancear(
+    conta: Conta,
+    precos_do_dia: dict[str, float],
+    n_dia: int,
+    pesos_risco: dict[str, float],
+    peso_caixa: float,
+    ordem_minima: float,
+    banda: float,
+) -> None:
+    """Traz a carteira de volta aos pesos alvo, vendendo antes de comprar.
+
+    A ordem importa: vender primeiro gera o caixa que paga as compras. Comprar
+    antes de vender exigiria caixa que não existe, e a versão anterior deste
+    código resolvia isso deixando o caixa ficar negativo — que é alavancagem
+    com outro nome.
+    """
+    pat = conta.patrimonio(precos_do_dia)
+    if pat <= 0:
+        return
+
+    limite = max(ordem_minima, pat * banda)
+    alvos = {t: pat * peso for t, peso in pesos_risco.items()}
+
+    def valor_de(t: str) -> float:
+        p = conta.posicoes.get(t)
+        return p.cotas * precos_do_dia[t] if p else 0.0
+
+    for t in pesos_risco:
+        excesso = valor_de(t) - alvos[t]
+        if excesso > limite:
+            conta.vender(t, excesso, precos_do_dia[t], n_dia, "rebalanceamento")
+
+    disponivel = min(conta.caixa, conta.caixa - pat * peso_caixa)
+    for t in sorted(pesos_risco, key=lambda k: alvos[k] - valor_de(k), reverse=True):
+        if disponivel < ordem_minima:
+            break
+        deficit = alvos[t] - valor_de(t)
+        if deficit > limite:
+            gasto = min(deficit, disponivel, conta.caixa)
+            conta.comprar(t, gasto, precos_do_dia[t], n_dia, "rebalanceamento")
+            disponivel -= gasto
 
 
-def _referencia_cdi(
+def referencia_cdi(
     aportes: list[tuple[pd.Timestamp, float]],
     cdi: pd.Series,
     fim: pd.Timestamp,

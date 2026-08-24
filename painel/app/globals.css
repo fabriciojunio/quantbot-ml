@@ -1,0 +1,388 @@
+/*
+ * Identidade: livro-razão de banco privado, não painel de corretora.
+ *
+ * A referência visual é um extrato impresso em papel bom — tinta escura sobre
+ * creme, serifada nos títulos, tabular nos números, com um latão discreto como
+ * único acento. A escolha não é estética à toa: este painel vai ser lido por
+ * gerações, e o que envelhece bem é documento, não gráfico colorido.
+ *
+ * Verde e vermelho aparecem, mas dessaturados e só onde o sinal importa. Um
+ * painel que pinta tudo de verde no dia bom treina quem olha a reagir ao dia,
+ * que é o oposto do que este sistema inteiro tenta fazer.
+ */
+
+:root {
+  --tinta: #1a1714;
+  --tinta-fraca: #6b6259;
+  --tinta-tenue: #9c9188;
+  --papel: #f6f2ea;
+  --papel-alto: #fffdf8;
+  --papel-fundo: #ebe4d8;
+  --linha: #ded5c6;
+  --linha-forte: #c8bca8;
+
+  --latao: #8a6d3b;
+  --latao-claro: #b8945a;
+
+  --alta: #3f6b4a;
+  --baixa: #9c4a3f;
+  --atencao: #8a6a2f;
+
+  --serif: "Georgia", "Iowan Old Style", "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", "Consolas", "Liberation Mono", monospace;
+
+  --raio: 3px;
+  --coluna: 1180px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --tinta: #ede7dd;
+    --tinta-fraca: #a49a8d;
+    --tinta-tenue: #6f665c;
+    --papel: #17150f;
+    --papel-alto: #201d16;
+    --papel-fundo: #100e0a;
+    --linha: #322d24;
+    --linha-forte: #4a4335;
+
+    --latao: #c9a35f;
+    --latao-claro: #e0bd7c;
+
+    --alta: #7fae86;
+    --baixa: #cf8477;
+    --atencao: #c9a35f;
+  }
+}
+
+:root[data-theme="dark"] {
+  --tinta: #ede7dd;
+  --tinta-fraca: #a49a8d;
+  --tinta-tenue: #6f665c;
+  --papel: #17150f;
+  --papel-alto: #201d16;
+  --papel-fundo: #100e0a;
+  --linha: #322d24;
+  --linha-forte: #4a4335;
+
+  --latao: #c9a35f;
+  --latao-claro: #e0bd7c;
+
+  --alta: #7fae86;
+  --baixa: #cf8477;
+  --atencao: #c9a35f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--papel-fundo);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.folha {
+  max-width: var(--coluna);
+  margin: 0 auto;
+  padding: 0 24px 72px;
+}
+
+/* ── Cabeçalho ─────────────────────────────────────────────────────────── */
+
+.cabecalho {
+  border-bottom: 2px solid var(--tinta);
+  padding: 40px 0 20px;
+  margin-bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.cabecalho h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.cabecalho .subtitulo {
+  font-size: 13px;
+  color: var(--tinta-fraca);
+  margin: 6px 0 0;
+}
+
+.selo {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--latao);
+  border: 1px solid var(--latao);
+  border-radius: var(--raio);
+  padding: 5px 11px;
+  white-space: nowrap;
+}
+
+/* ── Faixa de destaque ─────────────────────────────────────────────────── */
+
+.faixa {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  border-bottom: 1px solid var(--linha-forte);
+  background: var(--papel-alto);
+}
+
+.faixa > div {
+  padding: 26px 22px;
+  border-right: 1px solid var(--linha);
+}
+
+.faixa > div:last-child {
+  border-right: none;
+}
+
+.rotulo {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+  margin-bottom: 9px;
+}
+
+.numero {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 29px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.nota {
+  font-size: 12.5px;
+  color: var(--tinta-fraca);
+  margin-top: 7px;
+  font-variant-numeric: tabular-nums;
+}
+
+.alta { color: var(--alta); }
+.baixa { color: var(--baixa); }
+.atencao { color: var(--atencao); }
+
+/* ── Seções ────────────────────────────────────────────────────────────── */
+
+section {
+  background: var(--papel);
+  border-bottom: 1px solid var(--linha-forte);
+  padding: 30px 22px 34px;
+}
+
+section > h2 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tinta-fraca);
+  font-weight: 500;
+  margin: 0 0 20px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--linha);
+}
+
+/* ── Gráfico ───────────────────────────────────────────────────────────── */
+
+.grafico {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 16px;
+  font-size: 12.5px;
+  color: var(--tinta-fraca);
+}
+
+.legenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legenda i {
+  width: 15px;
+  height: 2.5px;
+  display: inline-block;
+}
+
+/* ── Tabelas ───────────────────────────────────────────────────────────── */
+
+.rolagem {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+  font-weight: 500;
+  text-align: right;
+  padding: 0 14px 10px 0;
+  border-bottom: 1px solid var(--linha-forte);
+  white-space: nowrap;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+  padding-left: 0;
+}
+
+td {
+  padding: 11px 14px 11px 0;
+  text-align: right;
+  border-bottom: 1px solid var(--linha);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ativo-nome {
+  font-weight: 500;
+}
+
+.ativo-ticker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--tinta-tenue);
+  display: block;
+  margin-top: 2px;
+}
+
+/* Barra de peso desenhada com gradiente: sem elemento extra, sem biblioteca. */
+.barra {
+  position: relative;
+  min-width: 96px;
+}
+
+.barra span {
+  position: relative;
+  z-index: 1;
+}
+
+.barra::before {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  width: var(--largura, 0%);
+  background: var(--latao);
+  opacity: 0.16;
+  border-radius: 2px;
+}
+
+/* ── Auditoria ─────────────────────────────────────────────────────────── */
+
+.auditoria {
+  background: var(--papel-alto);
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+  padding: 22px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.hash {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--tinta-fraca);
+  word-break: break-all;
+  line-height: 1.7;
+}
+
+.aviso-caixa {
+  border-left: 3px solid var(--latao);
+  padding: 14px 18px;
+  background: var(--papel-alto);
+  font-size: 13.5px;
+  color: var(--tinta-fraca);
+  margin-top: 22px;
+}
+
+.aviso-caixa strong {
+  color: var(--tinta);
+  font-weight: 600;
+}
+
+/* ── Ordens ────────────────────────────────────────────────────────────── */
+
+.ordem-motivo {
+  color: var(--tinta-fraca);
+  font-size: 12.5px;
+  max-width: 480px;
+  white-space: normal;
+  text-align: left;
+}
+
+.marca {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+}
+
+/* ── Rodapé ────────────────────────────────────────────────────────────── */
+
+footer {
+  padding: 30px 22px 0;
+  font-size: 12.5px;
+  color: var(--tinta-tenue);
+  line-height: 1.75;
+}
+
+footer p {
+  margin: 0 0 8px;
+  max-width: 68ch;
+}
+
+@media (max-width: 640px) {
+  .folha { padding: 0 14px 48px; }
+  .faixa > div { border-right: none; border-bottom: 1px solid var(--linha); }
+  section { padding: 24px 14px 28px; }
+}

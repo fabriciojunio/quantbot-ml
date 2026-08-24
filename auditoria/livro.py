@@ -197,6 +197,8 @@ class Livro:
         cota: float,
         cdi_acumulado: float,
         origem: str = "robo",
+        conta: dict | None = None,
+        extra: dict | None = None,
     ) -> Evento:
         """Grava o retrato do dia: patrimônio, posição por ativo e cota.
 
@@ -215,6 +217,7 @@ class Livro:
                 "data": data, "caixa": round(caixa, 2), "investido": round(investido, 2),
                 "total": round(total, 2), "aportado": round(aportado, 2),
                 "cota": round(cota, 8), "ativos": sorted(posicoes),
+                "conta": conta, **(extra or {}),
             },
         )
 
@@ -336,6 +339,29 @@ class Livro:
             args.append(desde)
         sql += " ORDER BY data"
         return [dict(r) for r in self.conexao.execute(sql, args)]
+
+    def ultimo_estado(self) -> dict | None:
+        """O estado da conta no último fechamento registrado.
+
+        É daqui que a operação diária retoma. Guardar o estado dentro do evento
+        — e não num arquivo à parte — significa que o estado e a explicação de
+        como ele chegou ali estão no mesmo lugar e sob o mesmo hash. Um arquivo
+        de estado separado pode ser editado sem deixar rastro; este não.
+        """
+        linha = self.conexao.execute(
+            "SELECT dados FROM evento WHERE tipo = ? ORDER BY id DESC LIMIT 1",
+            (TipoEvento.FECHAMENTO.value,),
+        ).fetchone()
+        if not linha:
+            return None
+        return json.loads(linha["dados"]).get("conta")
+
+    def ultima_data_de(self, tipo: TipoEvento) -> str | None:
+        linha = self.conexao.execute(
+            "SELECT quando FROM evento WHERE tipo = ? ORDER BY id DESC LIMIT 1",
+            (tipo.value,),
+        ).fetchone()
+        return linha["quando"] if linha else None
 
     def parametros_vigentes(self, em: str) -> dict[str, Any]:
         """Os parâmetros que valiam numa data, sem olhar para frente.
