@@ -80,6 +80,17 @@ SIMBOLOS_CRIPTO: dict[str, str] = {
     "ETH-BRL": "ETHUSDT",
 }
 
+# Segunda fonte, para quando a exchange não responde. Não é preferência
+# estética: os runners do GitHub rodam em datacenter e a Binance devolve
+# HTTP 451 para essas faixas de IP por bloqueio geográfico, com Gate e Bybit
+# respondendo 400 e 403. Sem uma fonte que funcione de datacenter, o robô
+# rodava na máquina de casa e morria na nuvem — e a nuvem é onde ele precisa
+# rodar todo dia sem ninguém ligar o computador.
+SIMBOLOS_YAHOO: dict[str, str] = {
+    "BTC-BRL": "BTC-USD",
+    "ETH-BRL": "ETH-USD",
+}
+
 
 class ErroMultimoeda(RuntimeError):
     """Faltou dado de câmbio ou de cripto e não havia cache."""
@@ -120,11 +131,37 @@ def exposicao_cambial(pesos: dict[str, float]) -> ExposicaoCambial:
     return ExposicaoCambial(por_moeda)
 
 
+def _do_yahoo(ticker: str, anos: int, falhas: list[str], baixador=None) -> pd.DataFrame:
+    """Fallback de cotação de cripto pelo Yahoo, que responde de datacenter."""
+    alvo = SIMBOLOS_YAHOO.get(ticker)
+    if alvo is None:
+        raise ErroMultimoeda(f"sem fonte alternativa para {ticker}. Falhas: {falhas}")
+
+    if baixador is None:
+        from . import dados
+
+        baixador = dados.precos
+
+    try:
+        df = baixador([alvo], anos=anos)
+    except Exception as exc:
+        falhas.append(f"yahoo: {exc}")
+        raise ErroMultimoeda(f"{ticker} indisponível em todas as fontes: {falhas}") from exc
+
+    if df.empty or alvo not in df.columns:
+        falhas.append("yahoo: resposta vazia")
+        raise ErroMultimoeda(f"{ticker} indisponível em todas as fontes: {falhas}")
+
+    logger.warning("%s veio do Yahoo, não da exchange. Falhas: %s", ticker, falhas)
+    return df[[alvo]].rename(columns={alvo: "fechamento"})
+
+
 def serie_cripto_em_reais(
     ticker: str = "BTC-BRL",
     anos: int = 8,
     historico=None,
     cambista=None,
+    fonte_alternativa=None,
 ) -> pd.Series:
     """Fechamento diário de uma cripto convertido para real pela PTAX.
 
@@ -146,13 +183,17 @@ def serie_cripto_em_reais(
 
         cambista = dados.cambio_diario
 
+    falhas: list[str] = []
+    candles = None
     try:
         candles = historico(simbolo, intervalo="1d", dias=anos * 365)
     except Exception as exc:
-        raise ErroMultimoeda(f"sem candles de {simbolo}: {exc}") from exc
+        falhas.append(f"exchange: {exc}")
 
-    if candles.empty or "fechamento" not in candles:
-        raise ErroMultimoeda(f"série de {simbolo} vazia")
+    if candles is None or candles.empty or "fechamento" not in candles:
+        if candles is not None:
+            falhas.append("exchange: série vazia")
+        candles = _do_yahoo(ticker, anos, falhas, fonte_alternativa)
 
     em_dolar = candles["fechamento"].astype(float)
     em_dolar.index = pd.to_datetime(em_dolar.index)

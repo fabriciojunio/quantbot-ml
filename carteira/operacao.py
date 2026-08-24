@@ -238,10 +238,32 @@ def rodar_dia(
             Conta(modelo=ModeloCustoB3(), ativos=universo_da_operacao())
         )
 
+    # Posição sem cotação hoje é carregada pelo último preço conhecido. Uma
+    # fonte fora do ar não pode derrubar a operação — e derrubava: os runners
+    # do GitHub recebem HTTP 451 da Binance por bloqueio geográfico, e o robô
+    # morria com "posição em BTC-BRL sem preço no fechamento". O preço velho é
+    # declarado no aviso; parar de operar por causa de um ativo seria pior.
+    precos_velhos: list[str] = []
+    for ticker in conta.posicoes:
+        if ticker not in hoje_precos:
+            anterior = livro.ultimo_preco(ticker)
+            if anterior is None:
+                raise ValueError(
+                    f"posição em {ticker} sem cotação hoje e sem preço anterior no livro"
+                )
+            hoje_precos[ticker] = anterior[0]
+            precos_velhos.append(f"{ticker} (último preço de {anterior[1]})")
+
     favoravel, regime = ler_regime(precos.loc[:hoje], cdi_acumulado.loc[:hoje])
     alvo, risco_aplicado, avisos = alvo_do_dia(
         config, favoravel, satelite_liberado, composicao, leitura_de_juro
     )
+
+    if precos_velhos:
+        avisos.append(
+            "sem cotação nova hoje para " + ", ".join(precos_velhos)
+            + "; posição carregada pelo último preço conhecido"
+        )
 
     faltando = sorted(set(alvo) - set(hoje_precos) - {"CDI"})
     if faltando:
