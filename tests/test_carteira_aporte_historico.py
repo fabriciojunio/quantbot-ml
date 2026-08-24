@@ -281,6 +281,54 @@ class TesteReferenciaCDI:
         # aportado vezes 1,2. Se compusesse até 2018 passaria de 2,5x.
         assert r.liquido_cdi < r.total_aportado * 1.5
 
+    def test_carteira_so_de_cdi_empata_com_a_referencia_de_cdi(self):
+        """O teste que pegou o furo mais caro deste módulo.
+
+        Uma carteira 100% CDI e a referência 100% CDI são a mesma coisa e têm
+        que dar o mesmo número. Davam R$ 109.100 contra R$ 101.689 — sete mil
+        de diferença — porque o caixa rendia sem pagar IR enquanto a referência
+        pagava a tabela regressiva. O erro inflava justamente os perfis
+        conservadores, que são os que têm mais caixa, e fazia o robô parecer
+        bater o CDI em janela onde ele empatava.
+
+        A folga de 0,5% cobre a diferença entre a idade média ponderada dos
+        juros do caixa e o cálculo aporte a aporte da referência.
+        """
+        idx = calendario(2600, "2014-01-01")
+        p = pd.DataFrame({"BOVA11.SA": np.full(len(idx), 100.0)}, index=idx)
+        r = ah.simular(p, cdi_plano(idx, 0.00042), {"CDI": 1.0}, ah.constante(500))
+
+        assert r.valor_liquido_final == pytest.approx(r.liquido_cdi, rel=0.005)
+        assert r.imposto_total_pago > 0, "o caixa tem que pagar IR no resgate"
+
+    @pytest.mark.parametrize("taxa", [0.0002, 0.0004, 0.0006])
+    def test_o_empate_vale_em_varios_niveis_de_juro(self, taxa):
+        idx = calendario(1800, "2016-01-01")
+        p = pd.DataFrame({"BOVA11.SA": np.full(len(idx), 100.0)}, index=idx)
+        r = ah.simular(p, cdi_plano(idx, taxa), {"CDI": 1.0}, ah.constante(500))
+        assert r.valor_liquido_final == pytest.approx(r.liquido_cdi, rel=0.015)
+
+    @pytest.mark.parametrize("taxa", [0.0002, 0.0004, 0.0006])
+    def test_a_aproximacao_do_imposto_erra_contra_a_carteira(self, taxa):
+        """A folga do teste acima não pode virar licença para errar a favor.
+
+        A idade dos juros do caixa é média ponderada, não por lote, e por isso
+        a alíquota sai um pouco maior que a exata. Isso faz a carteira pagar
+        mais imposto do que pagaria — resultado subestimado, nunca inflado. Se
+        algum dia esta assimetria inverter, o teste acusa.
+        """
+        idx = calendario(1800, "2016-01-01")
+        p = pd.DataFrame({"BOVA11.SA": np.full(len(idx), 100.0)}, index=idx)
+        r = ah.simular(p, cdi_plano(idx, taxa), {"CDI": 1.0}, ah.constante(500))
+        assert r.valor_liquido_final <= r.liquido_cdi * 1.001
+
+    def test_caixa_parado_nao_gera_imposto(self):
+        """Sem juros não há o que tributar."""
+        idx = calendario(600)
+        p = pd.DataFrame({"BOVA11.SA": np.full(len(idx), 100.0)}, index=idx)
+        r = ah.simular(p, cdi_plano(idx, 0.0), {"CDI": 1.0}, ah.constante(500))
+        assert r.imposto_total_pago == pytest.approx(0.0, abs=1e-9)
+
     def test_referencia_cresce_com_a_taxa(self):
         p = precos_planos(500)
         baixo = ah.simular(p, cdi_plano(p.index, 0.0001), {"BOVA11.SA": 1.0}, ah.constante(500))

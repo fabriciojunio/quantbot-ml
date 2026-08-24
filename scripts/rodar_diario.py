@@ -33,7 +33,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from auditoria import abrir, verificar  # noqa: E402
 from auditoria.verificacao import ancora  # noqa: E402
 from carteira import aporte_historico as ah  # noqa: E402
-from carteira import dados, multimoeda, operacao  # noqa: E402
+from carteira import dados, juro_real, multimoeda, operacao  # noqa: E402
 from carteira.conta import Conta  # noqa: E402
 from carteira.custos_b3 import ModeloCustoB3  # noqa: E402
 
@@ -73,6 +73,36 @@ def carregar_mercado(anos: int = 6, com_cripto: bool = True) -> tuple[pd.DataFra
     return precos, cdi
 
 
+def ler_juro(cdi: pd.Series) -> juro_real.Leitura | None:
+    """Juro real de hoje, para o teto de risco.
+
+    Se o IPCA não vier, devolve `None` e o robô opera **sem** o teto. Inventar
+    uma inflação para "não quebrar" seria pior que operar sem a guarda: a
+    guarda ausente aparece no aviso, a inventada não aparece em lugar nenhum.
+    """
+    from datetime import date
+
+    from data.bcb_client import BCBClient
+
+    try:
+        obs = BCBClient().historico(
+            "IPCA_MES", data_inicial=date.today() - pd.Timedelta(days=500), data_final=date.today()
+        )
+        if len(obs) < 12:
+            raise ValueError(f"só {len(obs)} meses de IPCA")
+        ipca_12m = 1.0
+        for o in obs[-12:]:
+            ipca_12m *= 1 + o.valor / 100
+        ipca_12m -= 1
+
+        acumulado = (1 + cdi).cumprod()
+        cdi_anual = float(acumulado.iloc[-1] / acumulado.iloc[-252]) - 1
+        return juro_real.ler(cdi_anual, ipca_12m)
+    except Exception as exc:
+        logger.warning("Sem leitura de juro real (%s). O teto de risco não será aplicado.", exc)
+        return None
+
+
 def satelite_liberado(livro) -> tuple[bool, str]:
     """O satélite só abre com validação aprovada. Hoje não está."""
     historico = Path("data/carteira/monitor/historico.jsonl")
@@ -100,6 +130,7 @@ def operar(
     cdi: pd.Series,
     dias: list[pd.Timestamp],
     liberado: bool,
+    leitura: juro_real.Leitura | None = None,
 ) -> tuple[Conta, list[operacao.Decisao]]:
     """Roda uma sequência de dias, retomando o estado do livro."""
     estado = livro.ultimo_estado()
@@ -126,6 +157,7 @@ def operar(
         conta, decisao = operacao.rodar_dia(
             livro, config, precos_ate, cdi, hoje=dia,
             satelite_liberado=liberado, conta=conta,
+            leitura_de_juro=leitura,
         )
         operacao.registrar_dia(
             livro, conta, decisao, hoje_precos,
@@ -256,10 +288,12 @@ def main() -> int:
         livro.fechar()
         return 0
 
-    conta, decisoes = operar(livro, config, precos, cdi, dias, liberado)
+    leitura = ler_juro(cdi)
+    conta, decisoes = operar(livro, config, precos, cdi, dias, liberado, leitura)
     painel = montar_painel(livro, conta, precos, cdi)
     painel["satelite"] = {"liberado": liberado, "motivo": motivo_satelite}
     painel["configuracao"] = config.para_dict()
+    painel["juro"] = leitura.resumo() if leitura else None
 
     PAINEL.parent.mkdir(parents=True, exist_ok=True)
     PAINEL.write_text(json.dumps(painel, indent=2, ensure_ascii=False, default=str),
@@ -284,6 +318,12 @@ def main() -> int:
                   f"(líquido de IR, aporte a aporte)")
             print(f"  TIR         {painel['tir_pct']:>13.2f}% ao ano   "
                   f"(CDI: {painel['tir_cdi_pct']:.2f}%)")
+        if leitura:
+            print(f"\n  Juro real líquido: {leitura.juro_real_liquido * 100:.2f}% ao ano "
+                  f"(CDI {leitura.cdi_anual * 100:.2f}%, IPCA {leitura.ipca_12m * 100:.2f}%)")
+            print(f"  Prêmio da bolsa  : {leitura.premio_da_bolsa * 100:+.2f} pontos")
+            print(f"  Teto de risco    : {leitura.teto_de_risco_sugerido:.0f}%")
+            print(f"  {leitura.veredito}")
         print(f"\n  Regime : {ultima.regime.get('leitura', '—')}")
         print(f"  Risco  : pedido {ultima.risco_pedido_pct:.0f}%, "
               f"aplicado {ultima.risco_aplicado_pct:.0f}%")

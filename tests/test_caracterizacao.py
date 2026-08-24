@@ -71,16 +71,21 @@ class TesteAssinaturaDaSimulacao:
         assert resultado.total_aportado == pytest.approx(30_000.00, abs=0.01)
 
     def test_valor_liquido_final(self, resultado):
-        assert resultado.valor_liquido_final == pytest.approx(53_308.67, abs=1.0)
+        # Era 53.308,67 antes de o caixa passar a pagar IR no resgate. A queda
+        # de R$ 294 é o imposto que a versão anterior não cobrava sobre os
+        # juros do caixa, e o valor de agora é o correto.
+        assert resultado.valor_liquido_final == pytest.approx(53_014.69, abs=1.0)
 
     def test_custo_total_pago(self, resultado):
-        assert resultado.custo_total_pago == pytest.approx(57.39, abs=0.20)
+        assert resultado.custo_total_pago == pytest.approx(57.13, abs=0.20)
 
     def test_imposto_total_pago(self, resultado):
-        assert resultado.imposto_total_pago == pytest.approx(3_937.00, abs=2.0)
+        # Subiu de 3.937,00 para 4.149,21 pelo mesmo motivo: os R$ 212 a mais
+        # são o IR do caixa, que antes escapava inteiro.
+        assert resultado.imposto_total_pago == pytest.approx(4_149.21, abs=2.0)
 
     def test_tir_anual(self, resultado):
-        assert resultado.tir_anual_pct == pytest.approx(23.35, abs=0.05)
+        assert resultado.tir_anual_pct == pytest.approx(23.12, abs=0.05)
 
     def test_tir_do_cdi(self, resultado):
         assert resultado.tir_cdi_pct == pytest.approx(9.97, abs=0.05)

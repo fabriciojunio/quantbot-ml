@@ -1,12 +1,12 @@
 {
-  "gerado_em": "2026-08-23T22:18:59.101408+00:00",
+  "gerado_em": "2026-08-24T01:47:06.825267+00:00",
   "dinheiro_real": false,
   "aviso": "Preços reais, dinheiro simulado. Nenhuma ordem foi enviada a corretora.",
-  "patrimonio": 49773.57,
+  "patrimonio": 49775.62,
   "aportado": 34000.0,
-  "resultado": 15773.57,
-  "resultado_pct": 46.39,
-  "caixa": 3958.71,
+  "resultado": 15775.62,
+  "resultado_pct": 46.4,
+  "caixa": 3960.76,
   "custo_pago": 29.19,
   "imposto_pago": 88.74,
   "referencia_cdi": 46552.22,
@@ -8521,9 +8521,9 @@
     },
     {
       "data": "2026-08-21",
-      "total": 49773.57,
+      "total": 49775.62,
       "aportado": 34000.0,
-      "cota": 1.719234
+      "cota": 1.0
     }
   ],
   "ultimas_ordens": [
@@ -8673,10 +8673,10 @@
     }
   ],
   "auditoria": {
-    "eventos": 2943,
+    "eventos": 2945,
     "cadeia_intacta": true,
     "quebras": 0,
-    "hash_final": "2a01bdbcb3c1a0171a73fe2608e1cba1fc2faa2a11b4d28f47d652b32b9ab937",
+    "hash_final": "988a52e0e8c0493a1c63558c5618b804ea4c341956304957d11ecac6b09259a1",
     "primeiro_evento": "2026-08-23T22:18:48+00:00"
   },
   "satelite": {
@@ -8691,5 +8691,14 @@
     "banda_de_rebalanceamento": 0.05,
     "ordem_minima": 100.0,
     "reserva_por_fora": true
+  },
+  "juro": {
+    "cdi_anual_pct": 14.6,
+    "ipca_12m_pct": 4.44,
+    "juro_real_bruto_pct": 9.72,
+    "juro_real_liquido_pct": 7.62,
+    "premio_da_bolsa_pp": -1.12,
+    "teto_de_risco_sugerido_pct": 20.0,
+    "veredito": "prêmio NEGATIVO de -1.1 pontos: a renda fixa paga 7.6% real líquido, acima do que a bolsa espera no longo prazo. Correr risco aqui é pagar para ter risco"
   }
 }

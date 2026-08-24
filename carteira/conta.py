@@ -156,6 +156,18 @@ class Conta:
     prejuizo_a_compensar: dict[str, float] = field(default_factory=dict)
     movimentos: list[Movimento] = field(default_factory=list)
 
+    # Juros do caixa ainda não tributados, e a soma de (juros x dia) que dá a
+    # idade média deles.
+    #
+    # Existem porque o caixa não é dinheiro embaixo do colchão: é CDB ou Tesouro
+    # Selic, rende, e **paga imposto no resgate** pela tabela regressiva. Sem
+    # este par, o caixa rendia livre de imposto enquanto a referência de CDI
+    # pagava — e uma carteira 100% CDI "batia" a referência 100% CDI em
+    # R$ 7.411 numa simulação de dez anos. O erro inflava todo perfil
+    # conservador, que é justamente o que tem mais caixa.
+    caixa_rendimento: float = 0.0
+    caixa_idade: float = 0.0
+
     # ── Consulta ─────────────────────────────────────────────────────────
 
     def ativo(self, ticker: str) -> Ativo:
@@ -187,11 +199,80 @@ class Conta:
         self.caixa += valor
         self.total_aportado += valor
 
-    def render_caixa(self, taxa_do_dia: float) -> float:
-        """Aplica o rendimento do caixa. Devolve quanto rendeu."""
+    def render_caixa(self, taxa_do_dia: float, dia: int = 0) -> float:
+        """Aplica o rendimento do caixa. Devolve quanto rendeu.
+
+        O rendimento fica marcado como não tributado até o resgate — que é o
+        que acontece de verdade num CDB de liquidez diária ou no Tesouro Selic.
+        """
         rendimento = self.caixa * taxa_do_dia
+        if rendimento == 0:
+            return 0.0
         self.caixa += rendimento
+        self.caixa_rendimento += rendimento
+        self.caixa_idade += rendimento * dia
         return rendimento
+
+    def _idade_do_caixa(self, dia: int) -> float:
+        """Idade média dos juros do caixa, ponderada pelo valor de cada crédito.
+
+        É uma aproximação declarada, e vale saber para que lado ela erra. O
+        modelo exato trataria cada aporte mensal como uma aplicação separada,
+        com o próprio prazo — que é o que a referência de CDI faz. Aqui os
+        juros são agrupados num pote só e envelhecem a partir do dia em que
+        foram creditados, não do dia em que o principal entrou.
+
+        Como juro creditado hoje conta como novo, a idade média sai **menor**
+        que a real, a alíquota sai **maior**, e a carteira paga **mais** imposto
+        do que pagaria. O erro medido é de cerca de 1% do caixa em sete anos a
+        juro alto, e é contra a carteira — que é o lado certo para errar num
+        sistema que decide onde vai dinheiro.
+        """
+        if self.caixa_rendimento <= 0:
+            return 0.0
+        return max(0.0, dia - self.caixa_idade / self.caixa_rendimento)
+
+    def imposto_do_resgate(self, valor: float, dia: int) -> float:
+        """Quanto de IR um resgate de `valor` do caixa geraria, sem cobrar."""
+        if self.caixa <= 0 or self.caixa_rendimento <= 0 or valor <= 0:
+            return 0.0
+        fracao = min(1.0, valor / self.caixa)
+        juros = self.caixa_rendimento * fracao
+        return juros * aliquota_regressiva(int(self._idade_do_caixa(dia)))
+
+    def _maximo_resgatavel(self, dia: int) -> float:
+        """Quanto dá para gastar de fato, já descontando o IR do próprio resgate."""
+        if self.caixa <= 0:
+            return 0.0
+        if self.caixa_rendimento <= 0:
+            return self.caixa
+        aliquota = aliquota_regressiva(int(self._idade_do_caixa(dia)))
+        return self.caixa / (1 + self.caixa_rendimento * aliquota / self.caixa)
+
+    def _resgatar(self, valor: float, dia: int) -> float:
+        """Realiza a parte de juros de um resgate e cobra o IR. Devolve o imposto."""
+        if self.caixa <= 0 or self.caixa_rendimento <= 0 or valor <= 0:
+            return 0.0
+        fracao = min(1.0, valor / self.caixa)
+        juros = self.caixa_rendimento * fracao
+        imposto = juros * aliquota_regressiva(int(self._idade_do_caixa(dia)))
+
+        self.caixa_rendimento -= juros
+        self.caixa_idade *= 1 - fracao
+        self.caixa -= imposto
+        self.imposto_pago += imposto
+        return imposto
+
+    def liquidar_caixa(self, dia: int) -> float:
+        """Resgata tudo que sobrou no caixa, pagando o IR sobre os juros."""
+        if self.caixa_rendimento <= 0:
+            return 0.0
+        imposto = self.caixa_rendimento * aliquota_regressiva(int(self._idade_do_caixa(dia)))
+        self.caixa -= imposto
+        self.imposto_pago += imposto
+        self.caixa_rendimento = 0.0
+        self.caixa_idade = 0.0
+        return imposto
 
     def comprar(
         self, ticker: str, valor: float, preco: float, dia: int, motivo: str = ""
@@ -201,11 +282,25 @@ class Conta:
             return None
         if preco <= 0:
             raise ValueError(f"preço inválido para {ticker}: {preco}")
+        # Pedir mais do que existe é erro de quem chamou, e não se conserta
+        # sozinho: deixar passar vira alavancagem silenciosa.
         if valor > self.caixa + 1e-9:
             raise ValueError(
                 f"compra de {valor:.2f} em {ticker} não cabe no caixa de {self.caixa:.2f}. "
                 f"Deixar passar aqui vira alavancagem silenciosa."
             )
+
+        # Pedir exatamente o caixa é pedido legítimo — é o que o rodízio faz
+        # quando a carteira não tem fatia de caixa no alvo. Mas resgatar paga
+        # IR sobre os juros, e o IR sai do mesmo caixa. Então a ordem encolhe
+        # até caber nos dois, em vez de ser recusada.
+        #
+        # Resolvendo v + (v/caixa) x juros x alíquota = caixa:
+        maximo = self._maximo_resgatavel(dia)
+        if valor > maximo:
+            valor = maximo
+            if valor <= 0:
+                return None
 
         ativo = self.ativo(ticker)
         custo = self.modelo.custo_ponta(ativo, valor)
@@ -220,6 +315,7 @@ class Conta:
         p.custo_total += valor        # o custo de entrada é dedutível na venda
         p.idade_ponderada += cotas * dia
 
+        self._resgatar(valor, dia)
         self.caixa -= valor
         self.custo_pago += custo
 
@@ -263,7 +359,13 @@ class Conta:
         return mov
 
     def liquidar(self, precos: dict[str, float], dia: int, motivo: str = "liquidação") -> float:
-        """Vende tudo e devolve o caixa final, já com imposto pago."""
+        """Vende tudo e devolve o caixa final, já com imposto pago.
+
+        O caixa é resgatado primeiro, antes de as vendas entrarem. Depois das
+        vendas o saldo mistura juros de CDB com produto de venda de ETF, e os
+        dois têm regime de imposto diferente.
+        """
+        self.liquidar_caixa(dia)
         for ticker in list(self.posicoes):
             preco = precos.get(ticker)
             if preco is None or preco <= 0:
@@ -298,6 +400,8 @@ class Conta:
             "custo_pago": round(self.custo_pago, 4),
             "imposto_pago": round(self.imposto_pago, 4),
             "prejuizo_a_compensar": {k: round(v, 4) for k, v in self.prejuizo_a_compensar.items()},
+            "caixa_rendimento": round(self.caixa_rendimento, 6),
+            "caixa_idade": round(self.caixa_idade, 6),
         }
 
     @staticmethod
@@ -312,6 +416,8 @@ class Conta:
             custo_pago=float(d.get("custo_pago", 0.0)),
             imposto_pago=float(d.get("imposto_pago", 0.0)),
             prejuizo_a_compensar=dict(d.get("prejuizo_a_compensar", {})),
+            caixa_rendimento=float(d.get("caixa_rendimento", 0.0)),
+            caixa_idade=float(d.get("caixa_idade", 0.0)),
         )
 
     def conferir(self, precos: dict[str, float], tolerancia: float = 0.01) -> None:
