@@ -1,12 +1,12 @@
 {
-  "gerado_em": "2026-08-24T01:47:06.825267+00:00",
+  "gerado_em": "2026-08-24T02:07:38.807485+00:00",
   "dinheiro_real": false,
   "aviso": "Preços reais, dinheiro simulado. Nenhuma ordem foi enviada a corretora.",
-  "patrimonio": 49775.62,
+  "patrimonio": 49777.65,
   "aportado": 34000.0,
-  "resultado": 15775.62,
+  "resultado": 15777.65,
   "resultado_pct": 46.4,
-  "caixa": 3960.76,
+  "caixa": 3962.8,
   "custo_pago": 29.19,
   "imposto_pago": 88.74,
   "referencia_cdi": 46552.22,
@@ -34,8 +34,8 @@
     {
       "ticker": "BTC-BRL",
       "cotas": 0.001286,
-      "preco": 404420.08,
-      "valor": 519.92,
+      "preco": 404405.41,
+      "valor": 519.9,
       "custo_medio": 332707.91,
       "resultado_pct": 21.55,
       "peso_pct": 1.0
@@ -8521,7 +8521,7 @@
     },
     {
       "data": "2026-08-21",
-      "total": 49775.62,
+      "total": 49777.65,
       "aportado": 34000.0,
       "cota": 1.0
     }
@@ -8673,10 +8673,10 @@
     }
   ],
   "auditoria": {
-    "eventos": 2945,
+    "eventos": 2947,
     "cadeia_intacta": true,
     "quebras": 0,
-    "hash_final": "988a52e0e8c0493a1c63558c5618b804ea4c341956304957d11ecac6b09259a1",
+    "hash_final": "258edf734dcf662652fd56edec7c467f51d67570eb39305f352935ecc9ed977d",
     "primeiro_evento": "2026-08-23T22:18:48+00:00"
   },
   "satelite": {
