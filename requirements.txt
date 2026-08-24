@@ -36,3 +36,6 @@ safetensors>=0.4
 
 # ── Desenvolvimento / testes ───────────────────────────────
 pytest>=8.0
+
+# Testes de propriedade
+hypothesis>=6.100
