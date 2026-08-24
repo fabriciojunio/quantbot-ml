@@ -294,6 +294,44 @@ class TesteFimAFim:
         assert any("sem cotação" in a for a in decisao.avisos)
         assert sum(decisao.alvo.values()) == pytest.approx(1.0)
 
+    def test_posicao_sem_cotacao_hoje_e_carregada_pelo_ultimo_preco(self, livro):
+        """O bug que derrubou o robô na primeira execução em nuvem.
+
+        Os runners do GitHub recebem HTTP 451 da Binance por bloqueio
+        geográfico. A série de bitcoin sumia, a posição continuava no livro, e
+        `conferir()` matava a execução com "posição em BTC-BRL sem preço no
+        fechamento". Uma fonte fora do ar não pode derrubar a operação inteira.
+        """
+        precos, cdi = mercado(200)
+        conta = None
+        for dia in precos.index[:80]:
+            conta, d = operacao.rodar_dia(livro, CONFIG, precos, cdi, hoje=dia, conta=conta)
+            operacao.registrar_dia(
+                livro, conta, d, {t: float(v) for t, v in precos.loc[dia].items()}, 1.0, 1.0)
+
+        assert conta.posicoes, "precisa haver posição para o teste valer"
+        sumido = sorted(conta.posicoes)[0]
+
+        # A fonte de um ativo cai: a coluna some da série.
+        parcial = precos.drop(columns=[sumido])
+        conta2, decisao = operacao.rodar_dia(
+            livro, CONFIG, parcial, cdi, hoje=parcial.index[80], conta=conta)
+
+        assert any("último preço conhecido" in a for a in decisao.avisos)
+        assert conta2.patrimonio(
+            {t: float(v) for t, v in parcial.loc[parcial.index[80]].items()}
+            | {sumido: livro.ultimo_preco(sumido)[0]}
+        ) > 0
+
+    def test_posicao_sem_preco_nenhum_no_livro_falha(self, livro):
+        """Carregar preço velho é aceitável; inventar preço não é."""
+        precos, cdi = mercado(60)
+        conta = Conta(caixa=1000.0, ativos=operacao.universo_da_operacao())
+        conta.comprar("FANTASMA11.SA", 500, preco=10.0, dia=0)
+
+        with pytest.raises(ValueError, match="sem preço anterior no livro"):
+            operacao.rodar_dia(livro, CONFIG, precos, cdi, hoje=precos.index[0], conta=conta)
+
     def test_serie_vazia_e_recusada(self, livro):
         with pytest.raises(ValueError, match="sem preços"):
             operacao.rodar_dia(livro, CONFIG, pd.DataFrame(), pd.Series(dtype=float))

@@ -181,19 +181,63 @@ class TesteSerieCripto:
         with pytest.raises(ValueError, match="desconhecida"):
             mm.serie_cripto_em_reais("DOGE-BRL")
 
-    def test_serie_vazia_vira_erro_e_nao_dado_inventado(self):
+    def test_exchange_vazia_cai_para_a_fonte_alternativa(self):
+        """A Binance devolve HTTP 451 de datacenter; sem fallback o robô morre na nuvem."""
         def vazio(*a, **k):
             return pd.DataFrame()
 
-        with pytest.raises(mm.ErroMultimoeda, match="vazia"):
-            mm.serie_cripto_em_reais("BTC-BRL", historico=vazio, cambista=cambista_falso())
+        def yahoo(tickers, anos=8):
+            idx = pd.date_range("2020-01-01", periods=400, freq="D")
+            return pd.DataFrame({tickers[0]: np.full(400, 60_000.0)}, index=idx)
 
-    def test_falha_da_exchange_vira_erro_claro(self):
+        s = mm.serie_cripto_em_reais(
+            "BTC-BRL", anos=1, historico=vazio,
+            cambista=cambista_falso(5.0), fonte_alternativa=yahoo,
+        )
+        assert float(s.iloc[0]) == pytest.approx(300_000.0)
+
+    def test_falha_da_exchange_cai_para_a_fonte_alternativa(self):
         def explode(*a, **k):
-            raise RuntimeError("timeout")
+            raise RuntimeError("HTTP Error 451")
 
-        with pytest.raises(mm.ErroMultimoeda, match="sem candles"):
-            mm.serie_cripto_em_reais("BTC-BRL", historico=explode, cambista=cambista_falso())
+        def yahoo(tickers, anos=8):
+            idx = pd.date_range("2020-01-01", periods=400, freq="D")
+            return pd.DataFrame({tickers[0]: np.full(400, 50_000.0)}, index=idx)
+
+        s = mm.serie_cripto_em_reais(
+            "BTC-BRL", anos=1, historico=explode,
+            cambista=cambista_falso(5.0), fonte_alternativa=yahoo,
+        )
+        assert len(s) > 0
+
+    def test_as_duas_fontes_falhando_vira_erro_e_nao_dado_inventado(self):
+        def explode(*a, **k):
+            raise RuntimeError("HTTP Error 451")
+
+        def yahoo_tambem_falha(*a, **k):
+            raise RuntimeError("sem rede")
+
+        with pytest.raises(mm.ErroMultimoeda, match="todas as fontes"):
+            mm.serie_cripto_em_reais(
+                "BTC-BRL", historico=explode,
+                cambista=cambista_falso(), fonte_alternativa=yahoo_tambem_falha,
+            )
+
+    def test_fonte_alternativa_vazia_tambem_vira_erro(self):
+        def explode(*a, **k):
+            raise RuntimeError("451")
+
+        def yahoo_vazio(*a, **k):
+            return pd.DataFrame()
+
+        with pytest.raises(mm.ErroMultimoeda, match="todas as fontes"):
+            mm.serie_cripto_em_reais(
+                "BTC-BRL", historico=explode,
+                cambista=cambista_falso(), fonte_alternativa=yahoo_vazio,
+            )
+
+    def test_toda_cripto_conhecida_tem_fonte_alternativa(self):
+        assert set(mm.SIMBOLOS_CRIPTO) == set(mm.SIMBOLOS_YAHOO)
 
     def test_sem_dia_em_comum_vira_erro(self):
         def cambio_de_outra_epoca(anos=9, moeda="USD_BRL"):

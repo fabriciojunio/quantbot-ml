@@ -356,6 +356,20 @@ class Livro:
             return None
         return json.loads(linha["dados"]).get("conta")
 
+    def ultimo_preco(self, ticker: str) -> tuple[float, str] | None:
+        """Último preço registrado de um ativo, com a data.
+
+        Serve para carregar posição em dia sem cotação. Uma fonte fora do ar
+        não pode derrubar a operação: o ativo continua valendo o que valia no
+        último fechamento conhecido, e o relatório diz que o preço está velho.
+        """
+        linha = self.conexao.execute(
+            "SELECT preco, data FROM posicao_diaria WHERE ativo = ? AND preco > 0 "
+            "ORDER BY data DESC LIMIT 1",
+            (ticker,),
+        ).fetchone()
+        return (float(linha["preco"]), linha["data"]) if linha else None
+
     def ultima_data_de(self, tipo: TipoEvento) -> str | None:
         linha = self.conexao.execute(
             "SELECT quando FROM evento WHERE tipo = ? ORDER BY id DESC LIMIT 1",
