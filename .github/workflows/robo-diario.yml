@@ -1,0 +1,96 @@
+name: robô diário
+
+# Roda todo dia útil depois do fechamento da B3 (17h de Brasília = 20h UTC).
+# O horário do cron do GitHub não é exato — pode atrasar alguns minutos em dia
+# de fila —, e por isso o robô opera sempre o último pregão disponível na fonte
+# em vez de assumir que hoje é hoje.
+on:
+  schedule:
+    - cron: "45 20 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      desde:
+        description: "Reconstruir a partir desta data (AAAA-MM-DD). Vazio = só o último pregão."
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  # Duas execuções ao mesmo tempo escreveriam no mesmo livro e a cadeia de hash
+  # sairia entrelaçada. Uma de cada vez, sem cancelar a que já começou.
+  group: robo-diario
+  cancel-in-progress: false
+
+jobs:
+  operar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Conferir a integridade do livro ANTES de escrever
+        run: |
+          python scripts/rodar_diario.py --auditar
+
+      - name: Operar o pregão
+        run: |
+          if [ -n "${{ inputs.desde }}" ]; then
+            python scripts/rodar_diario.py --desde "${{ inputs.desde }}"
+          else
+            python scripts/rodar_diario.py
+          fi
+
+      - name: Conferir a integridade DEPOIS de escrever
+        run: |
+          python scripts/rodar_diario.py --auditar
+
+      - name: Guardar o livro e o retrato
+        run: |
+          git config user.name  "robo-quantbot"
+          git config user.email "robo@quantbot.local"
+          git add data/auditoria relatorios/painel.json
+          if git diff --staged --quiet; then
+            echo "Nada mudou hoje."
+          else
+            git commit -m "chore(robô): pregão de $(date -u +%Y-%m-%d) [skip ci]"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Publicar o painel
+        # O deploy só dispara se o segredo existir. Sem ele o robô continua
+        # rodando e gravando; só a tela é que não atualiza.
+        if: success()
+        env:
+          GANCHO: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$GANCHO" ]; then
+            echo "VERCEL_DEPLOY_HOOK não configurado; pulando a publicação."
+            exit 0
+          fi
+          curl -fsS -X POST "$GANCHO" -o /dev/null
+          echo "Publicação do painel solicitada."
+
+      - name: Guardar o carimbo como artefato
+        # O carimbo fora do repositório é o que denuncia até uma reescrita
+        # completa da cadeia. Noventa dias de retenção dão folga para conferir.
+        uses: actions/upload-artifact@v4
+        with:
+          name: carimbo-${{ github.run_number }}
+          path: data/auditoria/carimbo.json
+          retention-days: 90
