@@ -83,3 +83,4 @@
 {"data": "2026-08-21", "positivo": 49, "negativo": 109, "neutro": 164, "indice_sentimento": -0.1863, "metodo": "finbert"}
 {"data": "2026-08-22", "positivo": 36, "negativo": 119, "neutro": 157, "indice_sentimento": -0.266, "metodo": "finbert"}
 {"data": "2026-08-23", "positivo": 36, "negativo": 111, "neutro": 163, "indice_sentimento": -0.2419, "metodo": "finbert"}
+{"data": "2026-08-24", "positivo": 33, "negativo": 113, "neutro": 146, "indice_sentimento": -0.274, "metodo": "finbert"}
