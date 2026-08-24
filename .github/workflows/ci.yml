@@ -1,41 +1,101 @@
 name: CI
 
-# Integração contínua: roda os testes e o lint a cada push/PR.
-# Os commits automáticos do bot usam [skip ci], então não disparam isto.
+# Integração contínua: roda os testes, o lint e as checagens de segurança.
+# Os commits automáticos do robô usam [skip ci], então não disparam isto.
 
 on:
   push:
-    branches: [main]
+    # Todas as ramificações, não só a principal. O trabalho acontece em
+    # ramificação de tema, e CI que só roda na principal descobre a quebra
+    # depois do merge — quando já é problema de outra pessoa.
+    branches: ["**"]
   pull_request: {}
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   testes:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+
       - name: Dependências
         run: pip install -r requirements-ci.txt
 
-      - name: Lint (ruff) — informativo
+      - name: Lint (ruff) — bloqueia nos pacotes novos
+        run: ruff check carteira auditoria painel scripts/rodar_diario.py scripts/simular_aportes.py
+
+      - name: Lint (ruff) — resto do repositório, informativo
         continue-on-error: true
         run: ruff check .
 
       - name: Segurança do código (bandit) — bloqueia em severidade alta
-        run: bandit -r . -x ./.venv,./tests,./.pytest_cache --severity-level high
+        run: bandit -r . -x ./.venv,./tests,./.pytest_cache,./painel --severity-level high
 
       - name: Segurança do código (bandit) — relatório completo, informativo
         continue-on-error: true
-        run: bandit -r . -x ./.venv,./tests,./.pytest_cache -ll
+        run: bandit -r . -x ./.venv,./tests,./.pytest_cache,./painel -ll
 
       - name: Vulnerabilidades nas dependências (pip-audit)
         run: pip-audit -r requirements-ci.txt
 
       - name: Testes
-        run: python -m pytest -q
+        run: python -m pytest
+
+  # A contabilidade é a única classe que backtest e operação compartilham.
+  # Uma quebra aqui aparece nos dois ao mesmo tempo, e por isso ela tem um
+  # passo próprio: falhar rápido e com nome legível.
+  contabilidade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements-ci.txt
+      - name: Invariantes de conta, imposto e auditoria
+        run: |
+          python -m pytest \
+            tests/test_carteira_conta.py \
+            tests/test_carteira_operacao.py \
+            tests/test_auditoria.py \
+            tests/test_carteira_tributos.py
+
+  painel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: painel/package-lock.json
+
+      - name: Dependências do painel
+        working-directory: painel
+        run: npm ci
+
+      - name: Tipos
+        working-directory: painel
+        run: npx tsc --noEmit
+
+      - name: Vulnerabilidades (npm audit)
+        working-directory: painel
+        run: npm audit --audit-level=high
+
+      - name: Build estático
+        working-directory: painel
+        run: npm run build
