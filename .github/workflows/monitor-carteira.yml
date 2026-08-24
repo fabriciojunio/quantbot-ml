@@ -1,0 +1,73 @@
+name: Monitor da carteira
+
+# Roda na nuvem, todo dia útil, sem o PC ligado. Coleta preço, CDI e sinal,
+# registra a alocação que a regra sugere, e toda segunda-feira roda a validação
+# fora da amostra completa com Deflated Sharpe e PBO.
+#
+# Ele NÃO opera. Nem em papel com dinheiro, nem com dinheiro real. O que ele
+# constrói é a série histórica que permite responder daqui a um ano, com dado,
+# se a estratégia passou a ter vantagem em algum momento.
+
+on:
+  schedule:
+    - cron: "30 21 * * 1-5"   # 21:30 UTC = 18:30 de Brasília, dias úteis
+  workflow_dispatch:
+    inputs:
+      validar:
+        description: "Forçar a validação completa nesta execução"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor-carteira
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependências
+        run: pip install numpy pandas scipy scikit-learn yfinance
+
+      # Guarda os preços já baixados entre execuções: menos pressão no Yahoo e
+      # execução bem mais rápida.
+      - name: Cache dos preços
+        uses: actions/cache@v4
+        with:
+          path: data/carteira
+          key: carteira-${{ github.run_id }}
+          restore-keys: carteira-
+
+      - name: Coletar e medir
+        run: |
+          python scripts/monitor_carteira.py \
+            ${{ inputs.validar && '--validar' || '' }}
+
+      - name: Auditar o paper book de FIIs
+        continue-on-error: true
+        run: python scripts/auditar_paper_book.py
+
+      - name: Commitar o registro
+        run: |
+          git config user.name "quantbot-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/carteira/monitor relatorios/carteira || true
+          if git diff --cached --quiet; then
+            echo "Nada novo para commitar."
+          else
+            git commit -m "chore: monitor da carteira $(date +%F) [skip ci]"
+            git push
+          fi
