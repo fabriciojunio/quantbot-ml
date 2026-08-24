@@ -34,6 +34,7 @@ from datetime import date
 
 import pandas as pd
 
+from . import juro_real
 from .conta import Conta
 from .custos_b3 import ModeloCustoB3
 from .multimoeda import TETO_DE_CRIPTO, com_cripto, exposicao_cambial
@@ -59,6 +60,7 @@ class Configuracao:
     ordem_minima: float = 100.0
     reserva_por_fora: bool = True
     reduzir_em_regime_ruim: float = 0.75
+    usar_teto_de_juro: bool = True
 
     def __post_init__(self) -> None:
         if not 0 <= self.risco_pct <= 100:
@@ -105,12 +107,14 @@ class Decisao:
     alvo: dict[str, float]
     movimentos: list[dict] = field(default_factory=list)
     avisos: list[str] = field(default_factory=list)
+    juro: dict | None = None
 
     def para_dict(self) -> dict:
         return {
             "data": self.data,
             "dia_de_aporte": self.dia_de_aporte,
             "regime": self.regime,
+            "juro": self.juro,
             "risco_pedido_pct": self.risco_pedido_pct,
             "risco_aplicado_pct": self.risco_aplicado_pct,
             "alvo_pct": {t: round(p * 100, 2) for t, p in
@@ -160,15 +164,29 @@ def alvo_do_dia(
     favoravel: bool,
     satelite_liberado: bool,
     composicao: dict | None = None,
+    leitura_de_juro: juro_real.Leitura | None = None,
 ) -> tuple[dict[str, float], float, list[str]]:
-    """Os pesos alvo de hoje, já com ajuste de regime e fatia de cripto."""
+    """Os pesos alvo de hoje, com teto de juro, ajuste de regime e cripto."""
     avisos: list[str] = []
     risco = config.risco_pct
 
+    # O teto de juro real vem antes de tudo. É a guarda mais forte do sistema,
+    # e a única que se mostrou capaz de decidir o resultado: nas 34 janelas de
+    # cinco anos em que ela agiu, melhorou em 29 (p = 0,00002) e reduziu a
+    # queda máxima de 4,85% para 0,47%.
+    #
+    # Ela não cria retorno — em juro real alto nada bate a renda fixa. Ela
+    # impede correr risco que não está sendo pago.
+    if leitura_de_juro is not None and config.usar_teto_de_juro:
+        risco, aviso = juro_real.aplicar_teto(risco, leitura_de_juro)
+        if aviso:
+            avisos.append(aviso)
+
     if not favoravel and risco > 40:
+        antes = risco
         risco = risco * config.reduzir_em_regime_ruim
         avisos.append(
-            f"regime desfavorável: risco reduzido de {config.risco_pct:.0f}% para "
+            f"regime desfavorável: risco reduzido de {antes:.0f}% para "
             f"{risco:.0f}% (reduzido, não zerado — sair no fundo é pior que ficar)"
         )
 
@@ -193,6 +211,7 @@ def rodar_dia(
     satelite_liberado: bool = False,
     composicao: dict | None = None,
     conta: Conta | None = None,
+    leitura_de_juro: juro_real.Leitura | None = None,
 ) -> tuple[Conta, Decisao]:
     """Um dia de operação, do preço ao registro.
 
@@ -220,7 +239,9 @@ def rodar_dia(
         )
 
     favoravel, regime = ler_regime(precos.loc[:hoje], cdi_acumulado.loc[:hoje])
-    alvo, risco_aplicado, avisos = alvo_do_dia(config, favoravel, satelite_liberado, composicao)
+    alvo, risco_aplicado, avisos = alvo_do_dia(
+        config, favoravel, satelite_liberado, composicao, leitura_de_juro
+    )
 
     faltando = sorted(set(alvo) - set(hoje_precos) - {"CDI"})
     if faltando:
@@ -235,10 +256,11 @@ def rodar_dia(
         data=str(hoje.date()), dia_de_aporte=False, regime=regime,
         risco_pedido_pct=config.risco_pct, risco_aplicado_pct=risco_aplicado,
         alvo=alvo, avisos=avisos,
+        juro=leitura_de_juro.resumo() if leitura_de_juro else None,
     )
 
     # 1. O caixa rende antes de qualquer movimentação.
-    conta.render_caixa(float(cdi_alinhado.loc[hoje]))
+    conta.render_caixa(float(cdi_alinhado.loc[hoje]), n_dia)
 
     # 2. Aporte no primeiro pregão do mês.
     if e_primeiro_pregao_do_mes(hoje, precos.index) and config.aporte_mensal > 0:

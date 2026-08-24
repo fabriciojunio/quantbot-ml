@@ -272,7 +272,7 @@ def simular(
         hoje = matriz[n_dia]
 
         # 1. O caixa rende antes de qualquer movimentação do dia.
-        conta.render_caixa(float(cdi_dia.iloc[n_dia]))
+        conta.render_caixa(float(cdi_dia.iloc[n_dia]), n_dia)
 
         # 1b. Retorno do dia, medido ANTES do aporte entrar. É o que separa
         # desempenho de depósito.
