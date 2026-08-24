@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 import logging
+
 logging.basicConfig(level=logging.WARNING)
 
 REL = ROOT / "relatorios"
@@ -47,8 +48,8 @@ def macro_bloco() -> str:
 
 
 def screening_bloco() -> str:
-    from data.fundamentus_client import FundamentusClient
     from data.bcb_client import BCBClient
+    from data.fundamentus_client import FundamentusClient
     from income.fii_screener import FIIScreener
 
     fc = FundamentusClient()
@@ -63,7 +64,7 @@ def screening_bloco() -> str:
     res = screener.screen(metrics)
 
     linhas = [
-        f"## FIIs — screening do dia",
+        "## FIIs — screening do dia",
         "",
         f"Analisados: **{len(metrics)}** | Aprovados: **{len(res.aprovados)}** "
         f"| DY mínimo: {screener.criteria.dy_min:.1f}% (Selic {selic}%)",

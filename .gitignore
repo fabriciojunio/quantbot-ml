@@ -40,3 +40,13 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Cripto: cache de candles (pesado, reconstruível) e estado local
+data/cripto/candles/
+data/cripto/risk_state.json
+data/cripto/paper_book.json
+data/cripto/decisoes/
+
+# Carteira: cache de precos e macro (reconstruivel)
+data/carteira/precos/
+data/carteira/macro/

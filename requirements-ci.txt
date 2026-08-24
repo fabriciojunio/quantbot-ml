@@ -16,3 +16,7 @@ pytest>=8.0
 ruff>=0.6
 bandit>=1.7
 pip-audit>=2.7
+
+# Testes de propriedade: geram centenas de casos por teste, incluindo os de borda
+# que ninguem escreve a mao (valor zero, valor gigante, lista vazia).
+hypothesis>=6.100

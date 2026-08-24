@@ -1,0 +1,27 @@
+{
+  "name": "painel-quantbot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Painel do robô: patrimônio, decisões e integridade do livro-razão",
+  "scripts": {
+    "dev": "next dev",
+    "build": "node scripts/preparar-dados.mjs && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.3.2",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

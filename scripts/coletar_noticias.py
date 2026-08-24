@@ -47,6 +47,7 @@ if _envf.exists():
             os.environ.setdefault(_k.strip(), _v.strip())
 
 import logging
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
 
 from data.news_fetcher import NewsFetcher
