@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-08-22
+# QuantBot — Relatório 2026-08-23
 
-_Gerado em 22/08/2026 22:21._
+_Gerado em 23/08/2026 22:21._
 
 ## Macro (Banco Central)
 
@@ -11,21 +11,21 @@ _Gerado em 22/08/2026 22:21._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.27 (😀 36 · 😐 157 · 😟 119) via finbert
-- **Média 14 dias:** -0.28
+- **Hoje:** -0.24 (😀 36 · 😐 163 · 😟 111) via finbert
+- **Média 14 dias:** -0.27
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (74), NVDA (37), AAPL (30), MSFT (28), ITUB4.SA (26), PETR4.SA (26)
+- **Ativos mais citados:** ADA-USD (73), NVDA (45), AAPL (36), MSFT (34), BTC-USD (26), ITUB4.SA (25)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,713.95  (**+17.14%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$605.50
+- **Valor:** R$11,743.74  (**+17.44%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$635.29
 - **Operações fechadas:** 73 (30 no lucro)
 - **Carteira:** BTHF11, CLIN11, CPSH11, ICRI11, ITRI11, KNHF11, MXRF11, PORD11, RECR11, RZTR11, TVRI11, XPCI11
 
 ### Desempenho vs benchmark
-- **Período:** 79 dias · **Bot:** +17.14% · **CDI:** +2.86% (a.a. 13.90%)
-- **Alpha vs CDI:** +14.28 pontos percentuais — ✅ acima do CDI
+- **Período:** 80 dias · **Bot:** +17.44% · **CDI:** +2.89% (a.a. 13.90%)
+- **Alpha vs CDI:** +14.54 pontos percentuais — ✅ acima do CDI
 - _Janela curta: leia como acompanhamento, não como prova de edge._
 
 ### Expectativa estatística (operações fechadas)
@@ -36,7 +36,7 @@ _Gerado em 22/08/2026 22:21._
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: +1.47% (n=16) · neutro: +1.42% (n=56)
+- Sentimento → retorno ~7 dias depois: medo: +1.47% (n=16) · neutro: +1.40% (n=57)
 
 ## FIIs — screening do dia
 
