@@ -1,20 +1,20 @@
 # QuantBot — Relatório 2026-09-08
 
-_Gerado em 08/09/2026 00:00._
+_Gerado em 08/09/2026 23:53._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.0
 - **CDI:** 13.9
 - **IPCA 12m:** 4.44
-- **Dólar:** 5.1253
+- **Dólar:** 5.0856
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.28 (😀 27 · 😐 159 · 😟 111) via finbert
-- **Média 14 dias:** -0.24
+- **Hoje:** -0.18 (😀 32 · 😐 181 · 😟 86) via finbert
+- **Média 14 dias:** -0.23
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (53), AAPL (41), NVDA (40), MSFT (36), PETR4.SA (25), ITUB4.SA (23)
+- **Ativos mais citados:** ADA-USD (56), PETR4.SA (29), AAPL (28), BBDC4.SA (27), VALE3.SA (26), ITUB4.SA (26)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
@@ -40,7 +40,7 @@ _Gerado em 08/09/2026 00:00._
 
 ## FIIs — screening do dia
 
-Analisados: **561** | Aprovados: **55** | DY mínimo: 10.1% (Selic 14.5%)
+Analisados: **561** | Aprovados: **57** | DY mínimo: 9.8% (Selic 14.0%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
