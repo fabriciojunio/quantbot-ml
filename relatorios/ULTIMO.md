@@ -1,20 +1,20 @@
-# QuantBot — Relatório 2026-09-08
+# QuantBot — Relatório 2026-09-09
 
-_Gerado em 08/09/2026 23:53._
+_Gerado em 09/09/2026 23:52._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 14.0
 - **CDI:** 13.9
 - **IPCA 12m:** 4.44
-- **Dólar:** 5.0856
+- **Dólar:** 5.0979
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.18 (😀 32 · 😐 181 · 😟 86) via finbert
-- **Média 14 dias:** -0.23
+- **Hoje:** -0.27 (😀 25 · 😐 172 · 😟 107) via finbert
+- **Média 14 dias:** -0.24
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (56), PETR4.SA (29), AAPL (28), BBDC4.SA (27), VALE3.SA (26), ITUB4.SA (26)
+- **Ativos mais citados:** ADA-USD (44), AAPL (33), PETR4.SA (32), NVDA (30), MSFT (28), AMZN (24)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
@@ -38,24 +38,9 @@ _Gerado em 08/09/2026 23:53._
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
 - Sentimento → retorno ~7 dias depois: medo: +1.45% (n=18) · neutro: +1.31% (n=69)
 
-## FIIs — screening do dia
+## FIIs
 
-Analisados: **561** | Aprovados: **57** | DY mínimo: 9.8% (Selic 14.0%)
-
-| # | Ticker | Score | DY | P/VP |
-|---|--------|-------|-----|------|
-| 1 | RZAT11 | 80.0 | 12.2% | 0.86 |
-| 2 | PORD11 | 79.2 | 11.4% | 0.88 |
-| 3 | GGRC11 | 79.0 | 11.8% | 0.82 |
-| 4 | CPTS11 | 78.8 | 11.5% | 0.85 |
-| 5 | TVRI11 | 78.7 | 11.6% | 0.84 |
-| 6 | RZTR11 | 78.6 | 11.4% | 0.85 |
-| 7 | VRTA11 | 78.6 | 11.5% | 0.85 |
-| 8 | TJKB11 | 78.4 | 11.1% | 0.89 |
-| 9 | MXRF11 | 78.1 | 11.5% | 0.98 |
-| 10 | SNEL11 | 78.0 | 11.8% | 1.02 |
-| 11 | XPCI11 | 78.0 | 10.8% | 0.90 |
-| 12 | CPSH11 | 77.8 | 11.3% | 0.83 |
+_Fundamentus indisponível nesta rodada._
 
 ---
 *O bot analisa e informa. Você decide e executa. DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*
