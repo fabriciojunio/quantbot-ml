@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 258.34,
+  "caixa": 262.11,
   "posicoes": {
     "GARE11": {
       "ticker": "GARE11",
@@ -11,8 +11,8 @@
       "dy_entrada": 11.65,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.31,
       "custo_entrada": 1.79
     },
     "KFOF11": {
@@ -24,8 +24,8 @@
       "dy_entrada": 12.34,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.31,
       "custo_entrada": 1.69
     },
     "KNHY11": {
@@ -37,8 +37,8 @@
       "dy_entrada": 12.27,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.32,
       "custo_entrada": 1.72
     },
     "HGCR11": {
@@ -50,8 +50,8 @@
       "dy_entrada": 12.15,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.32,
       "custo_entrada": 1.75
     },
     "BTCI11": {
@@ -63,8 +63,8 @@
       "dy_entrada": 12.86,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.34,
       "custo_entrada": 1.78
     },
     "MXRF11": {
@@ -76,8 +76,8 @@
       "dy_entrada": 11.6,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.31,
       "custo_entrada": 1.78
     },
     "RBVA11": {
@@ -89,8 +89,8 @@
       "dy_entrada": 12.33,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.33,
       "custo_entrada": 1.79
     },
     "KNHF11": {
@@ -102,8 +102,8 @@
       "dy_entrada": 12.78,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.33,
       "custo_entrada": 1.69
     },
     "XPSF11": {
@@ -115,8 +115,8 @@
       "dy_entrada": 12.68,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.34,
       "custo_entrada": 1.78
     },
     "PMLL11": {
@@ -128,8 +128,8 @@
       "dy_entrada": 11.0,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.28,
       "custo_entrada": 1.69
     },
     "ITRI11": {
@@ -141,8 +141,8 @@
       "dy_entrada": 10.81,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.28,
       "custo_entrada": 1.74
     },
     "KNIP11": {
@@ -154,8 +154,8 @@
       "dy_entrada": 11.24,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-09-11",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-09-12",
+      "dividendos": 0.3,
       "custo_entrada": 1.79
     }
   },
@@ -2192,6 +2192,10 @@
     {
       "data": "2026-09-11",
       "valor_total": 11759.12
+    },
+    {
+      "data": "2026-09-12",
+      "valor_total": 11762.89
     }
   ],
   "log": [
