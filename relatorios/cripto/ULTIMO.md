@@ -1,15 +1,15 @@
-# Monitor de cripto — 2026-09-14
+# Monitor de cripto — 2026-09-15
 
-_Gerado em 2026-09-14T23:33:20 UTC._
+_Gerado em 2026-09-15T23:15:16 UTC._
 
 ## Mercado agora
 
 | Par | Preço | Spread | Desequilíbrio do book | Fonte |
 |---|---|---|---|---|
-| BTCUSDT | US$ 78,300.05 | 0.0001% | 0.11 | gateio |
-| ETHUSDT | US$ 2,521.01 | 0.0004% | 0.36 | gateio |
-| SOLUSDT | US$ 102.75 | 0.0097% | 0.55 | gateio |
-| BNBUSDT | US$ 721.55 | 0.0139% | 0.53 | gateio |
+| BTCUSDT | US$ 75,892.35 | 0.0001% | 0.47 | gateio |
+| ETHUSDT | US$ 2,408.41 | 0.0004% | 0.66 | gateio |
+| SOLUSDT | US$ 97.55 | 0.0103% | 0.47 | gateio |
+| BNBUSDT | US$ 715.15 | 0.0140% | 0.49 | gateio |
 
 ## Carrego de funding (líquido de custo)
 
@@ -20,19 +20,10 @@ _Gerado em 2026-09-14T23:33:20 UTC._
 
 | Par | Score | Sinal | RSI 14 | ADX | ATR |
 |---|---|---|---|---|---|
-| BTCUSDT | 77.2 | fora | 56.0 | 18.8 | 0.98% |
-| ETHUSDT | 65.1 | fora | 53.4 | 18.4 | 1.51% |
-| SOLUSDT | 61.6 | fora | 56.2 | 15.5 | 1.56% |
-| BNBUSDT | 45.4 | fora | 46.6 | 13.8 | 1.17% |
-
-## Validação fora da amostra (4h)
-
-| Par | Janelas | Retorno OOS | Sharpe OOS | Janelas + | Aprovado |
-|---|---|---|---|---|---|
-| BTCUSDT | — | — | — | — | erro |
-| ETHUSDT | — | — | — | — | erro |
-| SOLUSDT | — | — | — | — | erro |
-| BNBUSDT | — | — | — | — | erro |
+| BTCUSDT | 26.0 | fora | 34.5 | 19.9 | 1.23% |
+| ETHUSDT | 23.2 | fora | 33.5 | 18.4 | 1.81% |
+| SOLUSDT | 24.6 | fora | 34.8 | 17.1 | 1.95% |
+| BNBUSDT | 41.6 | fora | 41.8 | 14.4 | 1.29% |
 
 ## Custo de referência
 
