@@ -1,37 +1,37 @@
-# QuantBot — Relatório 2026-09-15
+# QuantBot — Relatório 2026-09-16
 
-_Gerado em 15/09/2026 00:18._
+_Gerado em 16/09/2026 00:01._
 
 ## Macro (Banco Central)
 
-- **Selic meta:** 14.0
+- **Selic meta:** n/d
 - **CDI:** 13.9
 - **IPCA 12m:** 4.22
-- **Dólar:** 5.1696
+- **Dólar:** 5.149
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.39 (😀 19 · 😐 164 · 😟 149) via finbert
+- **Hoje:** -0.29 (😀 37 · 😐 163 · 😟 133) via finbert
 - **Média 14 dias:** -0.27
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (56), PETR4.SA (46), VALE3.SA (42), NVDA (40), MSFT (37), AAPL (37)
+- **Ativos mais citados:** ITUB4.SA (51), ADA-USD (48), BBDC4.SA (47), PETR4.SA (38), NVDA (32), MSFT (32)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,661.21  (**+16.61%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$255.61
-- **Operações fechadas:** 108 (46 no lucro)
-- **Carteira:** AZPL11, GARE11, HGCR11, IBBP11, KFOF11, KNHF11, KNHY11, KNIP11, PMLL11, RBVA11, XPML11, XPSF11
+- **Valor:** R$11,650.37  (**+16.50%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$430.31
+- **Operações fechadas:** 112 (46 no lucro)
+- **Carteira:** AFHI11, AZPL11, GARE11, HGCR11, ITRI11, KFOF11, KNHF11, KNHY11, MCCI11, RBVA11, TJKB11, XPSF11
 
 ### Desempenho vs benchmark
-- **Período:** 103 dias · **Bot:** +16.61% · **CDI:** +3.74% (a.a. 13.90%)
-- **Alpha vs CDI:** +12.87 pontos percentuais — ✅ acima do CDI
+- **Período:** 104 dias · **Bot:** +16.50% · **CDI:** +3.78% (a.a. 13.90%)
+- **Alpha vs CDI:** +12.73 pontos percentuais — ✅ acima do CDI
 
 
 ### Expectativa estatística (operações fechadas)
-- **Win rate:** 43% (46/108)
-- **Ganho médio:** +6.35% · **Perda média:** -1.26%
-- **Payoff (ganho/perda):** 5.05 · **Expectancy/trade:** +1.98% — ✅ positiva
+- **Win rate:** 41% (46/112)
+- **Ganho médio:** +6.35% · **Perda média:** -1.21%
+- **Payoff (ganho/perda):** 5.27 · **Expectancy/trade:** +1.90% — ✅ positiva
 
 
 ### O que o bot aprendeu até aqui
