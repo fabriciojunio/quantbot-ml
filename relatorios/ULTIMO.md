@@ -1,42 +1,42 @@
-# QuantBot — Relatório 2026-09-17
+# QuantBot — Relatório 2026-09-18
 
-_Gerado em 17/09/2026 23:57._
+_Gerado em 18/09/2026 23:55._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 13.75
-- **CDI:** 13.9
+- **CDI:** 13.65
 - **IPCA 12m:** 4.22
-- **Dólar:** 5.1521
+- **Dólar:** 5.1575
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.30 (😀 33 · 😐 162 · 😟 130) via finbert
-- **Média 14 dias:** -0.28
+- **Hoje:** -0.34 (😀 26 · 😐 153 · 😟 134) via finbert
+- **Média 14 dias:** -0.29
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ITUB4.SA (60), BBDC4.SA (57), NVDA (48), ADA-USD (48), AAPL (45), MSFT (45)
+- **Ativos mais citados:** ITUB4.SA (66), ADA-USD (65), BBDC4.SA (63), PETR4.SA (40), NVDA (32), VALE3.SA (31)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,676.76  (**+16.77%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$230.10
-- **Operações fechadas:** 118 (47 no lucro)
-- **Carteira:** AFHI11, AZPL11, GARE11, HGCR11, ITRI11, KFOF11, KNHF11, KNHY11, KNSC11, MCCI11, RBVA11, XPSF11
+- **Valor:** R$11,669.39  (**+16.69%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$280.17
+- **Operações fechadas:** 121 (47 no lucro)
+- **Carteira:** AFHI11, AZPL11, GARE11, HGCR11, IBBP11, KFOF11, KNHF11, KNHY11, KNIP11, PMLL11, RBVA11, XPSF11
 
 ### Desempenho vs benchmark
-- **Período:** 105 dias · **Bot:** +16.77% · **CDI:** +3.82% (a.a. 13.90%)
-- **Alpha vs CDI:** +12.95 pontos percentuais — ✅ acima do CDI
+- **Período:** 106 dias · **Bot:** +16.69% · **CDI:** +3.79% (a.a. 13.65%)
+- **Alpha vs CDI:** +12.91 pontos percentuais — ✅ acima do CDI
 
 
 ### Expectativa estatística (operações fechadas)
-- **Win rate:** 40% (47/118)
-- **Ganho médio:** +6.27% · **Perda média:** -1.15%
-- **Payoff (ganho/perda):** 5.44 · **Expectancy/trade:** +1.80% — ✅ positiva
+- **Win rate:** 39% (47/121)
+- **Ganho médio:** +6.27% · **Perda média:** -1.12%
+- **Payoff (ganho/perda):** 5.59 · **Expectancy/trade:** +1.75% — ✅ positiva
 
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: +1.45% (n=18) · neutro: +1.04% (n=77)
+- Sentimento → retorno ~7 dias depois: medo: +1.33% (n=19) · neutro: +1.04% (n=77)
 
 ## FIIs — screening do dia
 
