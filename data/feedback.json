@@ -23,8 +23,8 @@
   },
   "sentimento": {
     "medo": {
-      "n": 28,
-      "soma_retorno_fwd": 20.37517083494543
+      "n": 29,
+      "soma_retorno_fwd": 19.57546670311208
     },
     "neutro": {
       "n": 81,
@@ -35,5 +35,5 @@
       "soma_retorno_fwd": 0.0
     }
   },
-  "atualizado_em": "2026-10-02"
+  "atualizado_em": "2026-10-03"
 }
