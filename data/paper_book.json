@@ -1,33 +1,7 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 276.31,
+  "caixa": 182.83,
   "posicoes": {
-    "KNHY11": {
-      "ticker": "KNHY11",
-      "cotas": 10.0,
-      "preco_entrada": 94.13,
-      "data_entrada": "2026-09-11",
-      "score_entrada": 79.2,
-      "dy_entrada": 12.27,
-      "sentimento_entrada": "medo",
-      "ultima_avaliacao": "2026-09-11",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 8.3,
-      "custo_entrada": 1.72
-    },
-    "AFHI11": {
-      "ticker": "AFHI11",
-      "cotas": 10.0,
-      "preco_entrada": 94.24,
-      "data_entrada": "2026-09-29",
-      "score_entrada": 80.3,
-      "dy_entrada": 12.64,
-      "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-09-29",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 2.64,
-      "custo_entrada": 1.72
-    },
     "ITRI11": {
       "ticker": "ITRI11",
       "cotas": 12.0,
@@ -37,8 +11,8 @@
       "dy_entrada": 13.13,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-01",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 2.04,
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 2.38,
       "custo_entrada": 1.72
     },
     "XPCI11": {
@@ -50,8 +24,8 @@
       "dy_entrada": 13.42,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-01",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 2.1,
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 2.45,
       "custo_entrada": 1.74
     },
     "HGCR11": {
@@ -63,8 +37,8 @@
       "dy_entrada": 12.23,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 0.32,
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.64,
       "custo_entrada": 1.73
     },
     "RBVA11": {
@@ -76,22 +50,9 @@
       "dy_entrada": 12.18,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 0.33,
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.66,
       "custo_entrada": 1.78
-    },
-    "AZPL11": {
-      "ticker": "AZPL11",
-      "cotas": 134.0,
-      "preco_entrada": 7.25,
-      "data_entrada": "2026-10-06",
-      "score_entrada": 81.5,
-      "dy_entrada": 12.49,
-      "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 0.33,
-      "custo_entrada": 1.77
     },
     "KNHF11": {
       "ticker": "KNHF11",
@@ -102,22 +63,9 @@
       "dy_entrada": 12.52,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 0.33,
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.66,
       "custo_entrada": 1.73
-    },
-    "KFOF11": {
-      "ticker": "KFOF11",
-      "cotas": 12.0,
-      "preco_entrada": 79.48,
-      "data_entrada": "2026-10-06",
-      "score_entrada": 81.1,
-      "dy_entrada": 11.95,
-      "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 0.31,
-      "custo_entrada": 1.74
     },
     "XPSF11": {
       "ticker": "XPSF11",
@@ -128,35 +76,87 @@
       "dy_entrada": 12.82,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 0.34,
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.68,
       "custo_entrada": 1.77
     },
-    "BPML11": {
-      "ticker": "BPML11",
-      "cotas": 10.0,
-      "preco_entrada": 90.51,
-      "data_entrada": "2026-10-06",
-      "score_entrada": 80.8,
-      "dy_entrada": 12.06,
+    "BTCI11": {
+      "ticker": "BTCI11",
+      "cotas": 108.0,
+      "preco_entrada": 9.16,
+      "data_entrada": "2026-10-08",
+      "score_entrada": 82.4,
+      "dy_entrada": 12.69,
       "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 0.3,
-      "custo_entrada": 1.65
+      "ultima_avaliacao": "2026-10-08",
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.0,
+      "custo_entrada": 1.81
     },
-    "KNSC11": {
-      "ticker": "KNSC11",
-      "cotas": 107.0,
-      "preco_entrada": 9.13,
-      "data_entrada": "2026-10-06",
-      "score_entrada": 80.3,
-      "dy_entrada": 12.22,
+    "RZTR11": {
+      "ticker": "RZTR11",
+      "cotas": 11.0,
+      "preco_entrada": 87.92,
+      "data_entrada": "2026-10-08",
+      "score_entrada": 81.7,
+      "dy_entrada": 12.93,
       "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-07",
-      "dividendos": 0.33,
-      "custo_entrada": 1.78
+      "ultima_avaliacao": "2026-10-08",
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.0,
+      "custo_entrada": 1.76
+    },
+    "JSAF11": {
+      "ticker": "JSAF11",
+      "cotas": 131.0,
+      "preco_entrada": 7.56,
+      "data_entrada": "2026-10-08",
+      "score_entrada": 81.4,
+      "dy_entrada": 12.62,
+      "sentimento_entrada": "neutro",
+      "ultima_avaliacao": "2026-10-08",
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.0,
+      "custo_entrada": 1.81
+    },
+    "GGRC11": {
+      "ticker": "GGRC11",
+      "cotas": 106.0,
+      "preco_entrada": 9.3,
+      "data_entrada": "2026-10-08",
+      "score_entrada": 81.0,
+      "dy_entrada": 12.76,
+      "sentimento_entrada": "neutro",
+      "ultima_avaliacao": "2026-10-08",
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.0,
+      "custo_entrada": 1.8
+    },
+    "ICRI11": {
+      "ticker": "ICRI11",
+      "cotas": 10.0,
+      "preco_entrada": 94.5,
+      "data_entrada": "2026-10-08",
+      "score_entrada": 81.0,
+      "dy_entrada": 12.76,
+      "sentimento_entrada": "neutro",
+      "ultima_avaliacao": "2026-10-08",
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.0,
+      "custo_entrada": 1.72
+    },
+    "CPSH11": {
+      "ticker": "CPSH11",
+      "cotas": 97.0,
+      "preco_entrada": 10.24,
+      "data_entrada": "2026-10-08",
+      "score_entrada": 80.9,
+      "dy_entrada": 13.13,
+      "sentimento_entrada": "neutro",
+      "ultima_avaliacao": "2026-10-08",
+      "ultimo_provento": "2026-10-08",
+      "dividendos": 0.0,
+      "custo_entrada": 1.81
     }
   },
   "fechadas": [
@@ -2730,6 +2730,114 @@
       "dy_entrada": 12.43,
       "sentimento_entrada": "neutro",
       "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "KNHY11",
+      "data_entrada": "2026-09-11",
+      "data_saida": "2026-10-08",
+      "preco_entrada": 94.13,
+      "preco_saida": 97.3,
+      "dias": 27,
+      "retorno_preco_pct": 3.37,
+      "dividendos": 8.3,
+      "dividendos_pct": 0.88,
+      "custo_total": 3.5,
+      "custo_pct": 0.371,
+      "retorno_total_pct": 3.88,
+      "score_entrada": 79.2,
+      "dy_entrada": 12.27,
+      "sentimento_entrada": "medo",
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "AFHI11",
+      "data_entrada": "2026-09-29",
+      "data_saida": "2026-10-08",
+      "preco_entrada": 94.24,
+      "preco_saida": 96.6,
+      "dias": 9,
+      "retorno_preco_pct": 2.5,
+      "dividendos": 2.64,
+      "dividendos_pct": 0.28,
+      "custo_total": 3.48,
+      "custo_pct": 0.37,
+      "retorno_total_pct": 2.41,
+      "score_entrada": 80.3,
+      "dy_entrada": 12.64,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "AZPL11",
+      "data_entrada": "2026-10-06",
+      "data_saida": "2026-10-08",
+      "preco_entrada": 7.25,
+      "preco_saida": 7.26,
+      "dias": 2,
+      "retorno_preco_pct": 0.14,
+      "dividendos": 0.33,
+      "dividendos_pct": 0.03,
+      "custo_total": 3.55,
+      "custo_pct": 0.365,
+      "retorno_total_pct": -0.19,
+      "score_entrada": 81.5,
+      "dy_entrada": 12.49,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "KFOF11",
+      "data_entrada": "2026-10-06",
+      "data_saida": "2026-10-08",
+      "preco_entrada": 79.48,
+      "preco_saida": 82.37,
+      "dias": 2,
+      "retorno_preco_pct": 3.64,
+      "dividendos": 0.31,
+      "dividendos_pct": 0.03,
+      "custo_total": 3.54,
+      "custo_pct": 0.372,
+      "retorno_total_pct": 3.3,
+      "score_entrada": 81.1,
+      "dy_entrada": 11.95,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "BPML11",
+      "data_entrada": "2026-10-06",
+      "data_saida": "2026-10-08",
+      "preco_entrada": 90.51,
+      "preco_saida": 91.41,
+      "dias": 2,
+      "retorno_preco_pct": 0.99,
+      "dividendos": 0.3,
+      "dividendos_pct": 0.03,
+      "custo_total": 3.32,
+      "custo_pct": 0.367,
+      "retorno_total_pct": 0.66,
+      "score_entrada": 80.8,
+      "dy_entrada": 12.06,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "KNSC11",
+      "data_entrada": "2026-10-06",
+      "data_saida": "2026-10-08",
+      "preco_entrada": 9.13,
+      "preco_saida": 9.18,
+      "dias": 2,
+      "retorno_preco_pct": 0.55,
+      "dividendos": 0.33,
+      "dividendos_pct": 0.03,
+      "custo_total": 3.57,
+      "custo_pct": 0.366,
+      "retorno_total_pct": 0.22,
+      "score_entrada": 80.3,
+      "dy_entrada": 12.22,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
     }
   ],
   "serie_valor": [
@@ -3192,6 +3300,10 @@
     {
       "data": "2026-10-07",
       "valor_total": 11733.18
+    },
+    {
+      "data": "2026-10-08",
+      "valor_total": 11917.01
     }
   ],
   "log": [
@@ -5937,6 +6049,108 @@
       "preco": 9.13,
       "score": 80.3,
       "dy": 12.22
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "VENDER",
+      "ticker": "KNHY11",
+      "preco": 97.3,
+      "retorno_total_pct": 3.88,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "VENDER",
+      "ticker": "AFHI11",
+      "preco": 96.6,
+      "retorno_total_pct": 2.41,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "VENDER",
+      "ticker": "AZPL11",
+      "preco": 7.26,
+      "retorno_total_pct": -0.19,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "VENDER",
+      "ticker": "KFOF11",
+      "preco": 82.37,
+      "retorno_total_pct": 3.3,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "VENDER",
+      "ticker": "BPML11",
+      "preco": 91.41,
+      "retorno_total_pct": 0.66,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "VENDER",
+      "ticker": "KNSC11",
+      "preco": 9.18,
+      "retorno_total_pct": 0.22,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "COMPRAR",
+      "ticker": "BTCI11",
+      "cotas": 108.0,
+      "preco": 9.16,
+      "score": 82.4,
+      "dy": 12.69
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "COMPRAR",
+      "ticker": "RZTR11",
+      "cotas": 11.0,
+      "preco": 87.92,
+      "score": 81.7,
+      "dy": 12.93
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "COMPRAR",
+      "ticker": "JSAF11",
+      "cotas": 131.0,
+      "preco": 7.56,
+      "score": 81.4,
+      "dy": 12.62
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "COMPRAR",
+      "ticker": "GGRC11",
+      "cotas": 106.0,
+      "preco": 9.3,
+      "score": 81.0,
+      "dy": 12.76
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "COMPRAR",
+      "ticker": "ICRI11",
+      "cotas": 10.0,
+      "preco": 94.5,
+      "score": 81.0,
+      "dy": 12.76
+    },
+    {
+      "data": "2026-10-08",
+      "acao": "COMPRAR",
+      "ticker": "CPSH11",
+      "cotas": 97.0,
+      "preco": 10.24,
+      "score": 80.9,
+      "dy": 13.13
     }
   ]
 }
