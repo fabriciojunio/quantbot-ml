@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-10-10
+# QuantBot — Relatório 2026-10-11
 
-_Gerado em 10/10/2026 01:32._
+_Gerado em 11/10/2026 00:44._
 
 ## Macro (Banco Central)
 
@@ -11,20 +11,20 @@ _Gerado em 10/10/2026 01:32._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.24 (😀 41 · 😐 160 · 😟 117) via finbert
-- **Média 14 dias:** -0.22
-- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▅ ▅ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (67), ITUB4.SA (51), BBDC4.SA (47), PETR4.SA (41), VALE3.SA (38), BTC-USD (22)
+- **Hoje:** -0.27 (😀 41 · 😐 145 · 😟 125) via finbert
+- **Média 14 dias:** -0.21
+- **Tendência:** ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▅ ▅ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (61), ITUB4.SA (51), BBDC4.SA (47), VALE3.SA (45), PETR4.SA (41), MSFT (26)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,977.74  (**+19.78%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$191.48
+- **Valor:** R$11,981.84  (**+19.82%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$195.58
 - **Operações fechadas:** 163 (71 no lucro)
 - **Carteira:** AFHI11, BTCI11, CLIN11, CPSH11, GGRC11, ICRI11, ITRI11, JSAF11, KNHF11, RZTR11, XPCI11, XPSF11
 
 ### Desempenho vs benchmark
-- **Período:** 128 dias · **Bot:** +19.78% · **CDI:** +4.59% (a.a. 13.65%)
+- **Período:** 129 dias · **Bot:** +19.82% · **CDI:** +4.63% (a.a. 13.65%)
 - **Alpha vs CDI:** +15.19 pontos percentuais — ✅ acima do CDI
 
 
@@ -36,7 +36,7 @@ _Gerado em 10/10/2026 01:32._
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: +0.58% (n=31) · neutro: +1.06% (n=86)
+- Sentimento → retorno ~7 dias depois: medo: +0.58% (n=31) · neutro: +1.09% (n=87)
 
 ## FIIs — screening do dia
 
