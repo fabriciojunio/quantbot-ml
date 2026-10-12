@@ -1,31 +1,31 @@
-# QuantBot — Relatório 2026-10-11
+# QuantBot — Relatório 2026-10-12
 
-_Gerado em 11/10/2026 00:44._
+_Gerado em 12/10/2026 01:00._
 
 ## Macro (Banco Central)
 
-- **Selic meta:** 13.75
-- **CDI:** 13.65
+- **Selic meta:** n/d
+- **CDI:** n/d
 - **IPCA 12m:** 4.58
 - **Dólar:** 4.9892
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.27 (😀 41 · 😐 145 · 😟 125) via finbert
-- **Média 14 dias:** -0.21
-- **Tendência:** ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▅ ▅ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (61), ITUB4.SA (51), BBDC4.SA (47), VALE3.SA (45), PETR4.SA (41), MSFT (26)
+- **Hoje:** -0.26 (😀 37 · 😐 145 · 😟 115) via finbert
+- **Média 14 dias:** -0.20
+- **Tendência:** ▃ ▃ ▃ ▅ ▃ ▃ ▅ ▅ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (57), ITUB4.SA (49), BBDC4.SA (46), PETR4.SA (38), VALE3.SA (36), MSFT (29)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,981.84  (**+19.82%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$195.58
+- **Valor:** R$11,985.94  (**+19.86%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$199.68
 - **Operações fechadas:** 163 (71 no lucro)
 - **Carteira:** AFHI11, BTCI11, CLIN11, CPSH11, GGRC11, ICRI11, ITRI11, JSAF11, KNHF11, RZTR11, XPCI11, XPSF11
 
 ### Desempenho vs benchmark
-- **Período:** 129 dias · **Bot:** +19.82% · **CDI:** +4.63% (a.a. 13.65%)
-- **Alpha vs CDI:** +15.19 pontos percentuais — ✅ acima do CDI
+- **Período:** 130 dias · **Bot:** +19.86% · **CDI:** +4.66% (a.a. 13.65%)
+- **Alpha vs CDI:** +15.20 pontos percentuais — ✅ acima do CDI
 
 
 ### Expectativa estatística (operações fechadas)
@@ -36,7 +36,7 @@ _Gerado em 11/10/2026 00:44._
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: +0.58% (n=31) · neutro: +1.09% (n=87)
+- Sentimento → retorno ~7 dias depois: medo: +0.58% (n=31) · neutro: +1.13% (n=88)
 
 ## FIIs — screening do dia
 
