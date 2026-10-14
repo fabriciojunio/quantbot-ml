@@ -1,80 +1,80 @@
 {
-  "gerado_em": "2026-10-13T23:57:14.130708+00:00",
+  "gerado_em": "2026-10-14T23:30:44.554417+00:00",
   "dinheiro_real": false,
   "aviso": "Preços reais, dinheiro simulado. Nenhuma ordem foi enviada a corretora.",
-  "patrimonio": 51519.67,
+  "patrimonio": 51909.58,
   "aportado": 34500.0,
-  "resultado": 17019.67,
-  "resultado_pct": 49.33,
-  "caixa": 16283.92,
+  "resultado": 17409.58,
+  "resultado_pct": 50.46,
+  "caixa": 16292.19,
   "custo_pago": 54.01,
   "imposto_pago": 1380.8,
-  "referencia_cdi": 47811.48,
+  "referencia_cdi": 47832.88,
   "tir_cdi_pct": 11.13,
-  "tir_pct": 13.7,
+  "tir_pct": 13.95,
   "posicoes": [
     {
       "ticker": "B5P211.SA",
       "cotas": 36.060538,
-      "preco": 115.46,
-      "valor": 4163.55,
+      "preco": 115.55,
+      "valor": 4166.8,
       "custo_medio": 78.92,
-      "resultado_pct": 46.3,
-      "peso_pct": 8.1
+      "resultado_pct": 46.41,
+      "peso_pct": 8.0
     },
     {
       "ticker": "BOVA11.SA",
       "cotas": 13.301694,
-      "preco": 203.6,
-      "valor": 2708.23,
+      "preco": 203.65,
+      "valor": 2708.89,
       "custo_medio": 118.09,
-      "resultado_pct": 72.41,
-      "peso_pct": 5.3
+      "resultado_pct": 72.45,
+      "peso_pct": 5.2
     },
     {
       "ticker": "BTC-BRL",
       "cotas": 0.001286,
-      "preco": 0.0,
-      "valor": 0.0,
+      "preco": 410530.43,
+      "valor": 527.77,
       "custo_medio": 332707.91,
-      "resultado_pct": -100.0,
-      "peso_pct": 0.0
+      "resultado_pct": 23.39,
+      "peso_pct": 1.0
     },
     {
       "ticker": "GOLD11.SA",
       "cotas": 49.884437,
-      "preco": 21.66,
-      "valor": 1080.5,
+      "preco": 21.42,
+      "valor": 1068.52,
       "custo_medio": 11.35,
-      "resultado_pct": 90.82,
+      "resultado_pct": 88.71,
       "peso_pct": 2.1
     },
     {
       "ticker": "IMAB11.SA",
       "cotas": 125.916075,
-      "preco": 125.12,
-      "valor": 15754.62,
+      "preco": 124.73,
+      "valor": 15705.51,
       "custo_medio": 105.13,
-      "resultado_pct": 19.02,
-      "peso_pct": 30.6
+      "resultado_pct": 18.65,
+      "peso_pct": 30.3
     },
     {
       "ticker": "IVVB11.SA",
       "cotas": 9.737484,
-      "preco": 442.45,
-      "valor": 4308.35,
+      "preco": 438.71,
+      "valor": 4271.93,
       "custo_medio": 296.45,
-      "resultado_pct": 49.25,
-      "peso_pct": 8.4
+      "resultado_pct": 47.99,
+      "peso_pct": 8.2
     },
     {
       "ticker": "SMAL11.SA",
       "cotas": 32.631545,
-      "preco": 134.99,
-      "valor": 4404.93,
+      "preco": 133.38,
+      "valor": 4352.4,
       "custo_medio": 111.26,
-      "resultado_pct": 21.33,
-      "peso_pct": 8.6
+      "resultado_pct": 19.88,
+      "peso_pct": 8.4
     },
     {
       "ticker": "XFIX11.SA",
@@ -83,16 +83,16 @@
       "valor": 2815.57,
       "custo_medio": 11.23,
       "resultado_pct": 23.77,
-      "peso_pct": 5.5
+      "peso_pct": 5.4
     }
   ],
   "exposicao_cambial": {
     "por_moeda": {
-      "BRL": 89.5,
-      "USD": 10.5
+      "BRL": 88.7,
+      "USD": 11.3
     },
-    "estrangeira_pct": 10.5,
-    "local_pct": 89.5
+    "estrangeira_pct": 11.3,
+    "local_pct": 88.7
   },
   "serie": [
     {
@@ -8614,6 +8614,12 @@
       "total": 51519.67,
       "aportado": 34500.0,
       "cota": 1.0
+    },
+    {
+      "data": "2026-10-14",
+      "total": 51909.58,
+      "aportado": 34500.0,
+      "cota": 1.0
     }
   ],
   "ultimas_ordens": [
@@ -8827,10 +8833,10 @@
     }
   ],
   "auditoria": {
-    "eventos": 2989,
+    "eventos": 2991,
     "cadeia_intacta": true,
     "quebras": 0,
-    "hash_final": "f6a5b2091f98c8a8b1045f033046794d6bcc175a9396a499f943e296e50b21bd",
+    "hash_final": "7f8da4a3838c189948d50c47b326d26bf57d44c966393c71d252402db30d4d77",
     "primeiro_evento": "2026-08-23T22:18:48+00:00"
   },
   "satelite": {
@@ -8847,7 +8853,7 @@
     "reserva_por_fora": true
   },
   "juro": {
-    "cdi_anual_pct": 14.44,
+    "cdi_anual_pct": 14.43,
     "ipca_12m_pct": 4.58,
     "juro_real_bruto_pct": 9.43,
     "juro_real_liquido_pct": 7.36,
