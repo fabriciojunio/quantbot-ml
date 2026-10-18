@@ -1,31 +1,31 @@
-# QuantBot — Relatório 2026-10-17
+# QuantBot — Relatório 2026-10-18
 
-_Gerado em 17/10/2026 23:47._
+_Gerado em 18/10/2026 23:57._
 
 ## Macro (Banco Central)
 
-- **Selic meta:** 13.75
-- **CDI:** 13.65
-- **IPCA 12m:** 4.58
-- **Dólar:** 5.0826
+- **Selic meta:** n/d
+- **CDI:** n/d
+- **IPCA 12m:** n/d
+- **Dólar:** n/d
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.26 (😀 30 · 😐 137 · 😟 99) via finbert
-- **Média 14 dias:** -0.22
-- **Tendência:** ▅ ▅ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (67), PETR4.SA (35), VALE3.SA (31), AAPL (31), MSFT (27), NVDA (26)
+- **Hoje:** -0.26 (😀 24 · 😐 147 · 😟 94) via finbert
+- **Média 14 dias:** -0.23
+- **Tendência:** ▅ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** ADA-USD (63), PETR4.SA (33), AAPL (27), VALE3.SA (26), NVDA (24), MSFT (24)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,778.87  (**+17.79%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$413.87
+- **Valor:** R$11,782.86  (**+17.83%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$417.86
 - **Operações fechadas:** 170 (73 no lucro)
 - **Carteira:** AFHI11, BTCI11, CLIN11, ICRI11, ITRI11, JSAF11, KNHF11, KNHY11, PCIP11, TJKB11, XPCI11, XPSF11
 
 ### Desempenho vs benchmark
-- **Período:** 135 dias · **Bot:** +17.79% · **CDI:** +4.85% (a.a. 13.65%)
-- **Alpha vs CDI:** +12.94 pontos percentuais — ✅ acima do CDI
+- **Período:** 136 dias · **Bot:** +17.83% · **CDI:** +5.05% (a.a. 14.15%)
+- **Alpha vs CDI:** +12.77 pontos percentuais — ✅ acima do CDI
 
 
 ### Expectativa estatística (operações fechadas)
@@ -36,11 +36,11 @@ _Gerado em 17/10/2026 23:47._
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: +0.58% (n=31) · neutro: +1.06% (n=93)
+- Sentimento → retorno ~7 dias depois: medo: +0.58% (n=31) · neutro: +1.03% (n=94)
 
 ## FIIs — screening do dia
 
-Analisados: **572** | Aprovados: **75** | DY mínimo: 9.6% (Selic 13.75%)
+Analisados: **572** | Aprovados: **72** | DY mínimo: 10.1% (Selic 14.5%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
