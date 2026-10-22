@@ -1,15 +1,15 @@
-# Monitor de cripto — 2026-10-21
+# Monitor de cripto — 2026-10-22
 
-_Gerado em 2026-10-21T23:46:25 UTC._
+_Gerado em 2026-10-22T23:44:06 UTC._
 
 ## Mercado agora
 
 | Par | Preço | Spread | Desequilíbrio do book | Fonte |
 |---|---|---|---|---|
-| BTCUSDT | US$ 84,257.65 | 0.0001% | 0.37 | gateio |
-| ETHUSDT | US$ 2,475.03 | 0.0004% | 0.47 | gateio |
-| SOLUSDT | US$ 106.89 | 0.0094% | 0.52 | gateio |
-| BNBUSDT | US$ 747.05 | 0.0134% | 0.56 | gateio |
+| BTCUSDT | US$ 81,353.75 | 0.0001% | 0.63 | gateio |
+| ETHUSDT | US$ 2,385.28 | 0.0004% | 0.13 | gateio |
+| SOLUSDT | US$ 103.52 | 0.0097% | 0.48 | gateio |
+| BNBUSDT | US$ 731.35 | 0.0137% | 0.49 | gateio |
 
 ## Carrego de funding (líquido de custo)
 
@@ -20,10 +20,10 @@ _Gerado em 2026-10-21T23:46:25 UTC._
 
 | Par | Score | Sinal | RSI 14 | ADX | ATR |
 |---|---|---|---|---|---|
-| BTCUSDT | 89.5 | compra | 65.3 | 29.6 | 0.94% |
-| ETHUSDT | 69.5 | compra | 56.6 | 23.5 | 1.48% |
-| SOLUSDT | 67.3 | compra | 54.8 | 26.0 | 1.68% |
-| BNBUSDT | 82.6 | compra | 64.7 | 26.0 | 0.86% |
+| BTCUSDT | 18.5 | fora | 39.9 | 23.6 | 0.99% |
+| ETHUSDT | 15.3 | fora | 40.4 | 19.7 | 1.49% |
+| SOLUSDT | 30.4 | fora | 41.2 | 19.5 | 1.65% |
+| BNBUSDT | 42.8 | fora | 45.0 | 21.7 | 0.89% |
 
 ## Custo de referência
 
