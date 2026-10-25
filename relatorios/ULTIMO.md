@@ -1,6 +1,6 @@
 # QuantBot — Relatório 2026-10-25
 
-_Gerado em 25/10/2026 00:02._
+_Gerado em 25/10/2026 23:49._
 
 ## Macro (Banco Central)
 
@@ -11,10 +11,10 @@ _Gerado em 25/10/2026 00:02._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.28 (😀 21 · 😐 157 · 😟 98) via finbert
+- **Hoje:** -0.27 (😀 20 · 😐 168 · 😟 97) via finbert
 - **Média 14 dias:** -0.26
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (64), BBDC4.SA (36), ITUB4.SA (36), PETR4.SA (30), AAPL (23), VALE3.SA (22)
+- **Ativos mais citados:** ADA-USD (71), ITUB4.SA (37), BBDC4.SA (36), NVDA (30), MSFT (28), AAPL (28)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
@@ -40,7 +40,7 @@ _Gerado em 25/10/2026 00:02._
 
 ## FIIs — screening do dia
 
-Analisados: **574** | Aprovados: **72** | DY mínimo: 10.1% (Selic 14.5%)
+Analisados: **574** | Aprovados: **75** | DY mínimo: 9.6% (Selic 13.75%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
