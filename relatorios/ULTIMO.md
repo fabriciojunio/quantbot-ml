@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-10-24
+# QuantBot — Relatório 2026-10-25
 
-_Gerado em 24/10/2026 00:17._
+_Gerado em 25/10/2026 00:02._
 
 ## Macro (Banco Central)
 
@@ -11,21 +11,21 @@ _Gerado em 24/10/2026 00:17._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.28 (😀 29 · 😐 145 · 😟 109) via finbert
+- **Hoje:** -0.28 (😀 21 · 😐 157 · 😟 98) via finbert
 - **Média 14 dias:** -0.26
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (68), BBDC4.SA (45), ITUB4.SA (43), PETR4.SA (38), VALE3.SA (36), AAPL (24)
+- **Ativos mais citados:** ADA-USD (64), BBDC4.SA (36), ITUB4.SA (36), PETR4.SA (30), AAPL (23), VALE3.SA (22)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,968.62  (**+19.69%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$197.66
+- **Valor:** R$11,972.65  (**+19.73%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$201.69
 - **Operações fechadas:** 186 (81 no lucro)
 - **Carteira:** BPML11, BTCI11, CLIN11, GGRC11, ICRI11, ITRI11, JSAF11, KNHF11, KNHY11, PCIP11, XPCI11, XPSF11
 
 ### Desempenho vs benchmark
-- **Período:** 142 dias · **Bot:** +19.69% · **CDI:** +5.10% (a.a. 13.65%)
-- **Alpha vs CDI:** +14.58 pontos percentuais — ✅ acima do CDI
+- **Período:** 143 dias · **Bot:** +19.73% · **CDI:** +5.14% (a.a. 13.65%)
+- **Alpha vs CDI:** +14.59 pontos percentuais — ✅ acima do CDI
 
 
 ### Expectativa estatística (operações fechadas)
@@ -36,11 +36,11 @@ _Gerado em 24/10/2026 00:17._
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: +0.58% (n=31) · neutro: +0.99% (n=100)
+- Sentimento → retorno ~7 dias depois: medo: +0.58% (n=31) · neutro: +1.00% (n=101)
 
 ## FIIs — screening do dia
 
-Analisados: **574** | Aprovados: **75** | DY mínimo: 9.6% (Selic 13.75%)
+Analisados: **574** | Aprovados: **72** | DY mínimo: 10.1% (Selic 14.5%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
