@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 197.66,
+  "caixa": 201.69,
   "posicoes": {
     "ITRI11": {
       "ticker": "ITRI11",
@@ -11,8 +11,8 @@
       "dy_entrada": 13.13,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-01",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 7.82,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 8.16,
       "custo_entrada": 1.72
     },
     "KNHF11": {
@@ -24,8 +24,8 @@
       "dy_entrada": 12.52,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 5.91,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 6.24,
       "custo_entrada": 1.73
     },
     "XPSF11": {
@@ -37,8 +37,8 @@
       "dy_entrada": 12.82,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 6.12,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 6.46,
       "custo_entrada": 1.77
     },
     "BTCI11": {
@@ -50,8 +50,8 @@
       "dy_entrada": 12.69,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-08",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 5.47,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 5.81,
       "custo_entrada": 1.81
     },
     "PCIP11": {
@@ -63,8 +63,8 @@
       "dy_entrada": 12.63,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-14",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 3.4,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 3.74,
       "custo_entrada": 1.78
     },
     "KNHY11": {
@@ -76,8 +76,8 @@
       "dy_entrada": 12.46,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-14",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 3.37,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 3.71,
       "custo_entrada": 1.79
     },
     "JSAF11": {
@@ -89,8 +89,8 @@
       "dy_entrada": 12.47,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-22",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 0.68,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 1.02,
       "custo_entrada": 1.81
     },
     "ICRI11": {
@@ -102,8 +102,8 @@
       "dy_entrada": 12.74,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-22",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 0.66,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 0.99,
       "custo_entrada": 1.73
     },
     "CLIN11": {
@@ -115,8 +115,8 @@
       "dy_entrada": 12.49,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-24",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 0.33,
       "custo_entrada": 1.73
     },
     "XPCI11": {
@@ -128,8 +128,8 @@
       "dy_entrada": 12.83,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-24",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 0.35,
       "custo_entrada": 1.8
     },
     "BPML11": {
@@ -141,8 +141,8 @@
       "dy_entrada": 12.0,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-24",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 0.3,
       "custo_entrada": 1.66
     },
     "GGRC11": {
@@ -154,8 +154,8 @@
       "dy_entrada": 12.75,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-24",
-      "ultimo_provento": "2026-10-24",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-25",
+      "dividendos": 0.35,
       "custo_entrada": 1.82
     }
   },
@@ -3810,6 +3810,10 @@
     {
       "data": "2026-10-24",
       "valor_total": 11968.62
+    },
+    {
+      "data": "2026-10-25",
+      "valor_total": 11972.65
     }
   ],
   "log": [
