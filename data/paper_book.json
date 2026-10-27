@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 201.69,
+  "caixa": 124.82,
   "posicoes": {
     "ITRI11": {
       "ticker": "ITRI11",
@@ -11,8 +11,8 @@
       "dy_entrada": 13.13,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-01",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 8.16,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 8.84,
       "custo_entrada": 1.72
     },
     "KNHF11": {
@@ -24,8 +24,8 @@
       "dy_entrada": 12.52,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 6.24,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 6.89,
       "custo_entrada": 1.73
     },
     "XPSF11": {
@@ -37,8 +37,8 @@
       "dy_entrada": 12.82,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 6.46,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 7.14,
       "custo_entrada": 1.77
     },
     "BTCI11": {
@@ -50,8 +50,8 @@
       "dy_entrada": 12.69,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-08",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 5.81,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 6.5,
       "custo_entrada": 1.81
     },
     "PCIP11": {
@@ -63,22 +63,9 @@
       "dy_entrada": 12.63,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-14",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 3.74,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 4.42,
       "custo_entrada": 1.78
-    },
-    "KNHY11": {
-      "ticker": "KNHY11",
-      "cotas": 10.0,
-      "preco_entrada": 98.23,
-      "data_entrada": "2026-10-14",
-      "score_entrada": 80.9,
-      "dy_entrada": 12.46,
-      "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-10-14",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 3.71,
-      "custo_entrada": 1.79
     },
     "JSAF11": {
       "ticker": "JSAF11",
@@ -89,8 +76,8 @@
       "dy_entrada": 12.47,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-22",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 1.02,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 1.7,
       "custo_entrada": 1.81
     },
     "ICRI11": {
@@ -102,8 +89,8 @@
       "dy_entrada": 12.74,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-22",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 0.99,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 1.65,
       "custo_entrada": 1.73
     },
     "CLIN11": {
@@ -115,8 +102,8 @@
       "dy_entrada": 12.49,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-24",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 0.33,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 0.98,
       "custo_entrada": 1.73
     },
     "XPCI11": {
@@ -128,35 +115,48 @@
       "dy_entrada": 12.83,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-24",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 0.35,
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 1.05,
       "custo_entrada": 1.8
     },
-    "BPML11": {
-      "ticker": "BPML11",
-      "cotas": 10.0,
-      "preco_entrada": 91.0,
-      "data_entrada": "2026-10-24",
-      "score_entrada": 81.0,
-      "dy_entrada": 12.0,
-      "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-10-24",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 0.3,
-      "custo_entrada": 1.66
-    },
-    "GGRC11": {
-      "ticker": "GGRC11",
-      "cotas": 107.0,
-      "preco_entrada": 9.31,
-      "data_entrada": "2026-10-24",
-      "score_entrada": 81.0,
-      "dy_entrada": 12.75,
-      "sentimento_entrada": "neutro",
-      "ultima_avaliacao": "2026-10-24",
-      "ultimo_provento": "2026-10-25",
-      "dividendos": 0.35,
+    "RBVA11": {
+      "ticker": "RBVA11",
+      "cotas": 110.0,
+      "preco_entrada": 9.05,
+      "data_entrada": "2026-10-27",
+      "score_entrada": 79.7,
+      "dy_entrada": 11.81,
+      "sentimento_entrada": "medo",
+      "ultima_avaliacao": "2026-10-27",
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 0.0,
       "custo_entrada": 1.82
+    },
+    "IBBP11": {
+      "ticker": "IBBP11",
+      "cotas": 122.0,
+      "preco_entrada": 8.14,
+      "data_entrada": "2026-10-27",
+      "score_entrada": 79.2,
+      "dy_entrada": 11.5,
+      "sentimento_entrada": "medo",
+      "ultima_avaliacao": "2026-10-27",
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 0.0,
+      "custo_entrada": 1.81
+    },
+    "HGCR11": {
+      "ticker": "HGCR11",
+      "cotas": 10.0,
+      "preco_entrada": 98.69,
+      "data_entrada": "2026-10-27",
+      "score_entrada": 78.2,
+      "dy_entrada": 11.73,
+      "sentimento_entrada": "medo",
+      "ultima_avaliacao": "2026-10-27",
+      "ultimo_provento": "2026-10-27",
+      "dividendos": 0.0,
+      "custo_entrada": 1.8
     }
   },
   "fechadas": [
@@ -3288,6 +3288,60 @@
       "dy_entrada": 11.44,
       "sentimento_entrada": "medo",
       "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "KNHY11",
+      "data_entrada": "2026-10-14",
+      "data_saida": "2026-10-27",
+      "preco_entrada": 98.23,
+      "preco_saida": 99.71,
+      "dias": 13,
+      "retorno_preco_pct": 1.51,
+      "dividendos": 3.71,
+      "dividendos_pct": 0.38,
+      "custo_total": 3.61,
+      "custo_pct": 0.367,
+      "retorno_total_pct": 1.52,
+      "score_entrada": 80.9,
+      "dy_entrada": 12.46,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "BPML11",
+      "data_entrada": "2026-10-24",
+      "data_saida": "2026-10-27",
+      "preco_entrada": 91.0,
+      "preco_saida": 91.0,
+      "dias": 3,
+      "retorno_preco_pct": 0.0,
+      "dividendos": 0.3,
+      "dividendos_pct": 0.03,
+      "custo_total": 3.32,
+      "custo_pct": 0.365,
+      "retorno_total_pct": -0.33,
+      "score_entrada": 81.0,
+      "dy_entrada": 12.0,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "GGRC11",
+      "data_entrada": "2026-10-24",
+      "data_saida": "2026-10-27",
+      "preco_entrada": 9.31,
+      "preco_saida": 9.31,
+      "dias": 3,
+      "retorno_preco_pct": 0.0,
+      "dividendos": 0.35,
+      "dividendos_pct": 0.04,
+      "custo_total": 3.64,
+      "custo_pct": 0.365,
+      "retorno_total_pct": -0.33,
+      "score_entrada": 81.0,
+      "dy_entrada": 12.75,
+      "sentimento_entrada": "neutro",
+      "motivo": "saiu da lista de aprovados"
     }
   ],
   "serie_valor": [
@@ -3818,6 +3872,10 @@
     {
       "data": "2026-10-25",
       "valor_total": 11972.65
+    },
+    {
+      "data": "2026-10-27",
+      "valor_total": 11967.99
     }
   ],
   "log": [
@@ -7090,6 +7148,57 @@
       "preco": 9.31,
       "score": 81.0,
       "dy": 12.75
+    },
+    {
+      "data": "2026-10-27",
+      "acao": "VENDER",
+      "ticker": "KNHY11",
+      "preco": 99.71,
+      "retorno_total_pct": 1.52,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-27",
+      "acao": "VENDER",
+      "ticker": "BPML11",
+      "preco": 91.0,
+      "retorno_total_pct": -0.33,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-27",
+      "acao": "VENDER",
+      "ticker": "GGRC11",
+      "preco": 9.31,
+      "retorno_total_pct": -0.33,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-27",
+      "acao": "COMPRAR",
+      "ticker": "RBVA11",
+      "cotas": 110.0,
+      "preco": 9.05,
+      "score": 79.7,
+      "dy": 11.81
+    },
+    {
+      "data": "2026-10-27",
+      "acao": "COMPRAR",
+      "ticker": "IBBP11",
+      "cotas": 122.0,
+      "preco": 8.14,
+      "score": 79.2,
+      "dy": 11.5
+    },
+    {
+      "data": "2026-10-27",
+      "acao": "COMPRAR",
+      "ticker": "HGCR11",
+      "cotas": 10.0,
+      "preco": 98.69,
+      "score": 78.2,
+      "dy": 11.73
     }
   ]
 }
