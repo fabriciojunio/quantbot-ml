@@ -1,37 +1,37 @@
-# QuantBot — Relatório 2026-10-27
+# QuantBot — Relatório 2026-10-28
 
-_Gerado em 27/10/2026 01:09._
+_Gerado em 28/10/2026 01:00._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 13.75
 - **CDI:** 13.65
 - **IPCA 12m:** 4.58
-- **Dólar:** 5.5007
+- **Dólar:** 5.3346
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.39 (😀 25 · 😐 139 · 😟 148) via finbert
+- **Hoje:** -0.33 (😀 26 · 😐 161 · 😟 133) via finbert
 - **Média 14 dias:** -0.27
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (85), PETR4.SA (63), VALE3.SA (60), ITUB4.SA (39), BBDC4.SA (35), NVDA (33)
+- **Ativos mais citados:** PETR4.SA (69), VALE3.SA (69), ADA-USD (59), ITUB4.SA (47), BBDC4.SA (39), AAPL (39)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$11,967.99  (**+19.68%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$124.82
-- **Operações fechadas:** 189 (82 no lucro)
-- **Carteira:** BTCI11, CLIN11, HGCR11, IBBP11, ICRI11, ITRI11, JSAF11, KNHF11, PCIP11, RBVA11, XPCI11, XPSF11
+- **Valor:** R$11,094.34  (**+10.94%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$250.55
+- **Operações fechadas:** 198 (82 no lucro)
+- **Carteira:** AFHI11, BTRU11, FATN11, GARE11, HGCR11, IBBP11, KFOF11, KNHF11, KNHY11, KNIP11, PMLL11, XPML11
 
 ### Desempenho vs benchmark
-- **Período:** 145 dias · **Bot:** +19.68% · **CDI:** +5.21% (a.a. 13.65%)
-- **Alpha vs CDI:** +14.47 pontos percentuais — ✅ acima do CDI
+- **Período:** 146 dias · **Bot:** +10.94% · **CDI:** +5.25% (a.a. 13.65%)
+- **Alpha vs CDI:** +5.69 pontos percentuais — ✅ acima do CDI
 
 
 ### Expectativa estatística (operações fechadas)
-- **Win rate:** 43% (82/189)
-- **Ganho médio:** +4.29% · **Perda média:** -1.19%
-- **Payoff (ganho/perda):** 3.61 · **Expectancy/trade:** +1.19% — ✅ positiva
+- **Win rate:** 41% (82/198)
+- **Ganho médio:** +4.29% · **Perda média:** -1.61%
+- **Payoff (ganho/perda):** 2.66 · **Expectancy/trade:** +0.83% — ✅ positiva
 
 
 ### O que o bot aprendeu até aqui
@@ -40,22 +40,22 @@ _Gerado em 27/10/2026 01:09._
 
 ## FIIs — screening do dia
 
-Analisados: **574** | Aprovados: **75** | DY mínimo: 9.6% (Selic 13.75%)
+Analisados: **574** | Aprovados: **85** | DY mínimo: 9.6% (Selic 13.75%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
-| 1 | JSAF11 | 81.2 | 12.0% | 0.89 |
-| 2 | XPSF11 | 80.1 | 12.4% | 0.89 |
-| 3 | BTCI11 | 79.8 | 12.6% | 0.90 |
-| 4 | RBVA11 | 79.7 | 11.8% | 0.85 |
-| 5 | PCIP11 | 79.6 | 12.5% | 0.88 |
-| 6 | IBBP11 | 79.2 | 11.5% | 0.87 |
-| 7 | ITRI11 | 78.9 | 12.5% | 0.94 |
-| 8 | KNHF11 | 78.9 | 12.3% | 0.97 |
-| 9 | CLIN11 | 78.5 | 12.5% | 0.96 |
-| 10 | XPCI11 | 78.5 | 12.8% | 0.92 |
-| 11 | ICRI11 | 78.4 | 12.7% | 0.94 |
-| 12 | HGCR11 | 78.2 | 11.7% | 1.00 |
+| 1 | GARE11 | 80.8 | 11.9% | 0.92 |
+| 2 | KFOF11 | 79.7 | 12.4% | 0.88 |
+| 3 | IBBP11 | 79.5 | 11.8% | 0.85 |
+| 4 | HGCR11 | 79.2 | 12.2% | 0.96 |
+| 5 | FATN11 | 79.1 | 11.9% | 0.82 |
+| 6 | KNIP11 | 79.1 | 11.4% | 0.92 |
+| 7 | PMLL11 | 78.3 | 11.3% | 0.85 |
+| 8 | BTRU11 | 78.2 | 12.4% | 0.98 |
+| 9 | KNHF11 | 78.2 | 13.0% | 0.91 |
+| 10 | XPML11 | 77.8 | 11.0% | 0.93 |
+| 11 | AFHI11 | 77.6 | 12.7% | 0.97 |
+| 12 | KNHY11 | 77.5 | 13.0% | 0.94 |
 
 ---
 *O bot analisa e informa. Você decide e executa. DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*
