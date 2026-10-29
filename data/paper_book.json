@@ -1,6 +1,6 @@
 {
   "capital_inicial": 10000.0,
-  "caixa": 250.55,
+  "caixa": 187.27,
   "posicoes": {
     "KNHF11": {
       "ticker": "KNHF11",
@@ -11,8 +11,8 @@
       "dy_entrada": 12.52,
       "sentimento_entrada": "neutro",
       "ultima_avaliacao": "2026-10-06",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 7.22,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 7.55,
       "custo_entrada": 1.73
     },
     "IBBP11": {
@@ -24,8 +24,8 @@
       "dy_entrada": 11.5,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-27",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.31,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.62,
       "custo_entrada": 1.81
     },
     "HGCR11": {
@@ -37,8 +37,8 @@
       "dy_entrada": 11.73,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-27",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.32,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.64,
       "custo_entrada": 1.8
     },
     "GARE11": {
@@ -50,8 +50,8 @@
       "dy_entrada": 11.94,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.3,
       "custo_entrada": 1.69
     },
     "KFOF11": {
@@ -63,8 +63,8 @@
       "dy_entrada": 12.42,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.31,
       "custo_entrada": 1.67
     },
     "FATN11": {
@@ -76,8 +76,8 @@
       "dy_entrada": 11.86,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.29,
       "custo_entrada": 1.61
     },
     "KNIP11": {
@@ -89,8 +89,8 @@
       "dy_entrada": 11.38,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.27,
       "custo_entrada": 1.6
     },
     "PMLL11": {
@@ -102,8 +102,8 @@
       "dy_entrada": 11.35,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.28,
       "custo_entrada": 1.66
     },
     "BTRU11": {
@@ -115,8 +115,8 @@
       "dy_entrada": 12.43,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.31,
       "custo_entrada": 1.68
     },
     "XPML11": {
@@ -128,8 +128,8 @@
       "dy_entrada": 11.01,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.27,
       "custo_entrada": 1.63
     },
     "AFHI11": {
@@ -141,22 +141,22 @@
       "dy_entrada": 12.72,
       "sentimento_entrada": "medo",
       "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
-      "dividendos": 0.0,
+      "ultimo_provento": "2026-10-29",
+      "dividendos": 0.29,
       "custo_entrada": 1.54
     },
-    "KNHY11": {
-      "ticker": "KNHY11",
-      "cotas": 9.0,
-      "preco_entrada": 94.19,
-      "data_entrada": "2026-10-28",
-      "score_entrada": 77.5,
-      "dy_entrada": 13.0,
+    "HFOF11": {
+      "ticker": "HFOF11",
+      "cotas": 150.0,
+      "preco_entrada": 6.06,
+      "data_entrada": "2026-10-29",
+      "score_entrada": 78.0,
+      "dy_entrada": 11.57,
       "sentimento_entrada": "medo",
-      "ultima_avaliacao": "2026-10-28",
-      "ultimo_provento": "2026-10-28",
+      "ultima_avaliacao": "2026-10-29",
+      "ultimo_provento": "2026-10-29",
       "dividendos": 0.0,
-      "custo_entrada": 1.55
+      "custo_entrada": 1.66
     }
   },
   "fechadas": [
@@ -3504,6 +3504,24 @@
       "dy_entrada": 11.81,
       "sentimento_entrada": "medo",
       "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "ticker": "KNHY11",
+      "data_entrada": "2026-10-28",
+      "data_saida": "2026-10-29",
+      "preco_entrada": 94.19,
+      "preco_saida": 93.96,
+      "dias": 1,
+      "retorno_preco_pct": -0.24,
+      "dividendos": 0.0,
+      "dividendos_pct": 0.0,
+      "custo_total": 3.09,
+      "custo_pct": 0.365,
+      "retorno_total_pct": -0.61,
+      "score_entrada": 77.5,
+      "dy_entrada": 13.0,
+      "sentimento_entrada": "medo",
+      "motivo": "saiu da lista de aprovados"
     }
   ],
   "serie_valor": [
@@ -4042,6 +4060,10 @@
     {
       "data": "2026-10-28",
       "valor_total": 11094.34
+    },
+    {
+      "data": "2026-10-29",
+      "valor_total": 10926.16
     }
   ],
   "log": [
@@ -7518,6 +7540,23 @@
       "preco": 94.19,
       "score": 77.5,
       "dy": 13.0
+    },
+    {
+      "data": "2026-10-29",
+      "acao": "VENDER",
+      "ticker": "KNHY11",
+      "preco": 93.96,
+      "retorno_total_pct": -0.61,
+      "motivo": "saiu da lista de aprovados"
+    },
+    {
+      "data": "2026-10-29",
+      "acao": "COMPRAR",
+      "ticker": "HFOF11",
+      "cotas": 150.0,
+      "preco": 6.06,
+      "score": 78.0,
+      "dy": 11.57
     }
   ]
 }
