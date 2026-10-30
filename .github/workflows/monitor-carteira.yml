@@ -40,7 +40,7 @@ jobs:
           python-version: "3.12"
 
       - name: Dependências
-        run: pip install numpy pandas scipy scikit-learn yfinance
+        run: pip install numpy pandas scipy scikit-learn yfinance defusedxml
 
       # Guarda os preços já baixados entre execuções: menos pressão no Yahoo e
       # execução bem mais rápida.
