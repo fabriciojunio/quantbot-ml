@@ -41,7 +41,21 @@ jobs:
       - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
+          # O torch padrão traz as bibliotecas de CUDA e enche o disco do runner.
+          # O robô roda em CPU; a versão de CPU instalada antes satisfaz o requirements.
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
           pip install -r requirements.txt
+
+      # Preços e CDI já baixados ficam entre execuções: se o Banco Central cair
+      # no horário do robô, ele usa o último CDI conhecido em vez de parar.
+      - name: Cache dos preços e do CDI
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/carteira/precos
+            data/carteira/macro
+          key: robo-mercado-${{ github.run_id }}
+          restore-keys: robo-mercado-
 
       - name: Conferir a integridade do livro ANTES de escrever
         run: |
