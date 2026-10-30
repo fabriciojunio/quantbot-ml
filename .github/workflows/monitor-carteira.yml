@@ -69,5 +69,10 @@ jobs:
             echo "Nada novo para commitar."
           else
             git commit -m "chore: monitor da carteira $(date +%F) [skip ci]"
-            git push
+            # Os robôs gravam na mesma branch; se outro gravou antes, sincroniza e tenta de novo.
+            for tentativa in 1 2 3; do
+              git pull --rebase --quiet && git push && exit 0
+              sleep $((tentativa * 10))
+            done
+            exit 1
           fi
