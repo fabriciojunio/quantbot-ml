@@ -1,7 +1,7 @@
 {
-  "carimbado_em": "2026-10-30T00:26:35+00:00",
-  "eventos": 3009,
-  "hash_final": "9e16b6a05d880da7ab43a6874cd607c66fc6cad18e687afa39551d326e442fc3",
+  "carimbado_em": "2026-10-31T00:06:38+00:00",
+  "eventos": 3011,
+  "hash_final": "47503849fdd35e9ef213b30fc1031b499efb7a489bf8ed7a10fc4d9466614a46",
   "intacta": true,
-  "assinatura": "b46f682075350909798ccfc764549c87f74c8f62cc6815bc6432cbacbd20a876"
+  "assinatura": "64925664b8c861e3e9d86f1c4fe1545cb7fbba7c5b75b41cdb7b052ea13302e7"
 }
