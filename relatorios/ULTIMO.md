@@ -1,30 +1,30 @@
-# QuantBot — Relatório 2026-11-02
+# QuantBot — Relatório 2026-11-03
 
-_Gerado em 02/11/2026 01:16._
+_Gerado em 03/11/2026 03:20._
 
 ## Macro (Banco Central)
 
-- **Selic meta:** 13.75
+- **Selic meta:** n/d
 - **CDI:** 13.65
 - **IPCA 12m:** 4.58
 - **Dólar:** 5.4212
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.36 (😀 27 · 😐 144 · 😟 138) via finbert
+- **Hoje:** -0.35 (😀 30 · 😐 132 · 😟 133) via finbert
 - **Média 14 dias:** -0.32
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ADA-USD (63), ITUB4.SA (35), BBDC4.SA (29), BTC-USD (24), SOL-USD (21), NVDA (21)
+- **Ativos mais citados:** ADA-USD (58), AAPL (43), ITUB4.SA (43), BBDC4.SA (41), NVDA (38), MSFT (35)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,986.51  (**+9.87%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$239.33
+- **Valor:** R$10,990.06  (**+9.90%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$242.88
 - **Operações fechadas:** 205 (84 no lucro)
 - **Carteira:** AFHI11, BTRU11, FATN11, GARE11, HFOF11, HGCR11, IBBP11, KNHF11, KNHY11, KNIP11, PMLL11, XPML11
 
 ### Desempenho vs benchmark
-- **Período:** 151 dias · **Bot:** +9.87% · **CDI:** +5.44% (a.a. 13.65%)
+- **Período:** 152 dias · **Bot:** +9.90% · **CDI:** +5.47% (a.a. 13.65%)
 - **Alpha vs CDI:** +4.43 pontos percentuais — ✅ acima do CDI
 
 
@@ -36,11 +36,11 @@ _Gerado em 02/11/2026 01:16._
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: +0.32% (n=33) · neutro: +0.65% (n=105)
+- Sentimento → retorno ~7 dias depois: medo: +0.07% (n=34) · neutro: +0.65% (n=105)
 
 ## FIIs — screening do dia
 
-Analisados: **574** | Aprovados: **84** | DY mínimo: 9.6% (Selic 13.75%)
+Analisados: **574** | Aprovados: **79** | DY mínimo: 10.1% (Selic 14.5%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
