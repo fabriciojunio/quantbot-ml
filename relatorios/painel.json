@@ -1,16 +1,16 @@
 {
-  "gerado_em": "2026-10-31T00:06:38.105046+00:00",
+  "gerado_em": "2026-11-03T02:40:50.405727+00:00",
   "dinheiro_real": false,
   "aviso": "Preços reais, dinheiro simulado. Nenhuma ordem foi enviada a corretora.",
-  "patrimonio": 49307.39,
+  "patrimonio": 49316.37,
   "aportado": 34500.0,
-  "resultado": 14807.39,
-  "resultado_pct": 42.92,
-  "caixa": 16375.13,
+  "resultado": 14816.37,
+  "resultado_pct": 42.95,
+  "caixa": 16383.45,
   "custo_pago": 54.01,
   "imposto_pago": 1380.8,
-  "referencia_cdi": 48096.1,
-  "tir_cdi_pct": 11.16,
+  "referencia_cdi": 48117.66,
+  "tir_cdi_pct": 11.18,
   "tir_pct": 12.01,
   "posicoes": [
     {
@@ -34,10 +34,10 @@
     {
       "ticker": "BTC-BRL",
       "cotas": 0.001286,
-      "preco": 417994.55,
-      "valor": 537.37,
+      "preco": 418506.94,
+      "valor": 538.03,
       "custo_medio": 332707.91,
-      "resultado_pct": 25.63,
+      "resultado_pct": 25.79,
       "peso_pct": 1.1
     },
     {
@@ -8677,7 +8677,7 @@
     },
     {
       "data": "2026-10-30",
-      "total": 49307.39,
+      "total": 49316.37,
       "aportado": 34500.0,
       "cota": 1.0
     }
@@ -8877,10 +8877,10 @@
     }
   ],
   "auditoria": {
-    "eventos": 3011,
+    "eventos": 3013,
     "cadeia_intacta": true,
     "quebras": 0,
-    "hash_final": "47503849fdd35e9ef213b30fc1031b499efb7a489bf8ed7a10fc4d9466614a46",
+    "hash_final": "1815068014f8c4441aa06cd6b25ea94dadd3db3408cac2a590c7bb308c989aee",
     "primeiro_evento": "2026-08-23T22:18:48+00:00"
   },
   "satelite": {
@@ -8900,8 +8900,8 @@
     "cdi_anual_pct": 14.37,
     "ipca_12m_pct": 4.58,
     "juro_real_bruto_pct": 9.37,
-    "juro_real_liquido_pct": 7.31,
-    "premio_da_bolsa_pp": -0.81,
+    "juro_real_liquido_pct": 7.3,
+    "premio_da_bolsa_pp": -0.8,
     "teto_de_risco_sugerido_pct": 20.0,
     "veredito": "prêmio NEGATIVO de -0.8 pontos: a renda fixa paga 7.3% real líquido, acima do que a bolsa espera no longo prazo. Correr risco aqui é pagar para ter risco"
   }
