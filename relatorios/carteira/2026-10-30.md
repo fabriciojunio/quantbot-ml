@@ -1,6 +1,6 @@
 # Carteira — 2026-10-30
 
-_Gerado em 2026-10-31T00:55:54 UTC. Este relatório mede; não recomenda._
+_Gerado em 2026-11-03T02:59:46 UTC. Este relatório mede; não recomenda._
 
 ## Regime de mercado
 
@@ -21,7 +21,7 @@ _Gerado em 2026-10-31T00:55:54 UTC. Este relatório mede; não recomenda._
 | DIVO11 | R$ 119.74 | -1.53% | 0.44 | 35.1% | não |
 | IMAB11 | R$ 117.87 | +16.90% | 0.67 | 13.9% | sim |
 | B5P211 | R$ 113.77 | +21.43% | 0.89 | 4.6% | sim |
-| FIXA11 | R$ 19.66 | +19.73% | 0.78 | 13.4% | sim |
+| FIXA11 | R$ 19.61 | +19.42% | 0.78 | 13.5% | sim |
 | XFIX11 | R$ 12.88 | -1.69% | 0.22 | 16.1% | não |
 | GOLD11 | R$ 21.89 | -1.56% | 0.11 | 30.6% | não |
 
