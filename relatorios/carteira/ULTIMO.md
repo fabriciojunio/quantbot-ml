@@ -1,37 +1,37 @@
-# Carteira — 2026-11-03
+# Carteira — 2026-11-04
 
-_Gerado em 2026-11-04T01:32:57 UTC. Este relatório mede; não recomenda._
+_Gerado em 2026-11-05T01:36:21 UTC. Este relatório mede; não recomenda._
 
 ## Regime de mercado
 
 **Regime desfavorável: tendência e cdi ambos contra** (score 0.0/100)
 
-- Índice em 12 meses: +12.95%
+- Índice em 12 meses: +13.43%
 - CDI em 12 meses: +14.36%
-- Excesso sobre o CDI: -1.41 p.p.
+- Excesso sobre o CDI: -0.93 p.p.
 - Acima da média de 200 dias: não
 
 ## Sinais por ativo
 
 | Ativo | Preço | Momentum 12m | Ranking | Vol. anual | Acima da média 200 |
 |---|---|---|---|---|---|
-| BOVA11 | R$ 163.01 | -1.73% | 0.44 | 37.2% | não |
-| IVVB11 | R$ 469.60 | +8.28% | 1.00 | 22.6% | sim |
-| SMAL11 | R$ 91.32 | -16.93% | 0.11 | 64.9% | não |
-| DIVO11 | R$ 118.30 | -3.13% | 0.56 | 35.2% | não |
-| IMAB11 | R$ 117.70 | +16.65% | 0.67 | 13.9% | sim |
-| B5P211 | R$ 113.55 | +21.13% | 0.89 | 4.6% | sim |
-| FIXA11 | R$ 19.58 | +19.15% | 0.78 | 13.4% | sim |
-| XFIX11 | R$ 12.53 | -4.54% | 0.33 | 17.0% | não |
-| GOLD11 | R$ 22.34 | +1.00% | 0.22 | 30.9% | não |
+| BOVA11 | R$ 164.82 | -1.59% | 0.56 | 37.3% | não |
+| IVVB11 | R$ 473.89 | +8.09% | 1.00 | 22.0% | sim |
+| SMAL11 | R$ 95.22 | -13.92% | 0.33 | 65.5% | não |
+| DIVO11 | R$ 119.21 | -2.99% | 0.44 | 35.2% | não |
+| IMAB11 | R$ 118.06 | +16.97% | 0.78 | 13.9% | sim |
+| B5P211 | R$ 113.83 | +21.44% | 0.89 | 4.5% | sim |
+| FIXA11 | R$ 19.76 | +20.43% | 0.67 | 13.5% | sim |
+| XFIX11 | R$ 12.54 | -4.37% | 0.22 | 17.0% | não |
+| GOLD11 | R$ 23.03 | +4.18% | 0.11 | 31.3% | não |
 
 ## Alocação sugerida pela regra
 
 | Ativo | Peso |
 |---|---|
 | IVVB11 | 33.3% |
+| IMAB11 | 33.3% |
 | B5P211 | 33.3% |
-| FIXA11 | 33.3% |
 | **Caixa (CDI)** | **0.0%** |
 
 ---
