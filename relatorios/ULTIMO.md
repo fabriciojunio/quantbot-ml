@@ -1,30 +1,30 @@
-# QuantBot — Relatório 2026-11-04
+# QuantBot — Relatório 2026-11-05
 
-_Gerado em 04/11/2026 01:55._
+_Gerado em 05/11/2026 02:01._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 13.75
 - **CDI:** 13.65
 - **IPCA 12m:** 4.58
-- **Dólar:** 5.4935
+- **Dólar:** 5.4778
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.30 (😀 31 · 😐 146 · 😟 120) via finbert
-- **Média 14 dias:** -0.32
+- **Hoje:** -0.30 (😀 31 · 😐 150 · 😟 120) via finbert
+- **Média 14 dias:** -0.33
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ITUB4.SA (73), BBDC4.SA (69), ADA-USD (49), BBAS3.SA (47), PETR4.SA (46), AAPL (40)
+- **Ativos mais citados:** ITUB4.SA (107), BBDC4.SA (101), BBAS3.SA (72), ADA-USD (57), PETR4.SA (34), AAPL (32)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,604.17  (**+6.04%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$234.51
+- **Valor:** R$10,607.69  (**+6.08%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$238.03
 - **Operações fechadas:** 208 (85 no lucro)
 - **Carteira:** AFHI11, FATN11, GARE11, HFOF11, HGCR11, IBBP11, KISU11, KNIP11, KNSC11, MCCI11, PMLL11, XPML11
 
 ### Desempenho vs benchmark
-- **Período:** 153 dias · **Bot:** +6.04% · **CDI:** +5.51% (a.a. 13.65%)
+- **Período:** 154 dias · **Bot:** +6.08% · **CDI:** +5.55% (a.a. 13.65%)
 - **Alpha vs CDI:** +0.53 pontos percentuais — ✅ acima do CDI
 
 
@@ -36,7 +36,7 @@ _Gerado em 04/11/2026 01:55._
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: -0.05% (n=35) · neutro: +0.65% (n=105)
+- Sentimento → retorno ~7 dias depois: medo: -0.13% (n=36) · neutro: +0.65% (n=105)
 
 ## FIIs — screening do dia
 
