@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-11-08
+# QuantBot — Relatório 2026-11-09
 
-_Gerado em 08/11/2026 01:05._
+_Gerado em 09/11/2026 01:27._
 
 ## Macro (Banco Central)
 
@@ -11,32 +11,32 @@ _Gerado em 08/11/2026 01:05._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.32 (😀 35 · 😐 143 · 😟 134) via finbert
+- **Hoje:** -0.29 (😀 32 · 😐 155 · 😟 120) via finbert
 - **Média 14 dias:** -0.33
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ITUB4.SA (53), ADA-USD (51), BBDC4.SA (51), BBAS3.SA (44), VALE3.SA (34), PETR4.SA (33)
+- **Ativos mais citados:** ADA-USD (59), BBDC4.SA (53), ITUB4.SA (53), BBAS3.SA (38), NVDA (34), MSFT (33)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,778.27  (**+7.78%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$184.15
-- **Operações fechadas:** 215 (87 no lucro)
-- **Carteira:** AFHI11, AZPL11, FATN11, GARE11, HFOF11, HGBS11, HGCR11, IBBP11, KISU11, KNIP11, PMLL11, XPML11
+- **Valor:** R$10,768.10  (**+7.68%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$232.05
+- **Operações fechadas:** 219 (87 no lucro)
+- **Carteira:** AFHI11, AZPL11, FATN11, GARE11, HGCR11, IBBP11, KFOF11, KISU11, KNHY11, KNIP11, KNSC11, MCCI11
 
 ### Desempenho vs benchmark
-- **Período:** 157 dias · **Bot:** +7.78% · **CDI:** +5.66% (a.a. 13.65%)
-- **Alpha vs CDI:** +2.12 pontos percentuais — ✅ acima do CDI
+- **Período:** 158 dias · **Bot:** +7.68% · **CDI:** +5.70% (a.a. 13.65%)
+- **Alpha vs CDI:** +1.99 pontos percentuais — ✅ acima do CDI
 
 
 ### Expectativa estatística (operações fechadas)
-- **Win rate:** 40% (87/215)
-- **Ganho médio:** +4.11% · **Perda média:** -1.75%
-- **Payoff (ganho/perda):** 2.35 · **Expectancy/trade:** +0.62% — ✅ positiva
+- **Win rate:** 40% (87/219)
+- **Ganho médio:** +4.11% · **Perda média:** -1.71%
+- **Payoff (ganho/perda):** 2.41 · **Expectancy/trade:** +0.60% — ✅ positiva
 
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: -0.21% (n=38) · neutro: +0.62% (n=106)
+- Sentimento → retorno ~7 dias depois: medo: -0.26% (n=39) · neutro: +0.62% (n=106)
 
 ## FIIs — screening do dia
 
