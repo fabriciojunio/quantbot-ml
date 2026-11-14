@@ -1,61 +1,61 @@
-# QuantBot — Relatório 2026-11-13
+# QuantBot — Relatório 2026-11-14
 
-_Gerado em 13/11/2026 02:24._
+_Gerado em 14/11/2026 02:00._
 
 ## Macro (Banco Central)
 
 - **Selic meta:** 13.75
 - **CDI:** 13.65
 - **IPCA 12m:** 4.63
-- **Dólar:** 5.6143
+- **Dólar:** 5.6518
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.31 (😀 43 · 😐 140 · 😟 145) via finbert
+- **Hoje:** -0.34 (😀 40 · 😐 135 · 😟 152) via finbert
 - **Média 14 dias:** -0.31
 - **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** ITUB4.SA (52), BBDC4.SA (50), NVDA (47), ADA-USD (41), BBAS3.SA (40), PETR4.SA (35)
+- **Ativos mais citados:** NVDA (70), ADA-USD (53), ITUB4.SA (53), BBDC4.SA (52), MSFT (43), AAPL (38)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,606.18  (**+6.06%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$308.07
-- **Operações fechadas:** 232 (90 no lucro)
-- **Carteira:** AZPL11, BTRU11, FATN11, GARE11, HGBS11, HREC11, KFOF11, KNHY11, KNIP11, PMLL11, PQAG11, XPML11
+- **Valor:** R$10,682.14  (**+6.82%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$265.12
+- **Operações fechadas:** 233 (91 no lucro)
+- **Carteira:** AZPL11, FATN11, GARE11, HGBS11, HGCR11, HREC11, KFOF11, KNHY11, KNIP11, PMLL11, PQAG11, XPML11
 
 ### Desempenho vs benchmark
-- **Período:** 162 dias · **Bot:** +6.06% · **CDI:** +5.84% (a.a. 13.65%)
-- **Alpha vs CDI:** +0.22 pontos percentuais — ✅ acima do CDI
+- **Período:** 163 dias · **Bot:** +6.82% · **CDI:** +5.88% (a.a. 13.65%)
+- **Alpha vs CDI:** +0.94 pontos percentuais — ✅ acima do CDI
 
 
 ### Expectativa estatística (operações fechadas)
-- **Win rate:** 39% (90/232)
-- **Ganho médio:** +3.99% · **Perda média:** -1.78%
-- **Payoff (ganho/perda):** 2.24 · **Expectancy/trade:** +0.46% — ✅ positiva
+- **Win rate:** 39% (91/233)
+- **Ganho médio:** +3.97% · **Perda média:** -1.78%
+- **Payoff (ganho/perda):** 2.23 · **Expectancy/trade:** +0.47% — ✅ positiva
 
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: -0.32% (n=40) · neutro: +0.60% (n=109)
+- Sentimento → retorno ~7 dias depois: medo: -0.32% (n=40) · neutro: +0.59% (n=110)
 
 ## FIIs — screening do dia
 
-Analisados: **575** | Aprovados: **83** | DY mínimo: 9.6% (Selic 13.75%)
+Analisados: **576** | Aprovados: **82** | DY mínimo: 9.6% (Selic 13.75%)
 
 | # | Ticker | Score | DY | P/VP |
 |---|--------|-------|-----|------|
-| 1 | GARE11 | 81.0 | 12.2% | 0.90 |
-| 2 | KNIP11 | 79.7 | 11.6% | 0.92 |
-| 3 | AZPL11 | 79.3 | 12.3% | 0.85 |
-| 4 | XPML11 | 79.1 | 12.2% | 0.83 |
-| 5 | BTRU11 | 79.0 | 11.7% | 0.96 |
-| 6 | PMLL11 | 79.0 | 11.7% | 0.84 |
-| 7 | HREC11 | 78.8 | 12.7% | 0.92 |
-| 8 | FATN11 | 77.8 | 12.3% | 0.79 |
-| 9 | HGBS11 | 77.8 | 11.4% | 0.83 |
-| 10 | KFOF11 | 77.5 | 12.9% | 0.85 |
-| 11 | PQAG11 | 77.4 | 11.0% | 0.94 |
-| 12 | KNHY11 | 77.3 | 13.3% | 0.91 |
+| 1 | GARE11 | 81.2 | 12.0% | 0.91 |
+| 2 | XPML11 | 80.2 | 11.9% | 0.86 |
+| 3 | KNIP11 | 79.3 | 11.5% | 0.93 |
+| 4 | AZPL11 | 79.2 | 12.3% | 0.85 |
+| 5 | HREC11 | 78.9 | 12.7% | 0.92 |
+| 6 | PMLL11 | 78.8 | 11.6% | 0.84 |
+| 7 | PQAG11 | 78.5 | 11.2% | 0.92 |
+| 8 | KFOF11 | 78.1 | 13.0% | 0.88 |
+| 9 | FATN11 | 77.8 | 12.3% | 0.79 |
+| 10 | HGBS11 | 77.6 | 11.1% | 0.85 |
+| 11 | HGCR11 | 77.5 | 13.3% | 0.89 |
+| 12 | KNHY11 | 77.5 | 13.1% | 0.93 |
 
 ---
 *O bot analisa e informa. Você decide e executa. DY futuro não é garantido; disciplina de reinvestir é o que mais importa.*
