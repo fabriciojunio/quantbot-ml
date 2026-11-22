@@ -29,11 +29,11 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.12"
           cache: pip
@@ -49,7 +49,7 @@ jobs:
       # Preços e CDI já baixados ficam entre execuções: se o Banco Central cair
       # no horário do robô, ele usa o último CDI conhecido em vez de parar.
       - name: Cache dos preços e do CDI
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: |
             data/carteira/precos
@@ -103,7 +103,7 @@ jobs:
       - name: Guardar o carimbo como artefato
         # O carimbo fora do repositório é o que denuncia até uma reescrita
         # completa da cadeia. Noventa dias de retenção dão folga para conferir.
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: carimbo-${{ github.run_number }}
           path: data/auditoria/carimbo.json
