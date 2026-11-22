@@ -176,7 +176,7 @@ pip install -r requirements.txt
 3. Digite: /newbot
 4. Escolha um nome: ex "MeuFinanceBot"
 5. Escolha um username: ex "meubotfinance_bot"
-6. Copie o token que aparecer (parece: "110201543:AAHdqTcvCH1vGWJxfSeofSOs0K37Y38G0fQ")
+6. Copie o token que aparecer (parece: "SEU_TOKEN_DO_BOTFATHER")
 7. IMPORTANTE: mande qualquer mensagem para o seu novo bot
 8. Abra no navegador: https://api.telegram.org/bot{TOKEN}/getUpdates
    (substitua {TOKEN} pelo token copiado)
@@ -200,8 +200,8 @@ cp .env.example .env
 Conteúdo do .env:
 ```
 BRAPI_TOKEN=seu_token_da_brapi_aqui
-QUANTBOT_TELEGRAM_TOKEN=110201543:AAHdqTcvCH1vGWJxfSeofSOs0K37Y38G0fQ
-QUANTBOT_TELEGRAM_CHAT_ID=123456789
+QUANTBOT_TELEGRAM_TOKEN=SEU_TOKEN_DO_BOTFATHER
+QUANTBOT_TELEGRAM_CHAT_ID=SEU_CHAT_ID
 CAPITAL_INICIAL=1000
 META_RENDA_MENSAL=200
 APORTE_MENSAL=100
