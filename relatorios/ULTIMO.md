@@ -1,6 +1,6 @@
-# QuantBot — Relatório 2026-11-21
+# QuantBot — Relatório 2026-11-22
 
-_Gerado em 21/11/2026 03:01._
+_Gerado em 22/11/2026 01:55._
 
 ## Macro (Banco Central)
 
@@ -11,21 +11,21 @@ _Gerado em 21/11/2026 03:01._
 
 ## Sentimento do mercado (notícias)
 
-- **Hoje:** -0.42 (😀 29 · 😐 128 · 😟 162) via finbert
-- **Média 14 dias:** -0.32
-- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▁  (índice −1 medo … +1 otimismo)
-- **Ativos mais citados:** VALE3.SA (63), PETR4.SA (59), NVDA (51), ADA-USD (43), MSFT (39), AAPL (39)
+- **Hoje:** -0.41 (😀 35 · 😐 119 · 😟 168) via finbert
+- **Média 14 dias:** -0.33
+- **Tendência:** ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▃ ▅ ▃ ▃ ▁ ▁  (índice −1 medo … +1 otimismo)
+- **Ativos mais citados:** NVDA (57), VALE3.SA (50), ADA-USD (48), PETR4.SA (47), MSFT (44), AAPL (43)
 
 ## Carteira simulada (paper — o bot operando sozinho)
 
-- **Valor:** R$10,360.95  (**+3.61%** vs R$10,000 inicial)
-- **Posições abertas:** 12 · **Caixa:** R$306.62
+- **Valor:** R$10,364.24  (**+3.64%** vs R$10,000 inicial)
+- **Posições abertas:** 12 · **Caixa:** R$309.91
 - **Operações fechadas:** 249 (95 no lucro)
 - **Carteira:** AFHI11, AZPL11, BRCO11, BTRU11, GARE11, HGBS11, HREC11, KNHY11, KNIP11, PMLL11, PQAG11, XPLG11
 
 ### Desempenho vs benchmark
-- **Período:** 170 dias · **Bot:** +3.61% · **CDI:** +6.14% (a.a. 13.65%)
-- **Alpha vs CDI:** -2.53 pontos percentuais — ❌ abaixo do CDI
+- **Período:** 171 dias · **Bot:** +3.64% · **CDI:** +6.18% (a.a. 13.65%)
+- **Alpha vs CDI:** -2.54 pontos percentuais — ❌ abaixo do CDI
 
 
 ### Expectativa estatística (operações fechadas)
@@ -36,7 +36,7 @@ _Gerado em 21/11/2026 03:01._
 
 ### O que o bot aprendeu até aqui
 - Melhor perfil de pick: **75-80|12+|neutro** (6 obs, 100% bateram o CDI, +162.0% médio sobre o CDI a.a.).
-- Sentimento → retorno ~7 dias depois: medo: -0.49% (n=45) · neutro: +0.56% (n=112)
+- Sentimento → retorno ~7 dias depois: medo: -0.54% (n=46) · neutro: +0.56% (n=112)
 
 ## FIIs — screening do dia
 
