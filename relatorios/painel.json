@@ -1,17 +1,17 @@
 {
-  "gerado_em": "2026-11-24T05:00:18.801293+00:00",
+  "gerado_em": "2026-11-25T03:45:54.608540+00:00",
   "dinheiro_real": false,
   "aviso": "Preços reais, dinheiro simulado. Nenhuma ordem foi enviada a corretora.",
-  "patrimonio": 50234.19,
+  "patrimonio": 50243.54,
   "aportado": 35000.0,
-  "resultado": 15234.19,
-  "resultado_pct": 43.53,
-  "caixa": 16020.56,
+  "resultado": 15243.54,
+  "resultado_pct": 43.55,
+  "caixa": 16028.69,
   "custo_pago": 54.82,
   "imposto_pago": 1383.55,
   "referencia_cdi": 48906.01,
   "tir_cdi_pct": 11.14,
-  "tir_pct": 12.04,
+  "tir_pct": 12.05,
   "posicoes": [
     {
       "ticker": "B5P211.SA",
@@ -34,10 +34,10 @@
     {
       "ticker": "BTC-BRL",
       "cotas": 0.001286,
-      "preco": 364533.63,
-      "valor": 468.64,
+      "preco": 365478.55,
+      "valor": 469.85,
       "custo_medio": 332707.91,
-      "resultado_pct": 9.57,
+      "resultado_pct": 9.85,
       "peso_pct": 0.9
     },
     {
@@ -8755,7 +8755,7 @@
     },
     {
       "data": "2026-11-23",
-      "total": 50234.19,
+      "total": 50243.54,
       "aportado": 35000.0,
       "cota": 1.0
     }
@@ -8971,10 +8971,10 @@
     }
   ],
   "auditoria": {
-    "eventos": 3045,
+    "eventos": 3047,
     "cadeia_intacta": true,
     "quebras": 0,
-    "hash_final": "da8ede06bb75d4024256911058c1773dd524d98203e0fc830d936ad80e45a926",
+    "hash_final": "3d46dd7262821ee6ecf15e4646a2290f0001021aab5bfd752835e31bbfe4731f",
     "primeiro_evento": "2026-08-23T22:18:48+00:00"
   },
   "satelite": {
