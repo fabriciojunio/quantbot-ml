@@ -1,98 +1,98 @@
 {
-  "gerado_em": "2026-11-25T03:45:54.608540+00:00",
+  "gerado_em": "2026-11-26T03:08:48.516729+00:00",
   "dinheiro_real": false,
   "aviso": "Preços reais, dinheiro simulado. Nenhuma ordem foi enviada a corretora.",
-  "patrimonio": 50243.54,
+  "patrimonio": 50126.77,
   "aportado": 35000.0,
-  "resultado": 15243.54,
-  "resultado_pct": 43.55,
-  "caixa": 16028.69,
+  "resultado": 15126.77,
+  "resultado_pct": 43.22,
+  "caixa": 16036.83,
   "custo_pago": 54.82,
   "imposto_pago": 1383.55,
-  "referencia_cdi": 48906.01,
-  "tir_cdi_pct": 11.14,
-  "tir_pct": 12.05,
+  "referencia_cdi": 48949.88,
+  "tir_cdi_pct": 11.16,
+  "tir_pct": 11.96,
   "posicoes": [
     {
       "ticker": "B5P211.SA",
       "cotas": 44.70103,
-      "preco": 114.84,
-      "valor": 5133.47,
+      "preco": 114.94,
+      "valor": 5137.94,
       "custo_medio": 85.63,
-      "resultado_pct": 34.11,
+      "resultado_pct": 34.23,
       "peso_pct": 10.2
     },
     {
       "ticker": "BOVA11.SA",
       "cotas": 13.301694,
-      "preco": 162.35,
-      "valor": 2159.53,
+      "preco": 161.49,
+      "valor": 2148.09,
       "custo_medio": 118.09,
-      "resultado_pct": 37.48,
+      "resultado_pct": 36.75,
       "peso_pct": 4.3
     },
     {
       "ticker": "BTC-BRL",
       "cotas": 0.001286,
-      "preco": 365478.55,
-      "valor": 469.85,
+      "preco": 349960.59,
+      "valor": 449.9,
       "custo_medio": 332707.91,
-      "resultado_pct": 9.85,
+      "resultado_pct": 5.19,
       "peso_pct": 0.9
     },
     {
       "ticker": "GOLD11.SA",
       "cotas": 49.884437,
-      "preco": 22.33,
-      "valor": 1113.92,
+      "preco": 21.76,
+      "valor": 1085.49,
       "custo_medio": 11.35,
-      "resultado_pct": 96.73,
+      "resultado_pct": 91.7,
       "peso_pct": 2.2
     },
     {
       "ticker": "IMAB11.SA",
       "cotas": 125.916075,
-      "preco": 118.82,
-      "valor": 14961.35,
+      "preco": 118.49,
+      "valor": 14919.8,
       "custo_medio": 105.13,
-      "resultado_pct": 13.02,
+      "resultado_pct": 12.71,
       "peso_pct": 29.8
     },
     {
       "ticker": "IVVB11.SA",
       "cotas": 9.737484,
-      "preco": 485.72,
-      "valor": 4729.69,
+      "preco": 480.0,
+      "valor": 4673.99,
       "custo_medio": 296.45,
-      "resultado_pct": 63.85,
-      "peso_pct": 9.4
+      "resultado_pct": 61.92,
+      "peso_pct": 9.3
     },
     {
       "ticker": "SMAL11.SA",
       "cotas": 32.631545,
-      "preco": 97.51,
-      "valor": 3181.9,
+      "preco": 97.8,
+      "valor": 3191.37,
       "custo_medio": 111.26,
-      "resultado_pct": -12.36,
-      "peso_pct": 6.3
+      "resultado_pct": -12.1,
+      "peso_pct": 6.4
     },
     {
       "ticker": "XFIX11.SA",
       "cotas": 202.558899,
-      "preco": 12.17,
-      "valor": 2465.14,
+      "preco": 12.26,
+      "valor": 2483.37,
       "custo_medio": 11.23,
-      "resultado_pct": 8.37,
-      "peso_pct": 4.9
+      "resultado_pct": 9.17,
+      "peso_pct": 5.0
     }
   ],
   "exposicao_cambial": {
     "por_moeda": {
-      "BRL": 87.4,
-      "USD": 12.6
+      "BRL": 87.6,
+      "USD": 12.4
     },
-    "estrangeira_pct": 12.6,
-    "local_pct": 87.4
+    "estrangeira_pct": 12.4,
+    "local_pct": 87.6
   },
   "serie": [
     {
@@ -8758,6 +8758,12 @@
       "total": 50243.54,
       "aportado": 35000.0,
       "cota": 1.0
+    },
+    {
+      "data": "2026-11-24",
+      "total": 50126.77,
+      "aportado": 35000.0,
+      "cota": 1.0
     }
   ],
   "ultimas_ordens": [
@@ -8971,10 +8977,10 @@
     }
   ],
   "auditoria": {
-    "eventos": 3047,
+    "eventos": 3049,
     "cadeia_intacta": true,
     "quebras": 0,
-    "hash_final": "3d46dd7262821ee6ecf15e4646a2290f0001021aab5bfd752835e31bbfe4731f",
+    "hash_final": "f99ffd190b9d88da794cdb9a431b54d97113e2ac8eccbe9a6e8553266dc83d17",
     "primeiro_evento": "2026-08-23T22:18:48+00:00"
   },
   "satelite": {
@@ -8991,11 +8997,11 @@
     "reserva_por_fora": true
   },
   "juro": {
-    "cdi_anual_pct": 14.31,
+    "cdi_anual_pct": 14.3,
     "ipca_12m_pct": 4.63,
-    "juro_real_bruto_pct": 9.25,
-    "juro_real_liquido_pct": 7.2,
-    "premio_da_bolsa_pp": -0.7,
+    "juro_real_bruto_pct": 9.24,
+    "juro_real_liquido_pct": 7.19,
+    "premio_da_bolsa_pp": -0.69,
     "teto_de_risco_sugerido_pct": 20.0,
     "veredito": "prêmio NEGATIVO de -0.7 pontos: a renda fixa paga 7.2% real líquido, acima do que a bolsa espera no longo prazo. Correr risco aqui é pagar para ter risco"
   }
