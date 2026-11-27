@@ -19,12 +19,17 @@
       "n": 4,
       "soma_excedente": 552.9,
       "acertos": 4
+    },
+    "80+|10-12|medo": {
+      "n": 1,
+      "soma_excedente": -19.48,
+      "acertos": 0
     }
   },
   "sentimento": {
     "medo": {
-      "n": 48,
-      "soma_retorno_fwd": -30.638075111162507
+      "n": 50,
+      "soma_retorno_fwd": -28.465650004632316
     },
     "neutro": {
       "n": 113,
@@ -35,5 +40,5 @@
       "soma_retorno_fwd": 0.0
     }
   },
-  "atualizado_em": "2026-11-25"
+  "atualizado_em": "2026-11-27"
 }
