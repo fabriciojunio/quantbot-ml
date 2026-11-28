@@ -1,98 +1,98 @@
 {
-  "gerado_em": "2026-11-27T03:18:08.947723+00:00",
+  "gerado_em": "2026-11-28T02:58:32.396877+00:00",
   "dinheiro_real": false,
   "aviso": "Preços reais, dinheiro simulado. Nenhuma ordem foi enviada a corretora.",
-  "patrimonio": 50272.5,
+  "patrimonio": 51008.42,
   "aportado": 35000.0,
-  "resultado": 15272.5,
-  "resultado_pct": 43.64,
-  "caixa": 16044.98,
+  "resultado": 16008.42,
+  "resultado_pct": 45.74,
+  "caixa": 16053.13,
   "custo_pago": 54.82,
   "imposto_pago": 1383.55,
-  "referencia_cdi": 48971.83,
-  "tir_cdi_pct": 11.17,
-  "tir_pct": 12.05,
+  "referencia_cdi": 48973.57,
+  "tir_cdi_pct": 11.15,
+  "tir_pct": 12.51,
   "posicoes": [
     {
       "ticker": "B5P211.SA",
       "cotas": 44.70103,
-      "preco": 115.02,
-      "valor": 5141.51,
+      "preco": 115.73,
+      "valor": 5173.25,
       "custo_medio": 85.63,
-      "resultado_pct": 34.32,
-      "peso_pct": 10.2
+      "resultado_pct": 35.15,
+      "peso_pct": 10.1
     },
     {
       "ticker": "BOVA11.SA",
       "cotas": 13.301694,
-      "preco": 164.01,
-      "valor": 2181.61,
+      "preco": 174.01,
+      "valor": 2314.63,
       "custo_medio": 118.09,
-      "resultado_pct": 38.88,
-      "peso_pct": 4.3
+      "resultado_pct": 47.35,
+      "peso_pct": 4.5
     },
     {
       "ticker": "BTC-BRL",
       "cotas": 0.001286,
-      "preco": 355174.76,
-      "valor": 456.61,
+      "preco": 347517.92,
+      "valor": 446.76,
       "custo_medio": 332707.91,
-      "resultado_pct": 6.75,
+      "resultado_pct": 4.45,
       "peso_pct": 0.9
     },
     {
       "ticker": "GOLD11.SA",
       "cotas": 49.884437,
-      "preco": 21.58,
-      "valor": 1076.51,
+      "preco": 20.89,
+      "valor": 1042.09,
       "custo_medio": 11.35,
-      "resultado_pct": 90.12,
-      "peso_pct": 2.1
+      "resultado_pct": 84.04,
+      "peso_pct": 2.0
     },
     {
       "ticker": "IMAB11.SA",
       "cotas": 125.916075,
-      "preco": 118.77,
-      "valor": 14955.05,
+      "preco": 121.7,
+      "valor": 15323.99,
       "custo_medio": 105.13,
-      "resultado_pct": 12.98,
-      "peso_pct": 29.7
+      "resultado_pct": 15.76,
+      "peso_pct": 30.0
     },
     {
       "ticker": "IVVB11.SA",
       "cotas": 9.737484,
-      "preco": 472.1,
-      "valor": 4597.07,
+      "preco": 458.01,
+      "valor": 4459.87,
       "custo_medio": 296.45,
-      "resultado_pct": 59.25,
-      "peso_pct": 9.1
+      "resultado_pct": 54.5,
+      "peso_pct": 8.7
     },
     {
       "ticker": "SMAL11.SA",
       "cotas": 32.631545,
-      "preco": 100.55,
-      "valor": 3281.1,
+      "preco": 109.7,
+      "valor": 3579.68,
       "custo_medio": 111.26,
-      "resultado_pct": -9.63,
-      "peso_pct": 6.5
+      "resultado_pct": -1.4,
+      "peso_pct": 7.0
     },
     {
       "ticker": "XFIX11.SA",
       "cotas": 202.558899,
-      "preco": 12.53,
-      "valor": 2538.06,
+      "preco": 12.91,
+      "valor": 2615.04,
       "custo_medio": 11.23,
-      "resultado_pct": 11.57,
-      "peso_pct": 5.0
+      "resultado_pct": 14.96,
+      "peso_pct": 5.1
     }
   ],
   "exposicao_cambial": {
     "por_moeda": {
-      "BRL": 87.8,
-      "USD": 12.2
+      "BRL": 88.3,
+      "USD": 11.7
     },
-    "estrangeira_pct": 12.2,
-    "local_pct": 87.8
+    "estrangeira_pct": 11.7,
+    "local_pct": 88.3
   },
   "serie": [
     {
@@ -8770,6 +8770,12 @@
       "total": 50272.5,
       "aportado": 35000.0,
       "cota": 1.0
+    },
+    {
+      "data": "2026-11-27",
+      "total": 51008.42,
+      "aportado": 35000.0,
+      "cota": 1.0
     }
   ],
   "ultimas_ordens": [
@@ -8983,10 +8989,10 @@
     }
   ],
   "auditoria": {
-    "eventos": 3051,
+    "eventos": 3053,
     "cadeia_intacta": true,
     "quebras": 0,
-    "hash_final": "9df9f73974deed9cd514b9ab13445acc8031a4653d430254266ff8dffbf36919",
+    "hash_final": "711763770a65178e435c57d40a761a5b7c0d8c98bdbf10e494e2ef14425d016b",
     "primeiro_evento": "2026-08-23T22:18:48+00:00"
   },
   "satelite": {
